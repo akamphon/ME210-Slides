@@ -1,0 +1,327 @@
+#+TITLE: Analysis of Torque Loaded Members
+#+SUBTITLE: ME 210: Mechanics of Materials
+#+AUTHOR: Sappinandana Akamphon
+
+#+OPTIONS: toc:nil timestamp:nil H:2 title:nil
+#+OPTIONS: reveal_width:1280 reveal_height:1024
+#+OPTIONS: reveal_single_file:t
+#+REVEAL_THEME: sky
+#+REVEAL_TRANS: slide
+#+REVEAL_EXTRA_CSS: bearings.css
+
+#+STARTUP: beamer
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt, svgnames]
+#+BEAMER_THEME: focus
+#+LATEX_COMPILER: xelatex
+#+BEAMER_HEADER: \usepackage{booktabs}
+#+BEAMER_HEADER: \institute{Department of Mechanical Engineering, TSE}
+#+BEAMER_HEADER: \date{}
+#+BEAMER_HEADER: \usetikzlibrary{patterns,shapes,arrows,calc,decorations,decorations.markings,decorations.pathmorphing,patterns}
+#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}{Outline}\tableofcontents[currentsection]\end{frame}}
+#+BEAMER_HEADER: \usetikzlibrary{arrows,calc,decorations,decorations.markings,shapes,decorations.pathmorphing,patterns}
+#+BEAMER_HEADER: \pgfkeys{/tikz/.cd, view angle/.initial=0, view angle/.store in=\picangle}
+#+BEAMER_HEADER: \tikzset{horizontal/.style={y={(0,sin(\picangle))}},vertical at/.style={x={([horizontal] #1:1)}, y={(0,cos(\picangle)cm)}},every label/.style={font=, inner sep=1pt},shorten/.style={shorten <=#1, shorten >=#1},shorten/.default=3pt,->-/.style={decoration={markings, mark=at position #1 with {\arrow{>}}}, postaction={decorate}},->-/.default=0.5}
+
+** {}
+\maketitle
+
+* Pressure Vessels
+
+** Spherical Pressure Vessels
+
+#+BEGIN_SRC latex :results raw file :file sphere-pressure-vessel.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\usetikzlibrary{arrows,calc,decorations,decorations.markings,shapes,decorations.pathmorphing,patterns}
+\pgfkeys{/tikz/.cd, view angle/.initial=0, view angle/.store in=\picangle}
+\tikzset{
+  horizontal/.style={y={(0,sin(\picangle))}},
+  vertical at/.style={x={([horizontal] #1:1)}, y={(0,cos(\picangle)cm)}},
+  every label/.style={font=\tiny, inner sep=1pt},
+  shorten/.style={shorten <=#1, shorten >=#1},
+  shorten/.default=3pt,
+  ->-/.style={decoration={markings, mark=at position #1 with {\arrow{>}}}, postaction={decorate}},
+  ->-/.default=0.5
+}
+\begin{tikzpicture}[scale=2, view angle=15, >=stealth]
+  \draw[fill=brown!50, fill opacity=.75, horizontal] (0,0) circle (1);
+  \draw[left color=brown, right color=brown, middle color=brown!50, fill opacity=.75] (0:1) arc (0:-180:1) [horizontal] node[at start](A){} node[near start](B){} node[midway](C){} node[near end](D){} node[at end](E){} arc (-180:0:1) ;
+  \foreach \n in {1,...,8} {
+    \draw [vertical at=45*\n+10,->, very thick] (0:1) --++ (90:0.4);}
+    \draw [->, very thick] (A.center) --++ (0:0.4);
+    \draw [->, very thick] (B.center) --++ (-45:0.4);
+    \draw [->, very thick] (C.center) --++ (-90:0.4);
+    \draw [->, very thick] (D.center) --++ (-130:0.4);
+    \draw [->, very thick] (E.center) --++ (-180:0.4);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/sphere-pressure-vessel.pdf]]
+
+$$ F_{\sigma} = F_p $$
+$$ \sigma_2 \left( 2\pi r t \right) = p \pi r^2 $$
+$$ \sigma_2 = \frac{pr}{2t} $$
+
+- What about $\sigma_1$? How do you draw a Mohr's circle to represent state of stress?
+
+** State of Stress of of Vessel Wall
+
+#+BEGIN_SRC latex :results raw file :file state-of-stress-spherical.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=4cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{$\dfrac{pr}{2t}$};
+  \draw [->,very thick] (A.east) --++ (0:1) node[right]{$\dfrac{pr}{2t}$};
+  \draw [->,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \node at (A.south east) [xshift=3mm] (C){};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \node at (A.south east) [yshift=-3mm] (E){};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :height 0.9\textheight
+#+RESULTS:
+[[file:pictures/state-of-stress-spherical.pdf]]
+
+** Mohr's Circle of State of Stress
+
+#+BEGIN_SRC latex :results raw file :file mohrs-sphere-vessel.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (3,0) [anchor=west, draw, fill=Black, circle, minimum height=1mm, inner sep=0](large){};
+  \node at (large) [below]{$\sigma_1 = \sigma_2 = \dfrac{pr}{2t}$};
+  \draw [<->] (-3,0) --++ (0:8) node[right]{$\sigma$};
+  \draw [<->] (0,-3.5) --++ (90:7) node[above]{$\tau$};
+  \draw (0,0) node[below left]{0};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/mohrs-sphere-vessel.pdf]]
+
+** Absolute Maximum Shear Stress of Spherical Pressure Vessel
+
+#+BEGIN_SRC latex :results raw file :file abs-max-shear-sphere-vessel.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (0,0) [anchor=west, draw, fill=LightSkyBlue, circle, minimum height=3cm, inner sep=0](large2){};
+  \node at (3,0) [anchor=center, draw, fill=Black, circle, minimum height=1mm, inner sep=0](large){};
+  \node at (large) [below]{$\sigma_1 = \sigma_2 = \dfrac{pr}{2t}$};
+  \draw [<->] (-3,0) --++ (0:8) node[right]{$\sigma$};
+  \draw [<->] (0,-3) --++ (90:6) node[above]{$\tau$};
+  \draw (0,0) node[below left]{$\sigma_3 = 0$};
+  \draw [dashed] (large2.center) -- (large2.north) node[above]{$\tau_{max,abs} = \dfrac{pr}{4t}$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/abs-max-shear-sphere-vessel.pdf]]
+
+** Spherical Pressure Vessel: Summary
+
++ $\sigma_1 = \sigma_2 = \dfrac{pr}{2t}$
++ $\tau_{xy} = \tau_{max} = 0$
++ $\tau_{max,abs} = \dfrac{pr}{4t}$
+
+** Cylindrical Pressure Vessels
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+#+BEGIN_SRC latex :results raw file :file cylind-press-vess.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, cylinder, left color=brown, right color=brown, middle color=brown!50, minimum height=3cm, minimum width=3cm, inner sep=10, rotate=90](cyl){};
+  \node at (cyl.east) [anchor=north, fill=brown!50, ellipse, minimum width=3cm, minimum height=0.7cm](top){};
+  \draw [->, very thick](top.north) --++ (90:1);
+  \draw [->, very thick](top.north east) --++ (90:1);
+  \draw [->, very thick](top.east) --++ (90:1);
+  \draw [->, very thick](top.south east) --++ (90:1);
+  \draw [->, very thick](top.south) --++ (90:1);
+  \draw [->, very thick](top.north west) --++ (90:1);
+  \draw [->, very thick](top.west) --++ (90:1);
+  \draw [->, very thick](top.south west) --++ (90:1);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/cylind-press-vess.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+$$ F_{\sigma} = F_p $$
+$$ \sigma_1 \left( 2tdy \right) = p \left( 2rdy \right) $$
+$$ \sigma_1 = \frac{pr}{t} $$
+
+$$ \sigma_2 \left( 2\pi rt \right) = p \pi r^2 $$
+$$ \sigma_2 = \frac{pr}{2t} $$
+
+** State of Stress of of Vessel Wall
+
+#+BEGIN_SRC latex :results raw file :file state-of-stress-cyl.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=4cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{$\dfrac{pr}{2t}$};
+  \draw [->,very thick] (A.east) --++ (0:1) node[right]{$\dfrac{pr}{t}$};
+  \draw [->,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \node at (A.south east) [xshift=3mm] (C){};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \node at (A.south east) [yshift=-3mm] (E){};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/state-of-stress-cyl.pdf]]
+
+** Mohr's Circle of Cylindrical Vessel
+
+#+BEGIN_SRC latex :results raw file :file mohrs-cyl-vessel.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (2,0) [anchor=west, draw, fill=LightSkyBlue, circle, minimum height=2cm, inner sep=0](large){};
+  \node at (large.east) [below right]{$\sigma_1 = \dfrac{pr}{t}$};
+  \node at (large.west) [below left]{$\sigma_2 = \dfrac{pr}{2t}$};
+  \draw [<->] (-3,0) --++ (0:8) node[right]{$\sigma$};
+  \draw [<->] (0,-3.5) --++ (90:7) node[above]{$\tau$};
+  \draw (0,0) node[below left]{0};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/mohrs-cyl-vessel.pdf]]
+
+** Absolute Maximum Shear Stress of Cylindrical Vessel
+
+#+BEGIN_SRC latex :results raw file :file abs-max-shear-cyl-vessel.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (0,0) [anchor=west, draw, fill=LightSkyBlue, circle, minimum height=4cm, inner sep=0](large2){};
+  \node at (2,0) [anchor=west, draw, fill=LightSkyBlue!50, circle, minimum height=2cm, inner sep=0](large){};
+  \node at (large.east) [below right]{$\sigma_1 = \dfrac{pr}{t}$};
+  \node at (large.west) [below left]{$\sigma_2 = \dfrac{pr}{2t}$};
+  \draw [<->] (-3,0) --++ (0:8) node[right]{$\sigma$};
+  \draw [<->] (0,-3.5) --++ (90:7) node[above]{$\tau$};
+  \draw (0,0) node[below left]{$\sigma_3 = 0$};
+  \draw [dashed] (large2.center) -- (large2.north) node[above]{$\tau_{max,abs} = \dfrac{pr}{2t}$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/abs-max-shear-cyl-vessel.pdf]]
+
+** Cylindrical Pressure Vessel: Summary
++ $\sigma_1 = \sigma_c = \dfrac{pr}{t}$
++ $\sigma_2 = \sigma_l = \dfrac{pr}{2t}$
++ $\tau_{xy} = 0, \tau_{max} = \dfrac{pr}{4t}$
++ $\tau_{max,abs} = \dfrac{pr}{2t}$
+
+** Cylindrical Pressure Vessels
++ Failure of a shotgun barrel
+
+[[./pictures/shotgun-barrel.png]]
+
+* Combined Loadings
+
+** Combined Loadings
+
+- Multiaxial stress conditions come from
+  - Simultaneous application of loads
+  - Complex geometry of component
+- Superposition is always the key
+  - Find stress(es) from each load
+  - combine resultant stresses using multiaxial stress analysis
+
+** Design of Member under Combined Loadings
+
+- We need to know where failure starts
+- For a single-material component, failure starts where /combined/
+stress is the highest
+- This is called the ``critical point''
+
+** How to Identify the Critical Point
+
++ Identify each type of load (axial, bending, or torsion)
++ Mark locations of maximum stress for each load
++ Locate location(s) with multiple maximum stresses
+
+
+** Example: Helicoptor Rotor Shaft
+
+We want to determine the proper diameter of a rotor shaft for a 4-ton helicopter. The shaft is connected to the engine that provides the maximum torque of 8000 N-m. The shaft is made of AISI1023 steel with $\sigma_{allow}$ = 400 MPa.
+
+#+BEGIN_SRC latex :results raw file :file helicopter-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, cylinder, fill=Gray!80, minimum height=1cm, minimum width=0.5cm, shape border rotate=90, inner sep=1pt] (shaft){};
+  \node at (shaft.north) [anchor=east, yshift=-0.5mm, draw, fill=LightGray, ellipse, minimum height=0.4cm, minimum width=5cm](left){};
+  \node at (shaft.north) [anchor=west, yshift=-0.5mm, draw, fill=LightGray, ellipse, minimum height=0.4cm, minimum width=5cm](right){};
+  \draw [->>, ultra thick] (shaft.south) --++ (-90:1) node[right]{$T = 8000$ N-m};
+  \draw [->, ultra thick] (shaft.south) --++ (-90:2) node[right]{$W = 4$ ton};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/helicopter-example.pdf]]
+
+** Helicopter Rotor Shaft: Solution
+
++ Determine the critical point
++ Determine state of stress
++ Find proper radius $r$
+
+** Helicopter Rotor Shaft: Solution
+
+\begin{align*}
+  \sigma &= \frac{F}{A} = \frac{4(1000 \text{ kg/ton})(10 \text{ N/kg})}{\pi r^2} \\
+         &= \frac{12732}{r^2} \\
+  \tau &= \frac{Tr}{J} = \frac{8000(r)}{\pi r^4/2} \\
+         &= \frac{5093}{r^3}
+\end{align*}
+
+** Helicopter Rotor Shaft: Solution
+
+So the state of stress at the critical surface is a combination of normal stress and shear stress. Since the given material is limited by its normal stress, we need to determine the maximum principal stress.
+
+\begin{align*}
+\sigma_1 = \sigma_{allow} = 400 \times 10^6 &= \frac{12732}{2r^2} + \sqrt{ \left( \frac{12732}{2r^2} \right)^2 + \left( \frac{5093}{r^3} \right)^2 }
+\end{align*}
+
+This equation can be solved numerically to obtain $r = 2.38$ cm.
+
+** L-pipe
+
+#+BEGIN_SRC latex :results raw file :file l-pipe.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node[draw, pattern=north east lines, trapezium, trapezium left angle=120, trapezium right angle=60, minimum height=1.5cm, rotate=90](wall){};
+  \draw [line cap=round, double=Grey, rounded corners=5mm, double distance=0.5cm] (wall.center) --++ (-25:6) --++ (-155:2) node(end){};
+  \node at (end.center) [draw, ellipse, minimum height=0.5cm, minimum width=0.5cm](outerend){};
+  \draw [<-, ultra thick, >=latex] (outerend.north) --++ (90:1) node[left]{800 N};
+  \node at (end.center) [draw, circle, minimum height=0.3cm, fill=LightGrey!50!Grey]{};
+  \node at (end.center) [xshift=4cm, circle, draw, minimum height=1.5cm, fill=Grey](outersect){};
+  \node at (end.center) [xshift=4cm, circle, draw, minimum height=1cm, fill=White](innersect){};
+  \draw [|<->|, >=latex] (outersect.north) ++ (-180:1) --++ (-90:1.5) node[left, midway]{3 cm};
+  \draw [|<->|, >=latex] (innersect.north) ++ (0:1) --++ (-90:1) node[right, midway]{2.5 cm};
+
+  \draw [->, thick] (wall.center) ++ (-90:3) node(D){} --++ (-25:1) node[right]{$y$};
+  \draw [->, thick] (D.center) --++ (90:1) node[above]{$z$};
+  \draw [->, thick] (D.center) --++ (-155:1) node[below left]{$x$};
+
+  \draw [<->] (wall.center) ++ (25:0.7) --++ (-25:6) node[midway, fill=white, rotate=-25]{80 cm} node(C){};
+  \draw [<->] (C.center) ++ (-90:0.7) --++ (-155:2.5) node[midway, fill=white, rotate=25]{50 cm};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/l-pipe.pdf]]
+
+** Questions
+
++ Find the critical point. Elaborate your reasoning.
++ Determine the state of stress of the critical point.
++ Draw a Mohr's circle representing the state of stress.

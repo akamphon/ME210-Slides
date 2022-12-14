@@ -1,0 +1,707 @@
+#+TITLE: Analysis of Multiaxial Stress
+#+SUBTITLE: ME 210: Mechanics of Materials
+#+AUTHOR: Sappinandana Akamphon
+
+#+OPTIONS: toc:nil timestamp:nil H:1 title:nil
+#+OPTIONS: reveal_width:1280 reveal_height:1024
+#+OPTIONS: reveal_single_file:t
+#+REVEAL_THEME: sky
+#+REVEAL_TRANS: slide
+#+REVEAL_EXTRA_CSS: bearings.css
+
+#+STARTUP: beamer
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt, svgnames]
+#+BEAMER_THEME: focus
+#+LATEX_COMPILER: xelatex
+#+BEAMER_HEADER: \usepackage{booktabs}
+#+BEAMER_HEADER: \usepackage{pgfplots}
+#+BEAMER_HEADER: \pgfplotsset{compat=1.18}
+#+BEAMER_HEADER: \institute{Department of Mechanical Engineering, TSE}
+#+BEAMER_HEADER: \date{}
+#+BEAMER_HEADER: \usetikzlibrary{patterns,shapes,arrows}
+#+BEAMER_HEADER: \setmathfont{Fira Math}
+#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}{Outline}\tableofcontents[currentsection]\end{frame}}
+
+* {}
+\maketitle
+
+* Why Should I Care about This?
+
+- Many components can be loaded by multiple forces/torques/moments
+- How do we know if material will fail?
+- We need to understand their states of stress first
+  - Need to determine max normal and max shear stress
+
+* Determining Max Normal and Shear Stresses
+
+- Equivalent normal and shear stresses change with respect to
+  orientation
+- 2 types of simplification: /plane stress/ and /plane strain/
+
+* Plane Stress: What's That?
+
+- Part of material with only /in-plane/ normal and shear stresses
+
+- No stress in /out-of-plane/ direction
+
+#+BEGIN_SRC latex :results raw file :file plane-stress.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{$\sigma_y$};
+  \draw [->,very thick] (A.east) --++ (0:1) node[right]{$\sigma_x$};
+  \draw [->,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \draw [-left to, very thick] (B) --++ (0:2);
+  \node at (A.south east) [xshift=3mm] (C){};
+  \draw [-right to, very thick] (C) --++ (90:2) node[above right]{$\tau_{xy}$};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \draw [-right to, very thick] (D) --++ (-90:2);
+  \node at (A.south east) [yshift=-3mm] (E){};
+  \draw [-left to, very thick] (E) --++ (180:2);
+  \node at (A.south) [yshift=-1.2cm] {$\sigma_z = 0$, $\tau_{xz} = 0$, $\tau_{yz}  = 0$.};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :height 0.7\textheight
+#+RESULTS:
+[[file:pictures/plane-stress.pdf]]
+
+* Stress Transformation for Plane Stress
+
+#+BEGIN_SRC latex :results raw file :file stress-trans.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=4cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{$\sigma_y$};
+  \draw [->,very thick] (A.east) --++ (0:1) node[right]{$\sigma_x$};
+  \draw [->,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \draw [-left to, very thick] (B) --++ (0:2.6);
+  \node at (A.south east) [xshift=3mm] (C){};
+  \draw [-right to, very thick] (C) --++ (90:2.6) node[above right]{$\tau_{xy}$};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \draw [-right to, very thick] (D) --++ (-90:2.6);
+  \node at (A.south east) [yshift=-3mm] (E){};
+  \draw [-left to, very thick] (E) --++ (180:2.6);
+  \draw [dashed] (A.north west) ++ (-90:0.5) node(F){} ++ (135:1) --++ (-45:6);
+  \node at (A.west) [above right]{$\theta$};
+  %%%% cut section %%%%
+  \draw [fill=LightBlue] (F) ++ (0:7) node(G){} --++ (-90:2.3) node(H){} --++ (0:2.3) node(I){} -- cycle node[midway](J){};
+  \draw [->, very thick] (G.center) ++ (-90:1) --++ (180:1) node[above]{$\sigma_x$};
+  \draw [->, very thick] (H.center) ++ (0:1.3) --++ (-90:1) node[right]{$\sigma_y$};
+  \draw [-left to, very thick] (I.center) ++ (-135:0.5) --++ (180:1.8);
+  \draw [-right to, very thick] (G.center) ++ (-135:0.5) --++ (-90:1.8) node[below]{$\tau_{xy}$};
+  \draw [->, very thick] (J.center) --++ (45:1) node[above right]{$\sigma_{x'}$};
+  \draw [-right to, very thick] (I.center) ++ (90:0.5) --++ (135:2.6) node[above right]{$\tau_{x'y'}$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/stress-trans.pdf]]
+
+- Finding maximum normal and shear stresses and their direction
+
+- Use equilibrium to solve
+
+* Equations for Stress Transformation
+
+\begin{gather*}
+  \sum F_{x'}  = 0; \hfill \\[1em]
+  \begin{split}
+    \sigma_{x'}\Delta A &- (\tau_{xy}\Delta A\sin \theta )\cos \theta  - (\sigma_y\Delta A\sin \theta )\sin \theta  \\
+    &- (\tau_{xy}\Delta A\cos \theta )\sin \theta  - (\sigma_x\Delta A\sin \theta )\cos \theta  = 0
+  \end{split} \nonumber \\[0.5em]
+  \sigma_{x'} = \sigma_x\cos^2\theta  + \sigma_y\sin^2\theta  + 2\tau_{xy}\sin \theta \cos \theta  \\[1em]
+  \sum F_{y'}  = 0; \hfill \\ 
+  \tau_{x'y'} = (\sigma_y - \sigma_x)\sin \theta \cos \theta  + \tau_{xy}(\cos^2\theta  - \sin ^2\theta ) \\ 
+\end{gather*}
+
+- \(\sigma_y' = ?\)
+
+* Where are My Max Stresses?
+
+- Find the max
+
+  \[\dfrac{d \sigma_x'}{d\theta} = 0 = - \left( \sigma_x - \sigma_y \right) \sin 2\theta + 2\tau_{xy} \cos 2\theta\]
+  \[\dfrac{d \sigma_y'}{d\theta} = 0 = \left( \sigma_x - \sigma_y \right) \sin 2\theta - 2\tau_{xy} \cos 2\theta\]
+
+- For both normal stress in \(x\) and \(y\)
+  \[2 \theta_p = \tan^{-1} \dfrac{2\tau_{xy}}{\sigma_x - \sigma_y}\]
+
+- \(\theta_p\) is the /principal direction/
+
+* Graphical Representation of State of Stress
+
+- Rewrite stresses using double angle
+
+\begin{gather*}
+  \sigma_{x'} = \sigma_x\cos^2\theta  + \sigma_y\sin^2\theta  + 2\tau_{xy}\sin \theta \cos \theta  \hfill \\
+  \vdots \\
+  \sigma_{x'} - \left( \dfrac{\sigma_x + \sigma_y}{2} \right) = \left( \dfrac{\sigma_x + \sigma_y}{2} \right)\cos 2\theta  + {\tau_{xy}}\sin 2\theta  \hfill
+\end{gather*}
+
+\begin{gather*}
+  \tau_{x'y'} = (\sigma_y - \sigma_x)\sin \theta \cos \theta  + \tau_{xy}(\cos^2\theta  - \sin^2\theta ) \\
+  \vdots \\
+  \tau_{x'y'} = \left( \dfrac{\sigma_y - \sigma_x}{2} \right)\sin 2\theta  + \tau _{xy}\cos 2\theta \hfill
+\end{gather*}
+
+* Getting There...
+
+- Square both terms and add
+
+\begin{align*}
+    \left[ \sigma_{x'} - \left( \dfrac{\sigma_x + \sigma_y}{2} \right) \right]^2 &+ \tau_{x'y'}^2 = \\
+     & \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2\cos^2 2\theta  + 2\left( \dfrac{\sigma_x - \sigma_y}{2} \right)\tau_{xy}\cos 2\theta \sin 2\theta + \tau_{xy}^2\sin^2 2\theta \\
+    +& \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2 \sin^2 2\theta  + 2\left( \dfrac{\sigma_y - \sigma_x}{2} \right)\tau_{xy}\cos 2\theta \sin 2\theta  + \tau_{xy}^2\cos^2 2\theta
+\end{align*}
+
+* The Representation
+
+- Use trigonometry identities
+
+  \[\left[ \sigma_{x'} - \left( \dfrac{\sigma_x + \sigma_y}{2} \right) \right]^2 + \tau_{x'y'}^2 = \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2 + \tau_{xy}^2\]
+
+- What shape does that take?
+
+\[\left( \sigma_{x'} - \sigma_{avg} \right)^2 + \tau_{x'y'}^2 = R^2\]
+
+* Mohr's Circle
+
+#+BEGIN_SRC latex :results raw file :file mohrs-circle.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (-2,0) [anchor=west, draw, fill=SkyBlue, circle, minimum height=6cm](large){};
+  \draw [<->] (-3,0) --++ (0:8) node[right]{$\sigma$};
+  \draw [<->] (0,-3.5) --++ (90:7) node[above]{$\tau$};
+  \node at (large.east) [below right] {$\sigma_1$};
+  \node at (large.west) [below left] {$\sigma_2$};
+  \draw (0,0) node[below left]{0};
+  \draw [dashed](large.center) -- (large.south) node[below right](absolute){$(\tau_{x'y'})_{\max}$};
+  \draw (large.center) --++ (50:3) node[above right]{$\sigma_x$} node(A){};
+  \draw (large.center) --++ (-130:3) node[below left]{$\sigma_y$};
+  \draw [dashed] (A.center) --++ (180:2.9) node[left]{$\tau_{xy}$};
+  % \draw (absolute.south) [out=-90, in=150] to ++(0.5,-0.5) node[right]{Maximum in-plane shear stress};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :height 0.9\textheight
+#+RESULTS:
+[[file:pictures/mohrs-circle.pdf]]
+
+* Principal Stresses
+
+- Maximum and minimum normal stresses = normal stresses at principal
+  direction
+
+\[\sigma_{x'} (\theta = \theta_p) = \sigma_1 = \dfrac{\sigma_x + \sigma_y}{2} + \sqrt{ \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2 + \tau_{xy}^2 }\]
+\[\sigma_{y'} (\theta = \theta_p) = \sigma_2 = \dfrac{\sigma_x + \sigma_y}{2} - \sqrt{ \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2 + \tau_{xy}^2 }\]
+
+- \(\sigma_1\) and \(\sigma_2\) are called /principal stresses/
+
+* Shear Stresses at \(\theta_p\)
+
+\[\tau_{x'y'} (\theta = \theta_p) = 0\]
+
+- No shear stress in the principal direction, /ever!/
+
+- Check on Mohr's circle
+
+- 
+
+- So where's the maximum shear stress?
+
+* Maximum In-plane Shear Stress
+
+\[\dfrac{d\tau_{xy}}{d\theta} = 0 = 2\left( \dfrac{\sigma_y - \sigma_x}{2} \right) \cos 2\theta - 2\tau_{xy} \sin 2\theta\]
+\[\tan 2\theta_s = \dfrac{\sigma_y - \sigma_x}{2\tau_{xy}}\]
+
+- \(\theta_s\) is the maximum shear stress direction
+  \[\tau_{\max} = \tau_{xy} (\theta = \theta_s)\]
+
+- \(\tau_{\max}\) is the maximum in-plane shear stress
+
+* Example: State of Stress of a Square Element
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+BEGIN_SRC latex :results raw file :file example-I-prob.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{20 MPa};
+  \draw [<-,very thick] (A.east) --++ (0:1) node[right]{-30 MPa};
+  \draw [<-,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \draw [-left to, very thick] (B) --++ (0:2);
+  \node at (A.south east) [xshift=3mm] (C){};
+  \draw [-right to, very thick] (C) --++ (90:2) node[above right]{25 MPa};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \draw [-right to, very thick] (D) --++ (-90:2);
+  \node at (A.south east) [yshift=-3mm] (E){};
+  \draw [-left to, very thick] (E) --++ (180:2);
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width \textwidth
+#+RESULTS:
+[[file:pictures/example-I-prob.pdf]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+- First, find \(\tau_{\max}\)
+
+  \begin{align*}
+    \tau_{\max} &= \sqrt {\left( \frac{\sigma_x - \sigma_y}{2} \right)^2 + \tau _{xy}^2}  \\
+                &= \sqrt {\left( \frac{-30 - 20}{2} \right)^2 + 25^2}  \\
+                &= 35.4 \text{ MPa}
+  \end{align*}
+
+* Continue
+
+- Principal stresses are
+
+  \begin{align*}
+    \sigma_{1,2} &= \frac{\sigma_x + \sigma _y}{2} \pm \sqrt {\frac{\sigma _x - \sigma_y}{2}^2 + \tau _{xy}^2}  \\
+                 &= \frac{-30 + 20}{2} \pm 35.4 \\
+                 &= 30.4 \text{ MPa}, - 40.4 \text{ MPa}
+  \end{align*}
+
+- Principal direction is
+
+  \begin{align*}
+    2\theta  &= \tan^{-1}\frac{2\tau_{xy}}{\sigma_x - \sigma_y} \\
+             &= -45^{\circ} \\
+    \theta &= -22.5^{\circ}
+  \end{align*}
+
+* :B_fullframe:
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+
+#+BEGIN_SRC latex :results raw file :file example-I-mohrs.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (-4,0) [anchor=west, draw, fill=SkyBlue, circle, minimum height=7cm](large){};
+  \draw [<->] (-5,0) --++ (0:9) node[right]{$\sigma$};
+  \draw [<->] (0,-4) --++ (90:8) node[above]{$\tau$};
+  \draw [red](large.south west) -- (large.north east) node[near start, above, rotate=45]{original orientation};
+  \draw [red, dashed](large.south west) --++ (90:2.5) node[above]{-30};
+  \draw [red, dashed](large.north east) --++ (-90:2.5) node[below]{20};
+  \draw [red, dashed](large.north east) --++ (180:1.95) node[left]{25};
+  \node at (large.east) [below right] {30.4};
+  \node at (large.west) [below left] {-40.4};
+  \draw [dashed] (large.north) --++ (0:0.5) node[above right]{35.4};
+  \node at (large.center) [red, above right, xshift=0.5cm, yshift=-0cm]{-45$^{\circ}$};
+  \draw [->, red](large.center) ++ (45:1.5) arc (45:0:1.5);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/example-I-mohrs.pdf]]
+
+* Original vs Principal
+
+#+BEGIN_SRC latex :results raw file :file orig-vs-principal-I.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{20};
+  \draw [<-,very thick] (A.east) --++ (0:1) node[right]{-30};
+  \draw [<-,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \draw [-left to, very thick] (B) --++ (0:2);
+  \node at (A.south east) [xshift=3mm] (C){};
+  \draw [-right to, very thick] (C) --++ (90:2) node[above right]{25};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \draw [-right to, very thick] (D) --++ (-90:2);
+  \node at (A.south east) [yshift=-3mm] (E){};
+  \draw [-left to, very thick] (E) --++ (180:2);
+\end{tikzpicture}
+\hspace{0.5cm}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, rotate=-22.5, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (67.5:1) node[above, rotate=-22.5]{30.4};
+  \draw [<-,very thick] (A.east) --++ (-22.5:1) node[right, rotate=-22.5]{-40.4};
+  \draw [<-,very thick] (A.west) --++ (157.5:1);
+  \draw [->,very thick] (A.south) --++ (-112.5:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \node at (A.south east) [xshift=3mm] (C){};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \node at (A.south east) [yshift=-3mm] (E){};
+
+  \draw [dashed] (A.center) -- (A.north);
+  \draw [dashed] (A.center) --++ (90:2);
+  \node at (A.center) [rotate=80, right, xshift=5mm, yshift=-0.5mm]{-22.5};
+  \draw [->] (A.center) ++ (90:1.7) arc (90:67.5:1.7);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/orig-vs-principal-I.pdf]]
+
+* Another Example:
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+BEGIN_SRC latex :results raw file :file example-II-prob.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{100 MPa};
+  \draw [->,very thick] (A.east) --++ (0:1) node[right]{40 MPa};
+  \draw [->,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \draw [-left to, very thick] (B) --++ (0:2);
+  \node at (A.south east) [xshift=3mm] (C){};
+  \draw [-right to, very thick] (C) --++ (90:2) node[above right]{75 MPa};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \draw [-right to, very thick] (D) --++ (-90:2);
+  \node at (A.south east) [yshift=-3mm] (E){};
+  \draw [-left to, very thick] (E) --++ (180:2);
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width \textwidth
+#+RESULTS:
+[[file:pictures/example-II-prob.pdf]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+- First, find \(\tau_{\max}\)
+
+\begin{align*}
+  \tau_{\max} &= \sqrt {\left( \frac{\sigma_x - \sigma_y}{2} \right)^2 + \tau _{xy}^2}  \\
+              &= \sqrt {\left( \frac{40 - 100}{2} \right)^2 + 75^2}  \\
+              &= 80.8 \text{ MPa}
+\end{align*}
+
+* Continue
+
+- Principal stresses are
+
+  \begin{align*}
+    \sigma_{1,2} &= \frac{\sigma_x + \sigma _y}{2} \pm \sqrt {\frac{\sigma _x - \sigma_y}{2}^2 + \tau _{xy}^2}  \\
+                 &= \frac{40 + 100}{2} \pm 80.8 \\
+                 &= 150.8 \text{ MPa}, - 10.8 \text{ MPa}
+  \end{align*}
+
+- Principal direction is
+
+  \begin{align*}
+    2\theta  &= \tan^{-1}\frac{2(80.8)}{40 - 100} \\
+             &= -69.6^{\circ} \\
+    \theta &= -34.8^{\circ}
+  \end{align*}
+
+* :B_fullframe:
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+
+#+BEGIN_SRC latex :results raw file :file example-II-mohrs.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (-0.5,0) [anchor=west, draw, fill=SkyBlue, circle, minimum height=8cm](large){};
+  \draw [<->] (-1,0) --++ (0:9) node[right]{$\sigma$};
+  \draw [<->] (0,-4.5) --++ (90:9) node[above]{$\tau$};
+  \draw [red](large.center) --++ (69.8:4) node(y){};
+  \draw [red](large.center) --++ (-110.2:4) node(x){} node[at start, above, rotate=70]{original orientation};
+  \draw [red, dashed](x.center) --++ (90:3.8) node[above]{40};
+  \draw [red, dashed](y.center) --++ (-90:3.8) node[below]{100};
+  \draw [red, dashed](y.center) --++ (180:4.9) node[left, yshift=-1mm]{75};
+  \node at (large.east) [below right] {150.8};
+  \node at (large.west) [below left] {-10.8};
+  \draw [dashed] (large.north) --++ (180:3.5) node[left]{80.8};
+  \node at (large.center) [red, above right]{-69.8$^{\circ}$};
+  \draw [red, ->](large.center) ++ (69.8:1.5) arc (69.8:0:1.5);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/example-II-mohrs.pdf]]
+
+
+* Original vs Principal
+
+#+BEGIN_SRC latex :results raw file :file orig-vs-principal.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{100};
+  \draw [->,very thick] (A.east) --++ (0:1) node[right]{40};
+  \draw [->,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \draw [-left to, very thick] (B) --++ (0:2);
+  \node at (A.south east) [xshift=3mm] (C){};
+  \draw [-right to, very thick] (C) --++ (90:2) node[above right]{75};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \draw [-right to, very thick] (D) --++ (-90:2);
+  \node at (A.south east) [yshift=-3mm] (E){};
+  \draw [-left to, very thick] (E) --++ (180:2);
+\end{tikzpicture}
+\hspace{0.5cm}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, rotate=-34.8, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (55.2:1) node[above, rotate=-34.8]{150.8};
+  \draw [<-,very thick] (A.east) --++ (-34.8:1) node[right, rotate=-34.8]{-10.8};
+  \draw [<-,very thick] (A.west) --++ (145.2:1);
+  \draw [->,very thick] (A.south) --++ (-124.8:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \node at (A.south east) [xshift=3mm] (C){};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \node at (A.south east) [yshift=-3mm] (E){};
+
+  \draw [dashed] (A.center) -- (A.north);
+  \draw [dashed] (A.center) --++ (90:2);
+  \node at (A.center) [rotate=80, right, xshift=4mm, yshift=-1mm]{-34.8};
+  \draw [->] (A.center) ++ (90:1.5) arc (90:55.2:1.5);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/orig-vs-principal.pdf]]
+
+* Hooke's Law for 3D Stress
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[file:pictures/3d-poisson.png]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+- Recall Poisson's ratio where
+  \[\nu = - \dfrac{\varepsilon_{trans}}{\varepsilon_{long}}\]
+
+- In 3D materials, there are /two/ transversal strains
+
+  - For \(x\), there are \(y\) and \(z\)
+
+* Rethinking Strains in 3D
+
+#+ATTR_LATEX: :booktabs t
+|                   | \(\sigma_x\)                 | \(\sigma_y\)                 | \(\sigma_z\)                 |
+|-------------------+------------------------------+------------------------------+------------------------------|
+| \(\varepsilon_x\) | \(\dfrac{\sigma_x}{E}\)      | \(-\nu \dfrac{\sigma_y}{E}\) | \(-\nu \dfrac{\sigma_z}{E}\) |
+| \(\varepsilon_y\) | \(-\nu \dfrac{\sigma_x}{E}\) | \(\dfrac{\sigma_y}{E}\)      | \(-\nu \dfrac{\sigma_z}{E}\) |
+| \(\varepsilon_z\) | \(-\nu \dfrac{\sigma_x}{E}\) | \(-\nu\dfrac{\sigma_y}{E}\)  | \(\dfrac{\sigma_z}{E}\)      |
+
+* Volume Change
+
+- Original volume of element \(V_0 = abc\)
+
+- Final volume is
+
+  \begin{align*}
+    V_{final} &= a \left( 1 + \varepsilon_x \right) + b \left( 1 + \varepsilon_y \right) + c \left( 1 + \varepsilon_z \right) \\
+              &\approx abc \left( 1 + \varepsilon_x + \varepsilon_y + \varepsilon_z \right)
+  \end{align*}
+
+- Volume change is
+  \[V_{final} = abc \left( \varepsilon_x + \varepsilon_y + \varepsilon_z \right)\]
+
+* Unit Volume Change, \(e\)
+
+- Also called /dilatation/ or /volumetric strain/
+  \[e = \frac{\Delta V}{V_0} = \varepsilon_x + \varepsilon_y + \varepsilon_z\]
+
+* Spherical Stress and Bulk Modulus
+
+- Spherical stress \(\rightarrow\) same normal stresses in 3 axes
+  \[\sigma_x = \sigma_y = \sigma_z = \sigma_0\]
+  \[\varepsilon_x = \varepsilon_y = \varepsilon_z = \frac{1-2\nu}{E} \sigma_0\]
+  \[e = \frac{3(1-2\nu)}{E} \sigma_0\]
+
+- Bulk modulus, \(K\), is defined as
+  \[K = \frac{\sigma_0}{e} = \frac{E}{3(1-2\nu)}\]
+
+* Example: Cube under hydrostatic pressure
+
+A 0.25-m\(^3\) cube is being submerged under water where the water pressure is 30 MPa. If the material has \(E\) = 3 GPa and Poisson's ratio of 0.3, find the final volume of the element.
+
+#+BEGIN_SRC latex :results raw file :file cube-under-hydro-pressure.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[scale=0.6, >=latex]
+  \shade[yslant=-0.5,right color=gray!10, left color=black!50]
+  (0,0) rectangle +(3,3);
+  \draw[yslant=-0.5] (0,0) rectangle (3,3);
+  \shade[yslant=0.5,right color=gray!70,left color=gray!10]
+  (3,-3) rectangle +(3,3);
+  \draw[yslant=0.5] (3,-3) rectangle (6,0);
+  \shade[yslant=0.5,xslant=-1,bottom color=gray!10,
+  top color=black!60] (6,3) rectangle +(-3,-3);
+  \draw[yslant=0.5,xslant=-1] (3,0) rectangle (6,3);
+  \draw[yslant=-0.5,<-, ultra thick] (1.5,1.5) --++ (-135:3) node[at end, below left]{-30 MPa};
+  \draw[yslant=0.5,<-, ultra thick] (4.5,-1.5) --++ (-45:3) node[at end, below right]{-30 MPa};
+  \draw[yslant=0.5, xslant=-1,<-, ultra thick] (4.5,1.5) --++ (45:3) node[at end, above]{-30 MPa};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width 0.6\textwidth
+#+RESULTS:
+[[file:pictures/cube-under-hydro-pressure.pdf]]
+
+* Solution: Cube under hydrostatic pressure
+
+Hydrostatic pressure situation represents the state where the pressure is equal in all direction. This means that we can assume that the element is under spherical stress. The unit volume change is
+
+\begin{align*}
+  e &= \frac{3\sigma_o}{E}(1 - 2\nu ) \\ 
+    &= \frac{3(-30 \times 10^6 \text{ Pa})(1 - 2(0.3))}{(3 \times 10^9 \text{ Pa})} \\ 
+    &= -0.012 
+\end{align*}
+
+* Solution: Cube under hydrostatic pressure
+
+This means that the volume reduced by 1.2% (since hydrostatic pressure in this case is compressive), and thus the final volume is
+
+\begin{align*}
+  V_f &= (1 + e)V \\ 
+      &= 0.988(0.25 \text{ m}^3) \\ 
+      &= 0.247 \text{ m}^3
+\end{align*}
+
+* Absolute Maximum Shear Stress
+
+- In 3D plane stress problems, there are 3 principal stresses.
+
+- The 3rd principal stress is 0.
+
+- Use Mohr's circle to represent the relationship of all three.
+
+- 2 cases:
+
+  1. \(\sigma_1, \sigma_2 > 0\)
+
+  2. \(\sigma_1 > 0, \sigma_2 < 0\)
+
+* Case I: Stresses are of the Same Sign
+
+#+BEGIN_SRC latex :results raw file :file abs-max-shear-case-I.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \draw [<->] (0,-3.5) --++ (90:7) node[left]{$\tau$};
+  \node at (0,0) [anchor=west, draw, fill=SkyBlue, circle, minimum height=6cm](large){};
+  \node at (0,0) [anchor=west, draw, fill=SkyBlue!50, circle, minimum height=2.5cm](left){};
+  \node at (left.east) [anchor=west, draw, fill=SkyBlue!50, circle, minimum height=3.5cm](right){};
+  \draw [<->] (-2,0) --++ (0:10) node[right]{$\sigma$};
+  \node at (large.east) [below right] {$\sigma_1$};
+  \node at (large.west) [below left] {0};
+  \draw (right.west) [out=70, in=180] to ++(0.5,0.5) node[right]{$\sigma_2$};
+  \draw (left.center) -- (left.south) node[below]{$(\tau_{y'z'})_{\max}$};
+  \draw (right.center) -- (right.south) node[below](inplane){$(\tau_{x'y'})_{\max}$};
+  \draw (large.center) -- (large.south) node[below](absolute){$(\tau_{x'z'})_{\max}$};
+  \node at (large.south east) [xshift=2cm, yshift=-0.5cm] {$\tau_{max, abs} = \dfrac{\sigma_1}{2}$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/abs-max-shear-case-I.pdf]]
+
+* Case II: Stresses are of Opposite Signs
+
+#+BEGIN_SRC latex :results raw file :file abs-max-shear-case-II.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (-2.5,0) [anchor=west, draw, fill=SkyBlue, circle, minimum height=6cm](large){};
+  \node at (0,0) [anchor=east, draw, fill=SkyBlue!50, circle, minimum height=2.5cm](left){};
+  \node at (0,0) [anchor=west, draw, fill=SkyBlue!50, circle, minimum height=3.5cm](right){};
+  \draw [<->] (-4,0) --++ (0:9) node[right]{$\sigma$};
+  \draw [<->] (0,-3.5) --++ (90:7) node[above]{$\tau$};
+  \node at (large.east) [below right] {$\sigma_1$};
+  \node at (large.west) [below left] {$\sigma_2$};
+  \draw (right.west) [out=70, in=180] to ++(0.5,0.5) node[right]{0};
+  \draw (left.center) -- (left.south) node[below]{$(\tau_{y'z'})_{\max}$};
+  \draw (right.center) -- (right.south) node[below](inplane){$(\tau_{x'z'})_{\max}$};
+  \draw (large.center) -- (large.south) node[below right](absolute){$(\tau_{x'y'})_{\max}$};
+  \node at (large.south east) [xshift=2cm, yshift=-0.5cm] {$\tau_{max, abs} = \dfrac{\sigma_1 - \sigma_2}{2}$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/abs-max-shear-case-II.pdf]]
+
+* Example
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+BEGIN_SRC latex :results raw file :file max-abs-shear-stress-problem.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes}
+\begin{tikzpicture}[>=latex]
+  \node [draw, fill=LightBlue, regular polygon, regular polygon sides=4, minimum width=3cm](A){};
+  \draw [->,very thick] (A.north) --++ (90:1) node[above]{20 MPa};
+  \draw [<-,very thick] (A.east) --++ (0:1) node[right]{-30 MPa};
+  \draw [<-,very thick] (A.west) --++ (180:1);
+  \draw [->,very thick] (A.south) --++ (-90:1);
+  \node at (A.north west) [yshift=3mm] (B){};
+  \draw [-left to, very thick] (B) --++ (0:2);
+  \node at (A.south east) [xshift=3mm] (C){};
+  \draw [-right to, very thick] (C) --++ (90:2) node[above right]{25 MPa};
+  \node at (A.north west) [xshift=-3mm] (D){};
+  \draw [-right to, very thick] (D) --++ (-90:2);
+  \node at (A.south east) [yshift=-3mm] (E){};
+  \draw [-left to, very thick] (E) --++ (180:2);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/max-abs-shear-stress-problem.pdf]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+- From previous example, we have that \(\sigma_1\) = 30.4 MPa,
+  \(\sigma_2\) = -40.4 MPa, and \(\tau_{\max}\) = 35.4 MPa.
+
+- Let us draw a Mohr's circle out of this.
+
+* :B_fullframe:
+:PROPERTIES:
+:BEAMER_env: fullframe
+:END:
+
+#+BEGIN_SRC latex :results raw file :file max-abs-shear-stress-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  \node at (-4,0) [anchor=west, draw, fill=SkyBlue, circle, minimum height=7cm](large){};
+  \node at (0,0) [anchor=east, draw, fill=SkyBlue!50, circle, minimum height=4cm](left){};
+  \node at (0,0) [anchor=west, draw, fill=SkyBlue!50, circle, minimum height=3cm](right){};
+  \draw [<->] (-4.5,0) --++ (0:9) node[right]{$\sigma$ [MPa]};
+  \draw [<->] (0,-4) --++ (90:8) node[right]{$\tau$ [MPa]};
+  \node at (large.east) [below right] {30.4};
+  \node at (large.west) [below left] {-40.4};
+  \draw (right.west) [out=70, in=180] to ++(0.5,0.5) node[right]{0};
+  \draw (left.center) -- (left.south) node[below]{$(\tau_{y'z'})_{\max}$};
+  \draw (right.center) -- (right.south) node[below](inplane){$(\tau_{x'z'})_{\max}$};
+  \draw (large.center) -- (large.south) node[below left](absolute){$(\tau_{x'y'})_{\max}$};
+  \node at (large.south east) [xshift=2cm, yshift=-0.5cm] {$\tau_{max, abs} = \dfrac{\sigma_1 - \sigma_2}{2}$ = 35.4 MPa};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/max-abs-shear-stress-example.pdf]]

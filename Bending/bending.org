@@ -1,0 +1,792 @@
+#+TITLE: Analysis of Members under Bending
+#+SUBTITLE: ME 210: Mechanics of Materials
+#+AUTHOR: Sappinandana Akamphon
+
+#+OPTIONS: toc:nil timestamp:nil H:2 title:nil
+#+OPTIONS: reveal_width:1280 reveal_height:1024
+#+OPTIONS: reveal_single_file:t
+#+REVEAL_THEME: sky
+#+REVEAL_TRANS: slide
+#+REVEAL_EXTRA_CSS: bearings.css
+
+#+STARTUP: beamer
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt, svgnames]
+#+BEAMER_THEME: focus
+#+LATEX_COMPILER: xelatex
+#+BEAMER_HEADER: \usepackage{booktabs}
+#+BEAMER_HEADER: \usepackage{pgfplots}
+#+BEAMER_HEADER: \pgfplotsset{compat=1.18}
+#+BEAMER_HEADER: \institute{Department of Mechanical Engineering, TSE}
+#+BEAMER_HEADER: \date{}
+#+BEAMER_HEADER: \usetikzlibrary{patterns,shapes,arrows}
+#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}{Outline}\tableofcontents[currentsection]\end{frame}}
+
+** {}
+\maketitle
+
+* Overview of Bending
+:PROPERTIES:
+:CUSTOM_ID: overview-of-bending
+:END:
+
+** What is Bending?
+
+- Curving of a long, slender member under moment or force
+
+- Caused by bending moment: moment whose direction is perpendicular to member axis
+
+** Sign Convention
+
+- Shear force and bending moment follow these sign conventions
+
+[[file:pictures/sign-convention.png]]
+
+** Beam Curvature
+
+- In bending, beam curves in response to bending moment
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+BEGIN_SRC latex :results raw file :file beam-curvature.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[scale=0.8]
+  \footnotesize
+  \node at (0,0) (O){} node[right]{$O$};
+  \draw [dashed] (O.center) -- ++(-120:5) node(A){};
+  \draw [line width=20pt, LightSkyBlue] (A.center) arc (-120:-60:5) node(B){};
+  \draw [dash dot, Red] (A.center) arc (-120:-60:5) node[near end](y){};
+  \draw [->] (y.center) --++ (105:0.3) node[midway, left]{$y$};
+  \draw [dashed] (B.center) -- (O.center);
+  \draw [<->, black!50] (O.center) ++ (90:1) --++ (-90:8);
+  \draw [<->, black!50] (O.center) ++ (-90:5) ++ (180:4) --++ (0:8) node[below, black]{$x$};
+  \draw [->] (O.center) --++ (-70:5) node[midway, left]{$\rho$};
+  \draw [dashed] (O.center) --++ (-100:5) node[midway, left, yshift=-2mm]{$d\theta$};
+  \draw [dashed] (O.center) --++ (-110:5);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/beam-curvature.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+\[\kappa = \frac{1}{\rho}\]
+
+- Assume beam is thin compared to its curvature (\(h \ll \rho\))
+
+- This way, curvature of beam is constant throughout thickness
+
+** Longitudinal Strain in Beam
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+BEGIN_SRC latex :results raw file :file strain-in-beam.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[scale=0.8]
+  \footnotesize
+  \node at (0,0) (O){} node[right]{$O$};
+  \draw [dashed] (O.center) -- ++(-120:5) node(A){};
+  \draw [line width=40pt, LightSkyBlue] (A.center) arc (-120:-60:5) node(B){};
+  \draw [dash dot, Red] (A.center) arc (-120:-60:5) node[near end](y){};
+  \draw [->] (y.center) --++ (105:0.3) node[midway, left]{$y$};
+  \draw [dashed] (B.center) -- (O.center);
+  \draw [<->, black!50] (O.center) ++ (90:1) --++ (-90:8);
+  \draw [<->, black!50] (O.center) ++ (-90:5) ++ (180:4) --++ (0:8) node[below, black]{$x$};
+  \draw [->] (O.center) --++ (-70:5) node[midway, left]{$\rho$};
+  \draw [dashed] (O.center) --++ (-100:5) node[midway, left, yshift=-2mm]{$d\theta$};
+  \draw [dashed] (O.center) --++ (-110:5);
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/strain-in-beam.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+- Longitudinal strain vary across thickness
+
+  \[\varepsilon_x = - \frac{y}{R} = -\kappa y\]
+
+- No strain where \(y\) = 0 \(\rightarrow\) /Neutral Axis/
+
+- So where is this \(R\)?
+
+** Stress in Beam Bending
+
+- Again, assuming linear elastic deformation
+
+\[\sigma_x = E \varepsilon_x = - \frac{Ey}{R}\]
+
+- With this, we can now find \(R\)
+
+** In Search of \(R\)
+
+- Any arbitrary cross section must be at rest
+
+\[\int_A \sigma_x dA = - \int_A E \kappa y dA = 0\]
+
+- For uniform material and /thin/ beam (\(\kappa\) is constant)
+
+\[\int_A y dA = 0\]
+
+- What does this equation remind you of?
+
+** Example: Neutral Axis of a Triangular Cross Section
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[./pictures/triangular-section-axis.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+\[\int_A y dA = 0\]
+
+cut triangle into thin horizontal strips. strip
+width \(w\) is a function of \(y\), so
+
+\begin{align*}
+        w = b \left( 1 - \frac{y}{h} \right)
+\end{align*}
+
+** Solution
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+
+[[./pictures/triangular-section-axis.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+\begin{align*}
+  0 &= \int_{0}^{h} w(y - y_{NA})dy \\
+    &= \int_{0}^{h} b \left( 1- \frac{y}{h} \right)(y - y_{NA})dy \\
+    &= \frac{b}{h} \int_{0}^{h} (hy - hy_{NA} - y^{2} + yy_{NA})dy \\
+    &= \frac{b}{h} \left( h \frac{y^{2}}{2} - hy_{NA}y - \frac{y^{3}}{3} + y_{NA}\frac{y^{2}}{2} \right)_{0}^{h}
+\end{align*}
+
+divide through with \(y\) and substitute with \(h\) and 0
+
+\begin{align*}
+  0 &= \frac{h^{2}}{2} - hy_{NA} - \frac{h^{2}}{3} + \frac{y_{NA}h}{2} \\
+  y_{NA} &= \frac{h}{3}
+\end{align*}
+
+* Moment-Curvature-Stress Relationship
+:PROPERTIES:
+:CUSTOM_ID: moment-curvature-stress-relationship
+:END:
+
+** Moment - Curvature Relationship
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+\[dM = - \sigma_x y dA\]
+\[M = - \int_A \sigma_A y dA = \int_A \kappa E y^2 dA\]
+\[M = \kappa E I\] \[I = \int_A y^2 dA\]
+
+\[\sigma_x = - E\kappa y\] \[\kappa = - \frac{ \sigma_x }{Ey}\]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+BEGIN_SRC latex :results raw file :file moment-curvature.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex, scale=0.8]
+  \draw [fill=SkyBlue] (0,0) arc [radius=9, start angle=120, end angle=90] --
+  ++(90:2) arc [radius=11, start angle=90, end angle=120] -- (0,0);
+  \draw[dashed, thin] (-0.5,0.866) arc (120:90:10cm);
+  \foreach \x in {1}
+  \draw[->] (4.5,3.2 - 0.2*\x) -- ++(0: 1-0.2*\x);
+  \draw[->, thick] (6, 3.5) arc (75:-75:0.6) node[below]{$dM = \sigma y dA$};
+  \draw[|<->|] (4.3,2.2) -- (4.3, 3.0) node[below left]{$y$};
+  \draw (5.3,3) node[above]{$\sigma dA$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/moment-curvature.pdf]]
+
+\begin{gather*}
+      \kappa = \frac{M}{EI} \hspace{2cm} \kappa = -\frac{\sigma_{x}}{Ey} \\
+      \sigma_{x} = -\frac{My}{I}
+\end{gather*}
+
+** Moment of Inertia, \(I\)
+
+\begin{align*}
+    I = \int_{A} y^{2}dA
+\end{align*}
+
+- Represent resistance of cross section to bending
+
+- Useful formulae
+
+\begin{align*}
+  I_{\text{rect}} = \frac{bh^{3}}{12} \\
+  I_{\text{circ}}= \frac{\pi R^{4}}{4}
+\end{align*}
+
+** Section Modulus \(S\)
+
+- Max stress occurs furthest away from /NA/
+
+\begin{align*}
+  \sigma_1 &= -\frac{Mc_1}{I} = -\frac{M}{S_1} \\
+  \sigma_2 &= -\frac{Mc_2}{I} = -\frac{M}{S_2}
+\end{align*}
+
+- Useful in choosing beam sections from catalog
+
+\begin{align*}
+  S_{1} = \frac{I}{c_{1}} \\
+  S_{2} = \frac{I}{c_{2}}
+\end{align*}
+
+* Nonuniform Bending
+:PROPERTIES:
+:CUSTOM_ID: nonuniform-bending
+:END:
+
+** Nonuniform Bending
+
+- In /uniform/ or /pure/ bending, \(M\) is constant along beam length
+
+  - From applying bending moment directly
+
+- Most beams are loaded by lateral forces
+
+  - Gives rise to internal shear forces and stresses
+
+\[V = \frac{dM}{dx}\]
+
+** Transverse Shear Stress in Beam
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+BEGIN_SRC latex :results raw file :file shear-in-beam.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}
+  \node [draw, fill=LightSkyBlue, minimum width=2cm, minimum height=1.5cm](bar){};
+  \draw [dashed] (bar.north west) ++ (-90:0.5) --++ (0:2);
+  \draw [->] (bar.north west) ++ (135:0.3) arc (135:225:1.2) node[midway, left]{$M$};
+  \draw [->] (bar.north east) ++ (45:0.3) arc (45:-45:1.2) node[midway, right]{$M + dM$};
+
+  \node at (bar.south) [yshift=-2cm, draw, fill=LightSkyBlue, minimum width=2cm, minimum height=.5cm](bottombar){};
+  \draw [->] (bottombar.west) --++ (180:0.5) node[left]{$\sigma$};
+  \draw [->] (bottombar.east) --++ (0:0.5) node[right]{$\sigma'$};
+  \draw [->] (bottombar.south) ++ (-90:0.1) ++ (0:0.5) --++ (180:1) node[below, midway]{$\tau$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/shear-in-beam.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\begin{align*}
+  \tau t dx &= \int_{A'} \sigma' dA' - \int_{A'} \sigma dA' \\
+            &= \int_{A'} \frac{ (M + dM)y }{I} dA' - \int_{A'} \frac{My}{I} dA' \\
+            &= \int_{A'} \frac{dMy}{I} dA'
+\end{align*}
+
+\begin{align*}
+  \tau &= \frac{1}{Ib} \left( \frac{dM}{dx} \right) \int_{A'} y dA' \\
+       &= \frac{VQ}{Ib}
+\end{align*}
+
+** What is Q?
+
+#+BEGIN_SRC latex :results raw file :file first-moment.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{patterns}
+\begin{tikzpicture}
+  \node <1-> [fill=LightSkyBlue, circle, draw, minimum height=4cm](beam){$A$};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width 0.3\textwidth
+#+RESULTS:
+[[file:pictures/first-moment.pdf]]
+
+\begin{align*}
+    Q &= \text{ first moment of area} \\
+      &= \int_{A'} ydA' \neq \int_A ydA \\
+      &= A'\bar{y}'
+\end{align*}
+
+** What is Q? (2)
+
+#+BEGIN_SRC latex :results raw file :file first-moment-2.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{patterns}
+\begin{tikzpicture}
+  \node <1-> [fill=LightSkyBlue, circle, draw, minimum height=4cm](beam){$A$};
+  \draw <2> [pattern=north west lines] (beam.center) ++ (150:2) node(A){} arc (150:30:2) node[midway, below, yshift=-3mm, fill=LightSkyBlue]{$A'$} -- (A.center);
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width 0.3\textwidth
+#+RESULTS:
+[[file:pictures/first-moment-2.pdf]]
+
+\begin{align*}
+    Q &= \text{ first moment of area} \\
+      &= \int_{A'} ydA' \neq \int_A ydA \\
+      &= A'\bar{y}'
+\end{align*}
+
+** Example: Shear Stress Distribution in Rectangular Beam
+
+#+BEGIN_SRC latex :results raw file :file shear-stress-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}
+  \node [fill=LightSkyBlue, draw, minimum height=3cm, minimum width=2cm](rec){};
+  \draw [|<->|] (rec.south west) ++ (-90:0.5) --++ (0:2) node[midway, fill=White]{$b$};
+  \draw [|<->|] (rec.south west) ++ (180:0.5) --++ (90:3) node[midway, fill=White]{$h$};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width 0.2\textwidth
+#+RESULTS:
+[[file:pictures/shear-stress-example.pdf]]
+
+\begin{align*}
+  Q(y) &= A^{\prime}\bar{y}^{\prime} \\
+       &= \left[ \left( \frac{h}{2} - y \right) b \right] \left[y + \frac{\frac{h}{2} - y}{2} \right] \\
+       &= \frac{b}{2} \left( \frac{h^{2}}{4} - y^{2} \right)
+\end{align*}
+
+** Solution
+
+\begin{align*}
+  Q_{\max} &= Q(y = 0) \\
+           &= \frac{bh^{2}}{8} \\
+  \tau_{\max} &= \frac{VQ}{Ib} \\
+           &= \frac{V \frac{bh^{2}}{8}}{ \frac{bh^{3}}{12} b} \\
+           &= \frac{3V}{2bh}  = \frac{3V}{2A}
+\end{align*}
+
+** Example: Maximum shear stress in a circular cross-sectioned beam
+
+A cantilever beam with length \(L\) and radius \(r\) has a force \(P\)
+applied at the middle. Determine the location and magnitude of maximum
+shear stress.
+
+- Maximum shear force in the beam is anywhere from the fixed end to the
+  middle
+
+- Maximum shear stress occurs at NA
+
+- Anywhere along NA from the fixed end to the middle has max shear
+  stress
+
+** Solution
+
+- Now, for the magnitude
+
+\begin{align*}
+  \tau &= \frac{VQ}{Ib} = \frac{P ((\pi/2) r^{2} (4r/3\pi))}{(\pi/4)r^{4}(2r)} \\
+       &= \frac{4P}{3 \pi r^{2}} = \frac{4P}{3A}
+\end{align*}
+
+* Composite Beam Bending
+:PROPERTIES:
+:CUSTOM_ID: composite-beam-bending
+:END:
+
+** Composite Beam Bending
+
+- Two or more materials (\(E_{1} \neq E_{2} \neq \ldots\))
+
+- Deformation (and strain) remain unchanged
+
+\[\varepsilon_x = -\frac{y}{R} = -\kappa y\]
+
+- But where is the new neutral axis?
+
+- Since sectional property is no longer uniform \(\rightarrow\) neutral
+  axis will move
+
+** Neutral Axis of a Composite Beam
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+[[./pictures/na-composite.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\[\int_{A1} \sigma_{x1} dA + \int_{A2} \sigma_{x2} dA = 0\]
+\[- \int_{A1} E_1 \kappa y dA - \int_{A2} E_2 \kappa y dA = 0\]
+\[- E_1 \int_{A1} y dA - E_2 \int_{A2} y dA = 0\]
+\[E_1 y_{c1} A_1 + E_2 y_{c2} A_2 = 0\]
+
+This works for more than 2 materials as well!
+
+** Moment-Curvature for Composite Beams
+
+- Same equation applies, only different results
+
+\begin{align*}
+  M &= - \int_A \sigma y dA \\
+    &= -\int_{A1} \sigma_{x1} y dA - \int_{A2} \sigma_{x2} y dA \\
+    &= E_1 \int_{A1} \kappa y^2 dA + E_2 \int_{A2} \kappa y^2 dA \\
+    &= \kappa \left( E_1 I_1 + E_2 I_2 \right)
+\end{align*}
+
+** What about /I/?
+
+- Well, usually neutral axis goes through centroid
+
+\[I = I_c = \int_A y^2 dA\]
+
+- In composite beams, this is no longer true \(\rightarrow\) /parallel
+  axis theorem/
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\[I = I_c + Ad^2\]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+[[./pictures/parallel-axis.pdf]]
+
+** Normal Stress in Composite Beams
+
+- From moment-curvature relationship
+
+\[\kappa = \frac{M}{E_1 I_1 + E_2 I_2}\]
+
+- From stress-curvature relationship
+
+\[\sigma_x = - E \kappa y\]
+\[\sigma_{x1} = - \frac{MyE_1}{E_1 I_1 + E_2 I_2}\]
+\[\sigma_{x2} = - \frac{MyE_2}{E_1 I_1 + E_2 I_2}\]
+
+** Example: Stresses in a Composite Beam
+
+- Top layer \(E\) = 200 MPa. Bottom layer \(E\) = 400 MPa. Determine
+  \(\sigma_{\max}\) in tension and compression.
+
+** Solution
+
+To determine stress, first we need to find neutral axis
+
+\begin{align*}
+    0 &= 200 \times {10^6}(3 \times 5)(3.5 - y_{NA}) + 400 \times {10^6}(2 \times 5)(1 - y_{NA}) \\
+    0 &= 21 - 6y_{NA} + 8 - 8y_{NA} \\
+    y_{NA} &= 2.07 \text{ cm}
+\end{align*}
+
+** Solution
+
+Calculating the area moment of inertia of each cross section, we have
+
+\begin{align*}
+    I_1 &= \frac{1}{12}(0.05)(0.03)^3 + (0.05)(0.03)(0.035 - 0.0207)^{2} \\
+        &= 4.19 \times 10^{-7} \text{ m}^4 \\
+    I_2 &= \frac{1}{12}(0.05)(0.02)^3 + (0.05)(0.02)(0.0207 - 0.01)^{2} \\
+        &= 1.48 \times 10^{ -7} \text{ m}^4
+\end{align*}
+
+** Solution
+
+The maximum tensile stress, occurring on the top surface of the
+beam, is
+
+\begin{align*}
+  \sigma_{\max,tensile} &= \frac{MyE_1}{E_1I_1 + E_2I_2} \\
+                             &= \frac{200(0.05 - 0.0207)(200 \times 10^6)}{200 \times 10^6(4.19 \times 10^{-7}) + 400 \times 10^6(1.48 \times 10^{ -7})} \\
+                             &= 8.19 \text{ MPa}
+\end{align*}
+
+** Solution
+
+Similarly for the maximum compressive stress at the bottom surface is
+
+\begin{align*}
+  \sigma_{\max \text{ compressive}} &= \frac{MyE_2}{E_1I_1 + E_2I_2} \\
+                                 &= \frac{200(2.07 \times 10^{ - 2})(400 \times 10^6)}{200 \times 10^6(4.19 \times 10^{-7}) + 400 \times 10^6(1.48 \times 10^{-7})} \\
+                                 &= 11.6 \text{ MPa}
+\end{align*}
+
+* Bending under Inclined Loads
+:PROPERTIES:
+:CUSTOM_ID: bending-under-inclined-loads
+:END:
+
+** Bending of Beams under Inclined Loads
+
+- Normally load is applied along a symmetrical axis (\(y\) or \(z\))
+
+- What if it isn't?
+
+#+BEGIN_SRC latex :results raw file :file inclined-loads.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}[>=latex]
+  % coordinate
+  \draw [->, thick] (-6,0) -- ++ (-30:1) node[right]{$x$};
+  \draw [->, thick] (-6,0) -- ++ (90:1) node[right]{$y$};
+  \draw [->, thick] (-6,0) -- ++ (-150:1) node[left]{$z$};
+  % grid
+  % \draw (-8,-2) grid (8,5);
+  % beam
+  \draw[fill=LightBlue] (0,0) -- ++ (30: 1cm) -- ++ (150:8) -- ++(-150:1) -- ++ (-30:8);
+  \draw[fill=LightBlue] (0,0) -- ++ (-90:1) -- ++ (30:1) -- ++ (90:1);
+  \draw[fill=LightBlue] (0,0) -- ++ (-90:1) -- ++ (150:8) -- ++ (90:1);
+  % forces
+  \draw[->,ultra thick] (1.85,2.25) node[above right]{$P$} -- ++(-120:2);
+  \draw[dashed] (1.85,2.25) -- ++(-120:4);
+  \draw[dashed] (1.85,2.25) -- ++ (-150:2);
+  \draw[dashed] (1.85,2.25) -- ++ (-90:2);
+  \draw[<-, very thick] (0.45,0.26) -- ++ (90:1.2) node[above]{$P_y$};
+  \draw[<-, very thick] (0.85,0) -- ++ (30:1.2) node[right]{$P_z$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/inclined-loads.pdf]]
+
+** Superposition to the Rescue
+
+- When faced with a tough problem, break it down into smaller, easier
+  problems
+
+** Stresses from Inclined Loads
+
+- Using superposition
+
+\[\sigma_x = \frac{M_y z}{I_y} - \frac{M_z y}{I_z}\]
+
+- Neutral axis is
+
+\[\tan \beta = \frac{y}{z} = \frac{M_y I_z}{M_z I_y}\]
+
+* Beam Deflection
+:PROPERTIES:
+:CUSTOM_ID: beam-deflection
+:END:
+
+** Why Do We Care about Deflection?
+
+- Stress is not always the limiting factor
+
+- Especially important in load-bearing structure and flexure design
+
+** Methods of Evaluation
+
+- Direct Integration: beam curvature
+
+- Energy Method: strain energy
+
+** Direct Integration
+
+\[\frac{M}{EI} = \kappa = \frac{d^2 v}{dx^2}\]
+
+where \(v\) is the deflection function at point \(x\) along the beam
+
+** Boundary Conditions
+
+- Indefinite integrals give constants of integration
+
+  - second order equations \(\rightarrow\) 2 constants
+
+- Need to apply knowledge about end conditions
+
+** Typical End Conditions
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+BEGIN_SRC latex :results raw file :file fixed-end.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{patterns,shapes}
+\begin{tikzpicture}
+  \node [minimum height=2cm, minimum width=5mm, pattern=north west lines](wall){};
+  \draw (wall.north east) -- (wall.south east);
+  \node at (wall.east) [anchor=west, draw, minimum height=1cm, minimum width=4cm, fill=LightSkyBlue]{};
+  \draw [->, thick] (wall.north east) ++ (-45:0.3) arc (75:-75:0.8) node[midway, red]{\Huge x};
+  \draw [<->, thick] (wall.north east) ++ (0:0.1) ++ (-90:0.6) --++ (-90:0.8) node[midway, red]{\Huge x};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/fixed-end.pdf]]
+
+#+BEGIN_SRC latex :results raw file :file simple-support.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{patterns,shapes}
+\begin{tikzpicture}
+  \node [minimum height=2cm, minimum width=5mm](wall){};
+  \node at (wall.east) [anchor=west, draw, minimum height=1cm, minimum width=4cm, fill=LightSkyBlue](bar){};
+  \node at (bar.south west) [anchor=north, draw, regular polygon, regular polygon sides=3, minimum height=5mm, inner sep=0, fill=LightGrey]{};
+  \draw [->, thick] (wall.north east) ++ (-45:0.3) arc (75:-75:0.8);
+  \draw [<->, thick] (wall.north east) ++ (0:0.1) ++ (-90:0.6) --++ (-90:0.8) node[midway, red]{\Huge x};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/simple-support.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+- Fixed end
+
+  - No deflection: $v = 0$
+
+  - No rotation: \(\dfrac{dv}{dx} = 0\)
+
+- Simple support
+
+  - No deflection: \(v = 0\)
+
+  - Free rotation:
+
+** Example: Deflection Curve of a Cantilever Beam
+
+#+BEGIN_SRC latex :results raw file :file deflection-curve-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{patterns}
+\begin{tikzpicture}
+  \node [minimum height=2cm, minimum width=5mm, pattern=north west lines](wall){};
+  \draw (wall.north east) -- (wall.south east);
+  \node at (wall.east) [anchor=west, draw, minimum height=1cm, minimum width=6cm, fill=LightSkyBlue](beam){$E, I, L$};
+  \draw [->, ultra thick] (beam.south east) --++ (-90:1) node[below]{$P$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/deflection-curve-example.pdf]]
+
+\begin{align*}
+    \frac{d^{2}v}{dx^{2}} &= \frac{M}{EI}
+\end{align*}
+
+** Solution
+
+\[M(x) =  - P(L - x)\]
+
+Determine the deflection curve by integrating twice.
+
+\begin{gather*}
+  EI\frac{d^2v}{dx^2} = M(x) =  - P(L - x) \\
+  EI\frac{dv}{dx} = \frac{P}{2}(L - x)^2 + C_1
+\end{gather*}
+
+The fixed end does not allow rotation, and so \(\frac{dv}{dx} = 0\) at
+\(x = 0\).
+
+** Solution
+
+\begin{align*}
+  C_1 &=  - \frac{PL^2}{2} \\
+  EI\frac{dv}{dx} &= \frac{P}{2}(L - x)^2 - \frac{PL^2}{2} \\
+  EIv &=  - \frac{P}{6}{(L - x)^3} - \frac{PL^2x}{2} + C_2
+\end{align*}
+
+At the fixed end, there is no vertical deflection, i.e. \(v = 0\) at
+\(x = 0\)
+
+\begin{align*}
+  C_2 &= \frac{PL^3}{6} \\
+  v &=  - \frac{P}{6EI}(L - x)^3 - \frac{PL^2x}{2EI} + \frac{PL^3}{6EI}
+\end{align*}
+
+** Solution
+
+The maximum deflection is at the free end. Its value is
+
+\[v(L) =  - \frac{PL^3}{2EI} + \frac{PL^3}{6EI} =  - \frac{PL^3}{3EI}\]
+
+Note that the negative sign means the deflection is downward.
+
+** Energy Method
+
+- Elastic deformation: way to store energy \(\rightarrow\) strain energy
+
+- Deflection can be derived from stored energy
+
+- How do we evaluate strain energy of a bent beam?
+
+** Strain Energy in Beam
+
+- For a small part of bent beam with length \(dx\) and bending angle
+  \(d\theta\)
+
+\[d\theta = \kappa dx\]
+
+- We also know from moment-curvature relationship that
+
+\[\kappa = \frac{M}{EI}\]
+
+- Assume 100% external work to internal energy transfer
+
+\[dW = dU = \frac{Md\theta}{2}\]
+
+\[U = \int_0^L \frac{M^2 dx}{2EI}\]
+
+** Castigliano's Theorem
+
+- Deflection \(v_i\) where load \(P_i\) is applied is equal to
+
+\begin{align*}
+  v_i &= \frac{\partial U}{\partial P_i} \\
+      &= \int \left( \frac{M}{EI} \right) \left( \frac{\partial M}{\partial P_{i}} \right) dx
+\end{align*}
+
+** Example: Deflection of a Cantilever Beam
+
+\begin{align*}
+  M(x) &=  - P(L - x) \\
+  \delta_i &= \int \left( \frac{M}{EI} \right)\left( \frac{\partial M}{\partial P_i} \right)dx
+\end{align*}
+
+** Solution
+
+\begin{align*}
+  \delta_{i} &= \frac{1}{EI}\int_0^L - P(L - x)[ - (L - x)]dx  \\
+             &= \frac{P}{EI}\left[ L^2x - x^2L + \frac{x^3}{3} \right]_0^L \\
+             &= \frac{PL^3}{3EI}
+\end{align*}
+
+- same answer as that of the direct integration methods
+
+- opposite sign though???
+
+- using energy method, positive means deflection is in the same
+  direction as the force \(\rightarrow\) down!

@@ -1,0 +1,673 @@
+#+TITLE: Analysis of Torque Loaded Members
+#+SUBTITLE: ME 210: Mechanics of Materials
+#+AUTHOR: Sappinandana Akamphon
+
+#+OPTIONS: toc:nil timestamp:nil H:1 title:nil
+#+OPTIONS: reveal_width:1280 reveal_height:1024
+#+OPTIONS: reveal_single_file:t
+#+REVEAL_THEME: sky
+#+REVEAL_TRANS: slide
+#+REVEAL_EXTRA_CSS: bearings.css
+
+#+STARTUP: beamer
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt, svgnames]
+#+BEAMER_THEME: focus
+#+LATEX_COMPILER: xelatex
+#+BEAMER_HEADER: \usepackage{booktabs}
+#+BEAMER_HEADER: \usepackage{pgfplots}
+#+BEAMER_HEADER: \pgfplotsset{compat=1.18}
+#+BEAMER_HEADER: \institute{Department of Mechanical Engineering, TSE}
+#+BEAMER_HEADER: \date{}
+#+BEAMER_HEADER: \usetikzlibrary{patterns,shapes,arrows}
+# #+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}{Outline}\tableofcontents[currentsection]\end{frame}}
+* {}
+\maketitle
+
+* What is Torsion?
+
+- Twisting of a straight bar loaded by torque (torsional moment)
+
+- Twisting happens about its longitudinal axis
+
+* State of Stress in Torsion
+
+#+BEGIN_SRC latex :results raw file :file state-of-torsion-stress.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
+  \begin{tikzpicture}
+    \begin{axis}[
+      scale=1.5,
+      axis equal image,
+      z buffer=sort,
+      hide axis,
+      domain=0:1, y domain = 0:10, samples y = 25,
+      ylabel =y, xlabel=x,
+      clip=false,
+      ]
+
+      \addplot3 [
+      z buffer=none, domain=0:330, samples y=1,
+      ultra thick, black, -latex] (
+      -0.5,
+      {sin(x)*1.5},
+      {cos(x)*1.5}
+      );
+
+      \addplot3 [surf, shader=flat corner, fill=LightSkyBlue!50, draw=black] (
+      y,
+      {cos(360*x) * cos(y*9) - sin(360*x) * sin(y*9)},
+      {cos(360*x) * sin(y*9) + sin(360*x) * cos(y*9)}
+      );
+
+      \addplot3 [z buffer=none, fill=LightSkyBlue!60, draw=black] (
+      10,
+      {cos(360*x) * cos(90) - sin(360*x) * sin(90)},
+      {cos(360*x) * sin(90) + sin(360*x) * cos(90)}
+      );
+
+      \addplot3 [
+      z buffer=auto, domain=-60:270, samples y=1,
+      ultra thick, black, latex-] (
+      10.5,
+      {sin(x)*1.5},
+      {cos(x)*1.5}
+      );
+    \end{axis}
+  \end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/state-of-torsion-stress.pdf]]
+
+* Torsional Deformation in a Circular Bar
+
+- When twisted, all cross-section remains circular and subjected to the same torque -- /pure torsion/.
+
+  #+BEGIN_SRC latex :results raw file :file twisted-bar.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+    \usetikzlibrary{shapes,patterns}
+    \begin{tikzpicture}
+      \draw [->, thick] (0,0) --++ (90:3) node[right]{$z$};
+      \node at (0,0) [anchor=west, xshift=-8mm, draw, top color=SkyBlue, bottom color=SkyBlue, middle color=SkyBlue!40, cylinder, minimum height=8cm, minimum width=3cm, inner sep=0.8cm](cyl){};
+      \draw [->>, ultra thick] (cyl.east) ++ (180:0.8) node(O){} --++ (0:2) node[above]{$T$};
+      \draw [very thin] (O.center) --++ (120:1.19) --++ (180:6.4) node(A){};
+      \draw [very thin] (O.center) --++ (200:0.86) node(B){};
+      \draw [very thin, dashed] (B.center) -- (A.center);
+      \node at (O.center) [left, yshift=1mm, xshift=-1mm] {$\phi$};
+    \end{tikzpicture}
+  #+END_SRC
+
+  #+RESULTS:
+  [[file:pictures/twisted-bar.pdf]]
+
+- \(\phi\) is called the /angle of twist/, increasing linearly along the length of the bar
+
+* State of Strain in a Twisted Bar
+
+- Change in element angle is shear strain
+
+  #+BEGIN_SRC latex :results raw file :file state-of-strain.pdf :output-dir pictures/ :packages '(("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+    \usetikzlibrary{shapes,patterns}
+    \definecolor{SkyBlue}{RGB}{135,206,235}
+  \begin{tikzpicture}
+    \draw [->, thick] (0,0) --++ (90:3) node[right]{$z$};
+    \node at (0,0) [anchor=west, xshift=-8mm, draw, top color=SkyBlue, bottom color=SkyBlue, middle color=SkyBlue!40, cylinder, minimum height=8cm, minimum width=3cm, inner sep=0.8cm](cyl){};
+    \draw [->>, ultra thick] (cyl.east) ++ (180:0.8) node(O){} --++ (0:2) node[above]{$T$};
+    \draw [very thin] (O.center) --++ (120:1.19) node[midway, above right]{$R$} --++ (180:6.4) node(A){} node[midway, above]{$L$};
+    \draw [very thin] (O.center) --++ (200:0.86) node(B){};
+    \draw [very thin, dashed] (B.center) -- (A.center);
+    \node at (O.center) [left, yshift=1mm, xshift=-1mm] {$\phi$};
+    \node at (A.east) [right, xshift=1.5cm, yshift=-2mm] {$\gamma$};
+  \end{tikzpicture}
+  #+END_SRC
+
+  #+RESULTS:
+  [[file:pictures/state-of-strain.pdf]]
+
+\[\gamma = \frac{Rd\phi}{dx} = R\theta = \frac{R\phi}{L}\]
+
+* Maximum Shear Strain in a Twisted Bar
+
+- Maximum shear strain happens at the outer surface
+  \[\gamma_{\max} = \frac{R \phi}{L}\]
+
+- What about minimum shear strain? \[\gamma_{\min} = \ldots\]
+
+* State of Stress in a Circular Bar under Torsion
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+BEGIN_SRC latex :results raw file :file shear-distribution.pdf :output-dir pictures/ :packages '(("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes,patterns}
+\definecolor{SkyBlue}{RGB}{135,206,235}
+\definecolor{White}{RGB}{255,255,255}
+\begin{tikzpicture}
+  \node [circle, draw, fill=SkyBlue, minimum height=5cm](outer){};
+  \node [circle, draw, fill=White, minimum height=2cm](inner){};
+  \draw (0,0) node(O){} --++ (90:2.5);
+  \foreach \x in {4,...,10}
+  \draw [->] (O.center) ++ (90:\x/4) --++ (0:\x/10);
+  \draw [dashed] (O.center) --++ (1,2.5);
+  \node at (outer.north) [xshift=1.5cm]{$\tau_{\max}$};
+  \node at (inner.north) [xshift=0.9cm]{$\tau_{\min}$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/shear-distribution.pdf]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+- For linear elastic deformation
+
+\[\tau = G \gamma\]
+\[\tau_{\max} = G\gamma_{\max} = GR \frac{\phi}{L}\]
+\[\tau = Gr\frac{\phi}{L} = \tau_{\max} \frac{r}{R}\]
+
+* Torsion Formula
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+BEGIN_SRC latex :results raw file :file torsion-formula.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t)("" "firamath-otf" t)("" "unicode-math" t)("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes,patterns}
+\begin{tikzpicture}[>=latex]
+  \node[draw, left color=LightSkyBlue, right color=LightSkyBlue, middle color=LightSkyBlue!40, cylinder, rotate=90, minimum width=4cm, minimum height=2cm, inner sep=20](A){};
+  \draw[->>, line width=2pt] (A.top) ++ (0,-0.7) node(B){} --++ (90:2cm) node[right]{$dT = \rho \tau dA$};
+  \draw[->] (B.center) --++ (-30:0.6) node(C){} node[midway, above right]{$r$} node[below left, yshift=0cm]{$dA$};
+  \node at (C) [anchor=west, draw, trapezium, trapezium left angle=60, trapezium right angle=-60, fill=LightGrey, minimum width=2mm, minimum height=2mm, rotate=-30](D){};
+  \draw[->] (D.center) ++ (-150:0.1) --++(30:0.2) node[below right]{$\tau$};
+  \draw[->] (D.north) -- ++ (30:0.5) node[above right]{$dF=\tau dA$};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/torsion-formula.pdf]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+\begin{gather*}
+  dF = \tau dA \\
+  dT = r \tau dA = \frac{r^2 \tau_{\max}}{R} dA \\
+  \int_0^T dT = \frac{ \tau_{\max} }{R} \int_A r^2 dA = \frac{ \tau_{\max}}{R} J
+\end{gather*}
+
+\begin{block}{\small Torsional Shear Stress Formula}
+  $$ \tau = \frac{ Tr }{J} $$
+\end{block}
+
+* Polar Moment of Inertia: $J$
+
+- Solid cylindrical shaft
+
+\begin{align*}
+  I_p &= \int_A r^2 dA \\
+      &= \int_0^{2\pi} \int_0^R r^2 r dr d\theta \\
+      &= \frac{\pi}{2} R^4
+\end{align*}
+
+- Hollow shaft: how do we do that?
+
+* Example: Minimum Shaft Radius
+
+#+ATTR_LATEX: :width 0.7\textwidth
+[[./pictures/ssc-tuatara.jpg]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\begin{align*}
+  T_{\max} &= 1735 \text{ N-m} \\
+  \tau_{\max} &= 200 \text{ MPa}
+\end{align*}
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\[r_{\min} = ?\]
+
+* Solution: Minimum Required Radius
+
+\begin{align*}
+  \tau &= \frac{Tr}{J} = \frac{2T}{\pi r_{\min}^{3}} \\
+  r_{\min} &= \left( \frac{2(1735)}{\pi (200 \times 10^{6})} \right)^{1/3} \\
+       &= 0.0177 = 1.77 \text{ cm}
+\end{align*}
+
+Isn't that a bit small?
+
+* Deformation under Torsion: Angle of Twist \(\phi\)
+
+- Combine Hooke's law and Torsion formula
+
+\[\tau_{\max} = GR\theta = \frac{TR}{J}\]
+
+\begin{gather*}
+  \theta = \frac{\phi}{L} = \frac{T}{GJ} \\
+  \phi = \frac{TL}{GJ} = \frac{T}{k_T}
+\end{gather*}
+
+- \(k_T\) is called the /torsional stiffness/
+
+* Example: Shaft Design
+
+A gasoline engine has a maximum torque output of 300 N-m. Your boss wants you to design a 2-m long shaft that is going to limit the angle of twist to \(\phi \leqslant\) 0.1 rad. The shaft should be made of medium carbon steel \(G\) = 80 GPa, \(\tau_{\text{allow}}\) = 200 MPa.
+
+* Solution: Shaft Design
+
+Two conditions: \(\tau_{\text{allow}}\) and \(\phi\)
+
+\begin{align*}
+  R_{\tau} &= \left( \frac{2T}{\pi \tau_{\text{allow}}} \right)^{1/3} \\
+           &= \left( \frac{2(300)}{\pi (200 \times 10^6)} \right)^{1/3} \\
+           &= 9.85 \times 10^{-3} \text{ m} = 9.85 \text{ mm} \\
+  \phi &= \frac{TL}{GJ} = \frac{2TL}{G \pi R_{\phi}^{4}} \\
+  R_{\phi} &= \left( \frac{2(300)(2)}{(80 \times 10^{9})\pi(0.1)} \right)^{1/4} \\
+           &= 0.0148 \text{ m} = 1.48 \text{ cm}
+\end{align*}
+
+We will need to design based on the bigger requirement, 1.48 cm.
+
+* Nonuniform Torsion
+
+- \(T\), \(J\), or \(G\) is not constant
+
+  - Segments
+
+  - Continuously varying
+
+* Segments of Constant Values
+
+- Determine internal torques and corresponding deformations
+
+#+BEGIN_SRC latex :results raw file :file segments-constant-values.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t) ("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes,patterns}
+    \begin{tikzpicture}
+      % members
+      \draw[top color=SkyBlue, bottom color=SkyBlue, middle color=SkyBlue!20] (0,0) rectangle (3,1) ;
+      \draw[top color=SkyBlue, bottom color=SkyBlue, middle color=SkyBlue!20] (3,-0.5) rectangle (5,1.5);
+      \draw[top color=SkyBlue, bottom color=SkyBlue, middle color=SkyBlue!20] (5,-0.25) rectangle (7.5,1.25);
+      % extended members
+      % force
+      \draw[->>, ultra thick] (7.5,0.5) -- (8.5,0.5) node[right]{$T$};
+      \draw[->>, ultra thick] (0,0.5) --++ (180:1) node[left]{$T$};
+      % lengths
+      \draw[|<->|] (0,-1.5) -- (1.5,-1.5) node[above]{$L_1$} -- (3,-1.5);
+      \draw[|<->|] (3,-1.5)-- (4,-1.5) node[above]{$L_2$} -- (5,-1.5);
+      \draw[|<->|] (5,-1.5)-- (6.25,-1.5) node[above]{$L_3$} -- (7.5,-1.5);
+      % areas
+      \draw[<->] (1,0) -- (1, 0.5) node[right]{$A_1$} -- (1,1);
+      \draw[<->] (4,-0.5) -- (4, 0.5) node[right]{$A_2$} -- (4,1.5);
+      \draw[<->] (6,-0.25) -- (6, 0.5) node[right]{$A_3$} -- (6,1.25);
+    \end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/segments-constant-values.pdf]]
+
+\begin{gather*}
+  \phi  = {\phi _1} + {\phi _2} + {\phi _3} +  \ldots  \hfill \\
+  \phi  = \sum\limits_{i = 1}^n {{\phi _i} = \sum\limits_{i = 1}^n \dfrac{T_iL_i}{G_i J_i} }  \hfill \\
+\end{gather*}
+
+* Example: Shaft with Various Segments
+
+#+BEGIN_SRC latex :results raw file :file segments-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t) ("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{shapes,patterns}
+\begin{tikzpicture}
+  \node[draw, top color=LightSkyBlue, bottom color=LightSkyBlue, middle color=LightSkyBlue!20, cylinder, minimum height=9cm, minimum width=1cm, inner sep=0mm, anchor=west, text width=5cm](cyl){$G$ = 80 GPa};
+  \draw [->>, ultra thick] (cyl.west) --++ (180:1) node[above]{$T_{1}$ = 275 N-m} node[at start, above, yshift=5mm]{B};
+  \draw [->>, ultra thick] (cyl.east) ++ (180:0.2) --++ (180:1) node[above]{$T_{3}$ = 175 N-m} node[at start, above, yshift=5mm]{D};
+  \draw [->>, ultra thick] (cyl.east) ++ (180:4) --++ (0:1) node[above left]{$T_{2}$ = 450 N-m} node[at start, above, yshift=5mm]{C};
+  \draw [|<->|] (cyl.west) ++ (-90:1) --++ (0:5) node[midway, fill=white]{0.5 m};
+  \draw [|<->|] (cyl.west) ++ (-90:1) ++ (0:5) --++ (0:4) node[midway, fill=white]{0.4 m};
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/segments-example.pdf]]
+
+- Find \(\tau_{\max}\) in each segments and \(\phi_{BD}\). Let \(R\) =
+  1.5 cm.
+
+* Solution
+
+Use the method of section to determine torque within segment BC,
+
+\[T_{BC} =  T_1 =  275\text{ Nm}\]
+
+Torque within segment CD,
+
+\[T_{CD} =  T_3 = -175\text{ Nm}\]
+
+* Solution
+
+The maximum shear stress in each segment is at the outer diameter. We have
+
+\begin{gather*}
+  \tau _{\max} = \frac{Tr}{J} = \frac{2T}{\pi {r^3}} \hfill \\
+  ({\tau_{\max }})_{BC} = \frac{2(275\text{ Nm})}{\pi {(1.5 \times 10^{-2}\text{ m})^3}} = 51.9\text{ MPa} \hfill \\
+  ({\tau _{\max }})_{CD} = \frac{2(175\text{ Nm})}{\pi (1.5 \times 10^{-2}\text{ m})^3} = 33\text{ MPa} \hfill
+\end{gather*}
+
+* Solution
+
+Angle of twist between B and D is the sum of the angles of twist in BC and CD.
+
+\begin{gather*}
+  \phi_{BD} = \phi_{BC} + \phi_{CD} \hfill \\
+  J = \frac{\pi r^4}{2} = \frac{\pi (1.5 \times 10^{-2}\text{ m})^4}{2} = 7.95 \times 10^{-8}\text{ m}^4 \hfill \\
+  \phi_{BC} = \frac{T_{BC}L_1}{GJ} = \frac{( 275\text{ Nm})(0.5\;{\text{m}})}{(80\text{ GPa})(7.95 \times 10^{-8}\text{ m}^4)} =  0.0216\text{ rad} \hfill \\
+  \phi_{CD} = \frac{T_{CD}L_2}{GJ} = \frac{(-175\text{ Nm})(0.4\text{ m})}{(80\text{ GPa})(7.95 \times 10^{-8}\text{ m}^4)} = -0.0110\text{ rad} \hfill \\
+  \phi_{BD} =  0.0216 - 0.0110 =  0.0106\text{ rad} \hfill \\
+\end{gather*}
+
+Therefore, the bar twisted in the same direction as \(T_2\) by 0.0106
+rad.
+
+* Continuously Varying Torque / Size / Properties
+
+- Back to integration
+
+#+BEGIN_SRC latex :results raw file :file cont-vary.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t) ("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}
+  \draw[top color=SkyBlue, bottom color=SkyBlue, middle color=SkyBlue!30] (0,-0.5) -- (5,0) -- (5,1) -- (0,1.5) -- (0,-0.5);
+  \draw[->>,ultra thick] (1,0.5) -- (2,0.5) node[right]{$T(x)$};
+  \draw[<->] (0,-1.5) --++ (0:5) node[midway, above]{$L$};
+  \draw[<->] (0,-1) --++ (0:1) node[midway, above]{$x$};
+  \draw[<->] (1,-0.4) --++ (90:1.8) node[midway, left]{$J(x)$};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width 0.6\textwidth
+#+RESULTS:
+[[file:pictures/cont-vary.pdf]]
+
+\begin{align*}
+  d\phi &= \frac{T(x) dx}{G(x) J(x)} \\
+  \phi  &= \int_0^L \frac{T(x)dx}{G{J(x)}}
+\end{align*}
+
+* Example: Continuously Varying Shaft
+
+
+#+BEGIN_SRC latex :results raw file :file cont-vary-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t) ("" "graphicx" t) ("" "tikz" t)) :fit t :eval no
+\usetikzlibrary{patterns}
+\begin{tikzpicture}
+  \node [anchor=east, yshift=5mm, minimum width=1cm, minimum height=3cm, pattern=north west lines](wall){};
+  \draw (wall.south east) -- (wall.north east);
+  \draw[top color=LightSkyBlue, bottom color=LightSkyBlue, middle color=LightSkyBlue!20] (0,-0.5) -- (5,0) -- (5,1) -- (0,1.5) -- (0,-0.5);
+  \draw[->>,ultra thick] (5,0.5) --++ (0:1) node[right]{$T(x)$};
+  \draw[<->] (0,-1.5) --++ (0:5) node[midway, above]{$L$};
+  \draw[<->] (0,-1) --++ (0:1) node[midway, above]{$x$};
+  \draw[<->] (1,-0.4) --++ (90:1.8) node[midway, left]{$J(x)$};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :width 0.9\textwidth
+#+RESULTS:
+[[file:pictures/cont-vary-example.pdf]]
+
+- What is the total angle of twist \(\phi\)?
+
+* Solution
+
+\begin{align*}
+  \phi &= \int_{0}^{L} \frac{Tdx}{GJ(x)} = \frac{T}{G} \int_{0}^{L} \frac{dx}{J(x)} \\
+       &= \frac{T}{G} \int_{0}^{L} \frac{dx}{(\pi/2) \left(\dfrac{r_{2} - r_{1}}{L}x + r_{1}\right)^{4}} \\
+       &= \frac{2TL}{3\pi G (r_{2} - r_{1})} \left. \left(\dfrac{r_{2} - r_{1}}{L}x + r_{1}\right)^{-3}  \right|_{0}^{L} \\
+       &= \frac{2TL}{3\pi G (r_{2} - r_{1})} \left( -\frac{1}{r_{2}^{3}} + \frac{1}{r_{1}^{3}} \right)
+\end{align*}
+
+* Power Transmission through Shaft
+
+- The most important application of shaft is rotational power
+  transmission
+
+\[P = T\omega\]
+
+- Engine power and speed are typically in /hp/ and /rpm/
+
+\[1 \text{ hp} = 746 \text{ W}\]
+\[1 \text{ rpm} = \frac{2\pi}{60} \text{ rad/s}\]
+
+* Example: Shaft Design for an Engine
+
+#+BEGIN_SRC latex :results raw file :file shaft-design-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t) ("" "graphicx" t) ("" "firamath-otf" t) ("" "pgfplots" t)) :fit t :eval no
+\begin{tikzpicture}
+  \large
+  \begin{axis}[
+    width=\textwidth,
+    height=.5\textwidth,
+    xmin=1,xmax=6,
+    xlabel={$rpm$},
+    ylabel={Power $P$},
+    ]
+    \addplot [very thick, blue, domain=1:6]{-2*10^3*x^3 + 1.5*10^4*x^2} node[near end, below]{Old Model = $-2000 rpm^3 + 15000 rpm^2$};
+    \addplot [very thick, red, domain=1:6]{-3*10^3*x^3 + 2.5*10^4*x^2} node[near end]{New Model = $-3000 rpm^3 + 25000 rpm^2$};
+  \end{axis}
+\end{tikzpicture}
+#+END_SRC
+
+#+RESULTS:
+[[file:pictures/shaft-design-example.pdf]]
+
+Is it safe to use the old shaft? \(\tau_{allow}\) = 200 MPa.
+
+* Solution
+
+First order of business is determining maximum torque required.
+
+From \(P = T\omega\)
+
+\begin{align*}
+    T_{\text{old}} = -2000 (\frac{2\pi}{60})^{3} \omega^{2} + 15000 (\frac{2\pi}{60})^{2} \omega \\
+    T_{\text{new}} = -3000 (\frac{2\pi}{60})^{3} \omega^{2} + 25000 (\frac{2\pi}{60})^{2} \omega
+\end{align*}
+
+* Solution Finding max torque is easy now
+
+\begin{align*}
+    \frac{dT_{\text{old}}}{d\omega} = 0 &= -4000 (\frac{2\pi}{60})^{3} \omega + 15000 (\frac{2\pi}{60})^{2}\\
+    \omega_{old}^{*} &= \frac{15 \times 60}{4 \times 2\pi} = 35.8 \text{ rad/s} = 342 \text{ rpm} \\
+    T_{\text{old,} \max} &= 2945 \text{ N-m} \\
+\end{align*}
+
+* Solution
+
+Max torque for the new engine is
+
+\begin{align*}
+    \frac{dT_{\text{new}}}{d\omega} = 0 &= -6000 (\frac{2\pi}{60})^{3} \omega + 25000 (\frac{2\pi}{60})^{2}\\
+    \omega_{new}^{*} &= \frac{25 \times 60}{6 \times 2\pi} = 39.8 \text{ rad/s} = 380 \text{ rpm} \\
+    T_{\text{new,} \max} &= 5454 \text{ N-m} \\
+\end{align*}
+
+Since the new model requires a larger torque, the old shaft will /NOT/
+work
+
+* Solution
+
+We can now design the new shaft using \(T_{\text{new}}\)
+\begin{align*}
+    \tau_{max} &= \frac{TR}{J} = \frac{2T}{\pi R^{3}} \\
+    R &= \left[ \frac{2(5454)}{\pi ( 200 \times 10^{6} )} \right]^{1/3} \\
+               &= 0.026 \text{ m} = 2.6 \text{ cm}
+\end{align*}
+
+Statically Indeterminate Torque-Loaded Members
+
+1. Equilibrium equation: torque
+
+2. Compatibility: angle of twist \(\phi\) constraints
+
+3. Hooke's law: relate torque to angle of twist
+
+* Example: Compound Shaft
+
+#+begin_center
+[[./pictures/compound-shaft.pdf]]
+#+end_center
+
+\(G_{Cu}\) = 50 GPa \(G_{St}\) = 80 GPa
+
+1. What is the angle of twist at the end compared to the wall?
+
+2. What is the equivalent shear modulus of the bar?
+
+* Solution
+
+This is a statically indeterminate problem, with the rigid disk
+acting as a constraint on the angle of twist of the steel and copper
+sections.
+
+1: Equilibrium
+
+\begin{align*}
+    T_{\text{cu}} + T_{\text{st}} = 50
+\end{align*}
+
+* Solution
+
+2: Compatibility -- being constrained by the rigid disk, the two materials must rotate by the same amount \(\phi\)
+
+\begin{align*}
+  \phi_{\text{cu}} = \phi_{\text{st}} = \phi
+\end{align*}
+
+3: Hooke's Law
+
+\begin{gather*}
+    \frac{T_{\text{cu}} L}{G_{\text{cu}}J_{\text{cu}}} = \frac{T_{\text{st}}L}{G_{\text{st}} J_{\text{st}}} \\
+    T_{\text{cu}} = \frac{50 T_{\text{st}} (\pi/2)(0.05^{4})}{80 (\pi/2)(0.1^{4} - 0.05^{4})} \\
+    T_{\text{cu}} = \frac{T_{\text{st}}}{24}
+\end{gather*}
+
+* Solution
+
+Plug back into equilibrium equation,
+
+\begin{align*}
+    25 T_{\text{cu}} &= 50 \\
+    T_{\text{cu}}  &= 2 \text{ N-m} \\
+    T_{\text{st}}  &= 48 \text{ N-m}
+\end{align*}
+
+Once we obtained the torques, finding the angle of twist is easy:
+
+\begin{align*}
+    \phi &= \frac{T_{\text{cu}} L}{G_{\text{cu}}I_{\text{cu}}} \\
+         &= \frac{2(1)}{50 \times 10^{9}(\pi/2)0.05^{4}} \\
+         &= 4.08 \times 10^{-6} \text{ rad}
+\end{align*}
+
+* Solution: Equivalent shear modulus
+
+Similar to equivalent modulus for compound bar:
+
+Given \(T\), find modulus of a single material with same \(J\) and \(L\)
+that gives same \(\phi\)
+
+\begin{align*}
+    4.08 \times 10^{-6} &= \frac{50(1)}{G_{e}(\pi/2)0.1^{4}} \\
+    G_{e} &= 78.1 \times 10^{9} \text{ Pa} = 78.1 \text{ GPa}
+\end{align*}
+
+* Torsion in Thin-walled Tubes
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+#+begin_center
+[[./pictures/thin-walled-tube.png]]
+
+#+end_center
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+- Equilibrium
+
+\[\tau_A t_A dx = \tau_B t_B dx\] \[\tau_A t_A = \tau_B t_B = q\]
+
+- \(q\) is called /shear flow/ and is constant over the cross section
+
+- \(\tau\) is maximum at the thinnest part
+
+* Torsion Formula for Thin-walled Tubes
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+begin_center
+[[./pictures/thin-walled-torsion-formula.png]]
+#+end_center
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+\[dT = rdF = rqds\] \[T = q \oint rds\] \[T = 2 A_m q\]
+\[q = \tau t = \frac{T}{2A_m}\]
+
+\[\tau = \frac{T}{2A_m t}\]
+
+* Angle of Twist in Thin-walled Tube
+
+- Derived using energy method
+
+\[\phi = \frac{TL}{4A_m^2 G} \oint \frac{ds}{t}\]
+
+- Intimidating, but actually quite simple
+
+- For tubes with segments of constant thickness
+
+\[\phi = \frac{TL}{4A_m^2 G} \left[ \frac{s_1}{t_1} + \frac{s_2}{t_2} + \ldots \right]\]
+
+* Example: Shear Stress and Angle of Twist in Box Steel
+
+#+BEGIN_SRC latex :results raw file :file thin-walled-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t) ("" "graphicx" t) ("sfdefault" "FiraSans" t) ("" "tikz" t)) :fit t :eval no
+\begin{tikzpicture}
+  \small
+  \node [draw, fill=LightGrey!80!Black, minimum height=3cm, minimum width=2cm](out){};
+  \node [draw, fill=LightGrey!40, minimum height=2.6cm, minimum width=1.6cm](in){};
+  \draw [|<->|] (out.south west) ++ (180:1.5) --++ (90:3) node[midway, fill=White]{3 cm};
+  \draw [|<->|] (in.south west) ++ (180:0.75) --++ (90:2.6) node[midway, fill=White]{2.6 cm};
+  \draw [|<->|] (out.south west) ++ (-90:0.75) --++ (0:2) node[midway, fill=White]{2 cm};
+  \draw [|<->|] (in.south west) ++ (-90:0.5) --++ (0:1.6) node[midway, fill=White]{1.6 cm};
+\end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :height 0.5\textheight
+#+RESULTS:
+[[file:pictures/thin-walled-example.pdf]]
+
+- If the box steel is 2 m long with 20 N-m torque applied, determine
+  \(\tau_{\max}\) and \(\phi\). Steel has \(G\) = 80 GPa
+
+* Solution
+
+Since the hollow section thickness is constant, \(\tau\) is constant
+
+\begin{align*}
+    \tau &= \frac{T}{2 A_{m} t} = \frac{20}{2 (0.018 \times 0.028) (0.002)} \\
+         &= 9.92 \text{ MPa} \\
+    \phi &= \frac{TL}{4A_{m}^{2}G} \oint \frac{ds}{t} = \frac{20(2)}{4(0.018 \times 0.028)^{2}(80 \times 10^{9})} \left[ \frac{2(0.018+0.028)}{0.002} \right] \\
+         &= 2.26 \times 10^{-2} \text{ rad}
+\end{align*}

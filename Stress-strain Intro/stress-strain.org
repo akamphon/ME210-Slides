@@ -1,0 +1,782 @@
+#+TITLE: Intro to Material Behaviors
+#+SUBTITLE: ME 210: Mechanics of Materials
+#+AUTHOR: Sappinandana Akamphon
+
+#+OPTIONS: toc:t timestamp:nil
+#+OPTIONS: reveal_width:1280 reveal_height:1024
+#+OPTIONS: reveal_single_file:t
+#+REVEAL_THEME: sky
+#+REVEAL_TRANS: slide
+#+REVEAL_EXTRA_CSS: bearings.css
+
+#+OPTIONS: H:1 toc:nil title:nil
+#+STARTUP: beamer
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt, svgnames]
+#+BEAMER_THEME: focus
+#+LATEX_COMPILER: xelatex
+#+BEAMER_HEADER: \usepackage{booktabs}
+#+BEAMER_HEADER: \institute{Department of Mechanical Engineering, TSE}
+#+BEAMER_HEADER: \date{}
+#+BEAMER_HEADER: \usepackage{tikz-3dplot}
+#+BEAMER_HEADER: \usetikzlibrary{patterns,shapes,decorations,decorations.pathreplacing,decorations.pathmorphing}
+#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}{Outline}\tableofcontents[currentsection]\end{frame}}
+
+* {}
+\maketitle
+
+* A Little Intro
+
+- Name: Sappinandana Akamphon
+
+- Room: ENG 421/4
+
+- mail: sup@engr.tu.ac.th
+
+* Childhood
+
+- Born and raised in Khon Kaen, Thailand
+
+#+ATTR_LATEX: :height 0.8\textheight
+[[file:pictures/khonkaen.png]]
+
+* Bachelor's Degree
+
+- Sc.B. Brown University, 2002
+
+[[file:pictures/brown.jpg]]
+
+* Master and Doctoral
+
+- M.S. 2005, Ph.D. 2008, MIT
+
+[[file:pictures/mit.jpg]]
+
+* Research Interests
+
+- Solar energy utilization
+
+- Water generation
+
+[[file:pictures/awg.jpg]]
+
+* Material Behaviors
+
+- The study of material response to
+
+  - External load(s)
+
+  - Thermal change(s)
+
+* Coordinate System
+
+- Most quanitities in this class are vectors
+
+- Coordinate systems make it clear on orientation and direction of
+  anything
+
+- Three main systems
+
+  - Cartesian
+
+  - Cylindrical
+
+  - Spherical
+
+* Cartesian
+
+#+BEGIN_CENTER
+  \begin{tikzpicture}[x=0.5cm,y=0.5cm,z=0.3cm,>=latex,scale=0.5]
+    % The axes
+    \draw[<->] (xyz cs:x=-13.5) -- (xyz cs:x=13.5) node[above] {$x$};
+    \draw[<->] (xyz cs:y=-13.5) -- (xyz cs:y=13.5) node[right] {$y$};
+    \draw[<->] (xyz cs:z=-13.5) -- (xyz cs:z=13.5) node[at start, above left] {$z$};
+    % The thin ticks
+    \foreach \coo in {-13,-12,...,13}
+    {
+      \draw (\coo,-1.5pt) -- (\coo,1.5pt);
+      \draw (-1.5pt,\coo) -- (1.5pt,\coo);
+      \draw (xyz cs:y=-0.15pt,z=\coo) -- (xyz cs:y=0.15pt,z=\coo);
+    }
+    % The thick ticks
+    \foreach \coo in {-10,-5,5,10}
+    {
+      \draw[thick] (\coo,-3pt) -- (\coo,3pt); % node[below=6pt] {\coo};
+      \draw[thick] (-3pt,\coo) -- (3pt,\coo); % node[left=6pt] {\coo};
+      \draw[thick] (xyz cs:y=-0.3pt,z=\coo) -- (xyz cs:y=0.3pt,z=\coo); % node[below=8pt] {\coo};
+    }
+    % Dashed lines for the points P, Q
+    % \draw[dashed]
+    % (xyz cs:z=-5) --
+    % +(0,7) coordinate (u) --
+    % (xyz cs:y=7) --
+    % +(-5,0) --
+    % ++(xyz cs:x=-5,z=-5) coordinate (v) --
+    % +(0,-7) coordinate (w) --
+    % cycle;
+    % \draw[dashed] (u) -- (v);
+    % \draw[dashed] (-5,7) -- (-5,0) -- (w);
+    % \draw[dashed] (3,0) |- (0,5);
+
+    % Dots and labels for P, Q
+    % \node[fill,circle,inner sep=1.5pt,label={left:$Q(-5,-5,7)$}] at (v) {};
+    % \node[fill,circle,inner sep=1.5pt,label={above:$P(3,0,5)$}] at (3,5) {};
+    % The origin
+    % \node[align=center] at (3,-3) (ori) {(0,0,0)\\\text{origin}};
+    % \draw[->,help lines,shorten >=3pt] (ori) .. controls (1,-2) and (1.2,-1.5) .. (0,0,0);
+  \end{tikzpicture}
+#+END_CENTER
+
+* Cylindrical
+
+#+BEGIN_CENTER
+  \tdplotsetmaincoords{70}{120}
+  \begin{tikzpicture}[tdplot_main_coords, scale=0.7]
+    \tikzstyle{every node}=[font=\small]
+    \draw[thick,-latex] (0,0,0) -- (6,0,0) node[anchor=north east]{$x$};
+    \draw[thick,-latex] (0,0,0) -- (0,6,0) node[anchor=north west]{$y$};
+    \draw[thick,-latex] (0,0,0) -- (0,0,6) node[anchor=south]{$z$};
+    \draw [thick](0,0,0) circle (3);
+    \draw [thick](0,0,4) circle (3);
+    \draw [thick](1.9,-2.35,0) -- (1.9,-2.35,4); % node[midway, left]{$r=r_1$ surface};
+    \draw [thick](-1.9,2.35,0) -- (-1.9,2.35,4);
+    % \filldraw[fill=orange, nearly transparent] (-4,-4,4) -- (4,-4,4) --  (4,5,4) -- (-4,5,4) -- (-4,-4,4);
+    % \filldraw[fill=blue, nearly transparent] (0,0,4) -- (5.2,6,4) --  (5.2,6,0) -- (0,0,0) -- (0,0,4);
+    % \filldraw [color=blue](2,2.25,4) circle (0.075cm) ;
+    % \draw (-4,5,4) node[anchor=south]{$z=z_1$ plane};
+    % \draw (5.2,6,0) node[anchor=south west]{$\theta=\theta_1$ plane};
+    \node at (1.8,1,4)  { $P_1(r_1,\theta_1,z_1)$};
+    % \draw[ultra thick,-latex](2,2.25,4) -- (3,3.45,4) node[anchor=north] {$\mathbf{a}_r$};
+    % \draw[ultra thick,-latex](2,2.25,4) -- (1,2.5,4) node[anchor=north west] {$\mathbf{a}_\theta$};
+    % \draw[ultra thick,-latex](2,2.25,4) -- (2,2.25,4.75) node[anchor=north west] {$\mathbf{a}_z$};
+    \draw [thick,->](4,0,0) arc (0:45:4 and 4.5);
+    \draw (3.6,2,0) node[anchor=north] {$\theta_1$};
+    \draw[ultra thick,-latex](0,0,0) -- (2,2.35,0);
+    \draw (1,1,0) node[anchor=north] {$r_1$};
+    \draw [ultra thick, latex-] (2,2.25,4)--(1.95,2.25,0);
+
+    \draw[ultra thick](0.1,0,4) -- (-0.1,0,4) node[anchor=south west] {$z_1$};
+  \end{tikzpicture}
+#+END_CENTER
+
+* Spherical Coordinates
+
+#+BEGIN_CENTER
+  \tdplotsetmaincoords{60}{110}
+
+  \pgfmathsetmacro{\rvec}{.8}
+  \pgfmathsetmacro{\thetavec}{45}
+  \pgfmathsetmacro{\phivec}{60}
+
+  \begin{tikzpicture}[scale=4,tdplot_main_coords]
+
+    \shadedraw[tdplot_screen_coords,ball color = white] (0,0) circle (\rvec);
+
+    % set up some coordinates
+    % -----------------------
+    \coordinate (O) at (0,0,0);
+
+    % determine a coordinate (P) using (r,\theta,\phi) coordinates.  This command
+    % also determines (Pxy), (Pxz), and (Pyz): the xy-, xz-, and yz-projections
+    % of the point (P).
+    % syntax: \tdplotsetcoord{Coordinate name without parentheses}{r}{\theta}{\phi}
+    \tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+
+    % draw figure contents
+    % --------------------
+
+    % draw the main coordinate system axes
+    \draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+    \draw[thick,->] (0,0,-1) -- (0,0,1) node[anchor=south]{$z$};
+
+    % draw a vector from origin to point (P)
+    \draw[-stealth,color=black] (O) -- (P) node[midway,above] {$r$};
+
+    % draw projection on xy plane, and a connecting line
+    \draw[dashed, color=red] (O) -- (Pxy);
+    \draw[dashed, color=red] (P) -- (Pxy);
+
+    % draw the angle \phi, and label it
+    % syntax: \tdplotdrawarc[coordinate frame, draw options]{center point}{r}{angle}{label options}{label}
+    \tdplotdrawarc{(O)}{0.2}{0}{\phivec}{anchor=north}{$\theta$}
+
+
+    % set the rotated coordinate system so the x'-y' plane lies within the
+    % "theta plane" of the main coordinate system
+    % syntax: \tdplotsetthetaplanecoords{\phi}
+    \tdplotsetthetaplanecoords{\phivec}
+
+    % draw theta arc and label, using rotated coordinate system
+    \tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.5}{\thetavec}{90}{anchor=south west}{$\phi$}
+
+    % draw some dashed arcs, demonstrating direct arc drawing
+    \draw[thin,tdplot_rotated_coords] (\rvec,0,0) arc (0:180:\rvec);
+  \end{tikzpicture}
+#+END_CENTER
+
+* External Loads
+
+- Force(s) or Moment(s)
+
+- Results in deformation, depending on /direction/ and /surface/
+
+- How do we define /direction/ and /surface/
+
+* Surface Direction
+
+- Direction of vector /normal/ to the surface
+
+  #+BEGIN_CENTER
+  \begin{tikzpicture}[x={(170:1cm)},y={(55:.7cm)},z={(90:1cm)}, >=latex]
+    \draw (2.5,-2.5,0) -- (2.5,2.5,0) -- (-2.5,2.5,0) -- (-2.5,-2.5,0) -- cycle;
+    \draw[dashed,looseness=.6] (2.5,-2.5,-1) to[bend left] (2.5,2.5,-1) to[bend left] coordinate (mp) (-2.5,2.5,-1) to[bend right] (-2.5,-2.5,-1) to[bend right] coordinate (mm) (2.5,-2.5,-1) -- cycle;
+    \draw[dashed,looseness=.2] (mm) to[bend left] (0,0,0) to[bend left] (mp);
+    % \path[looseness=.2] (mm) to[bend left] node[pos=.2,pin={[pin distance=1cm,pin edge={solid,<-}]below right:$\gamma$}] {} (0,0,0);
+
+    \draw[->, thick] (0,0,0) -- (3,0,0); % node[left] {$N\times\dot{\gamma}$};
+    \draw[->, thick] (0,0,0) -- (0,3,0); % node[above right] {$\dot{\gamma}$};
+    \draw[->, thick] (0,0,0) -- (0,0,3) node[right] {$n$};
+    % \draw[dotted] (0,0,2) -- (1,0,2) -- (1,0,0);
+    % \draw[->] (0,0,0) -- coordinate[pos=.3] (psi) (1,0,2); % node[above left] {$\ddot{\gamma}$};
+    % \node[left] at (0,0,1.5) {$\kappa_n$};
+    % \node[above] at (.5,0,0) {$\kappa_g$};
+    % \draw (0,0,.8) to[out=170,in=55] node[above,fill=white,inner sep=1pt,outer sep=2pt] {$\psi$} (psi);
+  \end{tikzpicture}
+  #+END_CENTER
+
+* Forces
+
+- Normal forces \(\rightarrow\) same direction as surface
+
+- Shear forces \(\rightarrow\) perpendicular to surface direction
+
+* Moments
+
+- Follow right-hand rule.
+
+- Torsional moments: same direction as surface
+
+- Bending moments: perpendicular to surface direction
+
+* The Singularity Equation (for this class)
+
+- Equilibrium equation
+
+\[\sum F = 0\]
+\[\sum M = 0\]
+
+* Engineering Statics
+
+- We will be trying to determine stresses and deformation of things
+
+- Need to find internal load at any point/surface
+
+- Method of sections
+
+* Method of sections
+
+- Use free body diagram to determine internal forces/moments on surface
+  at any point
+
+- What if there are too loads/chages all at once
+
+- Principle of Superposition
+
+* Principle of Superposition
+
+- Split the loads/changes
+
+- Determine individual response
+
+- Add the responses up
+
+* Review of High School Physics
+
+- Normal Stresses: same direction as surface
+
+- Shear stresses: perpendicular to surface direction
+
+* Normal Stresses
+
+\[\sigma = \frac{F_{normal}}{A}\]
+
+#+ATTR_LATEX: :height 0.7\textheight :center t
+[[./pictures/normal-stress.png]]
+
+* Shear Stresses
+
+\[\tau = \frac{F_{shear}}{A}\]
+
+#+ATTR_LATEX: :width \textwidth :center
+[[./pictures/shear-stress.png]]
+
+* Allowable Stresses
+
+- Real design needs to take care of uncertainties: materials,
+  conditions, loads, ...
+
+- Use \(\sigma_{allow}\) and \(\tau_{allow}\) instead
+
+\begin{align*}
+  \sigma_{allow} &= \frac{\sigma_{f}}{N_{s}} \\
+  \tau_{allow} &= \frac{\tau_{f}}{N_{s}}
+\end{align*}
+
+* Safety Factors, \(N_{s}\)
+
+- \(N_{s}\) is called the /safety factor/
+
+- \(N_{s} \geqslant\) 1 always
+
+- Why? Is there an upper limit to \(N_{s}\)?
+
+* Example: Design with Safety Factor
+
+- We need a steel rod that will take the load of 20 kN with a safety
+  factor of 2. The steel rod has the maximum yield strength of 300 MPa.
+  Determine the required diameter of the rod.
+
+\begin{align*}
+    \sigma_{allow} &= \frac{F}{\pi r^{2}} = \frac{\sigma_{f}}{N_{s}} \\
+    \frac{20000}{\pi r^{2}} &= \frac{300 \times 10^{6}}{2} \\
+    r^{2} &= 4.24 \times 10^{-5} \\
+    r &= 7.98 \times 10^{-3} \text{ m}
+\end{align*}
+
+* St. Venant's Principle
+
+[[file:pictures/st-venant.png]]
+
+- Far enough away from load, stresses follow theoretical values
+
+* Normal Strain
+
+- Strain from lengthening or shortening of material
+
+\[\varepsilon = \frac{\delta}{L}\]
+
+* Example: Ballooon
+
+- Air filled balloon with original radius \(r_1\) is pressurized until
+  its radius becomes \(r_2\). What is its strain?
+
+#+BEGIN_SRC latex :results raw file :file balloon-example.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t)("" "tikz" t)) :fit t :eval no
+  \begin{tikzpicture}
+    \node[draw, circle, fill=LightSkyBlue, minimum height=4.5cm]{};
+    \node[draw, dashed, circle, fill=LightSkyBlue, opacity=0.5, minimum height=5cm]{};
+    \draw [-latex] (0,0) --++ (45:2.25) node[midway, above left]{$r_1$};
+    \draw [-latex, dashed] (0,0) --++ (30:2.5) node[midway, below right]{$r_2$};
+  \end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :height 0.6\textheight
+#+RESULTS:
+[[file:pictures/balloon-example.pdf]]
+
+* Shear Strain
+
+- Change in angular orientation of material
+
+\[\gamma = \frac{\pi}{2} - \theta_f\]
+
+* Hooke's Law
+
+- How are stresses and strains related?
+
+- Normal stress-strain
+
+\[\sigma = E \varepsilon\]
+
+- Shear stress-strain
+
+\[\tau = G \gamma\]
+
+- \(E\) is Young's modulus or modulus of elasticity
+
+- \(G\) is shear modulus
+
+* Material Behavior
+
+- Most engineering materials have two regions
+
+  - Elastic behavior: deformation is reversible
+
+  - Plastic behavior: deformation is permanent
+
+* Material Property Testing
+
+- Tensile Test: testing for material response
+
+#+ATTR_LATEX: :center t :height 0.6\textheight
+[[./pictures/tensile-test-with-quattro.png]]
+
+* Material Types
+
+#+BEGIN_SRC latex :results raw file :file material-type-behavior.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "tikz" t)) :fit t :eval no
+  \begin{tikzpicture}[scale=0.5, >=latex]
+    % \draw (-6,-5) grid (6,5);
+    \draw[<->] (0,-6) -- (0,6) node[left]{$\sigma$};
+    \draw[<->] (-8,0) -- (8,0) node[right]{$\varepsilon$};
+    \draw[thick, Blue, rounded corners] (0,0) to (2,3) to [out=30,in=-180] (5,4) node[above]{ductile} to [out=0,in=160] (7,3.5);
+    \draw[thick, DarkRed] (0,0) --++ (70:5.5) node[above]{brittle};
+    \draw[thick, Blue, rounded corners] (0,0) to (-2,-3) to [out=210,in=0] (-5,-4) to [out=180,in=-40] (-7,-3);
+    \draw[thick, DarkRed] (0,0) to (-1.5,-3.5) to [out=-120,in=45] (-4,-6);
+  \end{tikzpicture}
+#+END_SRC
+
+#+ATTR_LATEX: :height 0.6\textheight
+#+RESULTS:
+[[file:pictures/material-type-behavior.pdf]]
+
+* Stress - Strain Diagram: Ductile
+
+  \footnotesize
+  \begin{tikzpicture}[scale=0.9,>=latex]
+    % axes
+    \draw [<->] (0,7) node[left]{$\sigma$} --++ (-90:7) node(O){} --++ (0:11) node[below]{$\varepsilon$};
+    % braces
+    \draw [decorate, decoration={brace, mirror, amplitude=2mm}] (O.center) ++ (-90:0.2) --++ (0:2.5) node(B){} node[midway, below, yshift=-3mm]{elastic region};
+    \draw [decorate, decoration={brace, mirror, amplitude=2mm}] (B.center) --++ (0:2) node(C){} node[midway, below, yshift=-3mm]{yielding};
+    \draw [decorate, decoration={brace, mirror, amplitude=2mm}] (C.center) --++ (0:3) node(D){} node[midway, below, yshift=-3mm]{strain hardening};
+    \draw [decorate, decoration={brace, mirror, amplitude=2mm}] (D.center) --++ (0:2.5) node(E){} node[midway, below, yshift=-3mm]{necking};
+    % area under curve
+    \draw [ultra thin, fill=ForestGreen] (B.center) ++ (90:0.2) node(F){} -- (O.center) --++ (60:4.5) node(pl){} arc (150:90:0.3) node(G){} -- cycle;
+    \draw [ultra thin, fill=Khaki] (C.center) ++ (90:0.2) node(H){} -- (F.center) -- (G.center) --++ (0:2) node(I){} -- cycle;
+    \draw [ultra thin, fill=Chocolate] (D.center) ++ (90:0.2) node(J){} -- (H.center) -- (I.center) to [out=0, in=-140] +(1.5,1) to [out=40,in=180] +(1.5,0.5) node(K){} -- cycle;
+    \draw [ultra thin, fill=SaddleBrown] (E.center) ++ (90:0.2) node(L){} -- (J.center) -- (K.center) to [out=0, in=155] +(2.5,-0.7) node(M){} -- cycle;
+    % stress indicators
+    \draw [dashed] (pl.center) -- +(180:2.3) node[below left]{$S_{pl}$};
+    \draw [dashed] (G.center) -- +(180:2.5) node[above left]{$S_{y}$};
+    \draw [dashed] (K.center) -- +(180:7.5) node[left]{$S_{ut}$};
+    \draw [dashed] (M.center) -- +(180:10) node[left]{$S_{f}$};
+    % actual curve
+    \draw [very thick, Blue!80](O.center) -- (pl.center) arc (150:90:0.3) -- (I.center) to [out=0, in=-140] +(1.5,1) to [out=40,in=180] +(1.5,0.5) to [out=0, in=155] +(4.0,-0.2);
+  \end{tikzpicture}
+
+* Elastic Region
+
+- Deformation is reversible \(\rightarrow\) object returns to original
+  shape once load is removed
+
+- Most designed parts are meant to operate in this region
+
+* Yield
+
+- Transition from elastic to plastic deformation \(\sim\) material
+  failure
+
+- Difficult to specify exact location
+
+- Definition can vary
+
+  1. proportionality limit
+
+  2. elastic limit
+
+  3. offset yield point (0.2% rule)
+
+* Strain Hardening
+
+- Deformation in materials cause temperary hardness increases
+
+- Material can take additional stress because of this
+
+* Necking
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+[[file:pictures/necking.png]]
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+- Final phase of plastic deformation before failure
+
+- Cross-sectional area decreases \(\rightarrow\) increased stress
+
+* Strain Energy
+
+- Energy stored in deformed body
+
+- Assumed equal to work done by external loadings
+
+  \begin{align*}
+    u &= \frac{1}{2}\sigma\varepsilon \\
+      &= \frac{1}{2}\frac{\sigma^2}{E}
+  \end{align*}
+
+- Area under \(\sigma-\varepsilon\) curve
+
+- Important to material strength under impact loading
+
+* Modulus of Resilience
+
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+      \draw [thick] (0,4.5) node[above]{$\sigma$} --++ (-90:4.5) --++ (0:6) node[right]{$\varepsilon$};
+      \draw [ultra thick, LightSkyBlue] (0,0) --++ (65:4) node(pl){} to[out=60, in=185] +(2,0.8);
+      \path[fill=LightSkyBlue, fill opacity=0.5] (0,0) -- (pl.center) --++ (-90:3.6) -- cycle;
+      \draw [|-] (pl) ++ (-0.5,-2) to[out=30,in=180] +(1,0.3) node[right]{$u_r$};
+      \draw (pl.center) --++ (-90:3.6) node[below]{$\varepsilon_{pl}$};
+      \draw (pl.center) --++ (180:1.7) node[left]{$\sigma_{pl}$};
+    \end{tikzpicture}
+  \end{figure}
+
+- Amount of energy to permanently deform body
+
+* Modulus of Toughness
+
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+      \draw [thick] (0,4.5) node[above]{$\sigma$} --++ (-90:4.5) --++ (0:6) node[right]{$\varepsilon$};
+      \draw [ultra thick, LightSkyBlue] (0,0) --++ (85:3) node(pl){} to[out=60, in=210] ++(2,0.8) to[out=30,in=120] ++(3,-0.5);
+      \path[fill=LightSkyBlue, fill opacity=0.5] (0,0) -- (pl.center) to[out=60, in=210] ++(2,0.8) to[out=30,in=120] ++(3,-0.5) node(ut){} --++ (-90:3.30) -- cycle;
+      \draw (ut.center) --++ (-90:3.30);
+      \draw [|-] (ut) ++ (-0.5,-1.5) to[out=30,in=180] +(1,0.3) node[right]{$u_t$};
+    \end{tikzpicture}
+  \end{figure}
+
+- Amount of energy to fracture body
+
+* Shear Stress-Strain Relationship
+
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[>=latex, scale=1.2]
+      % axes
+      \draw [<->] (0,5) node[left]{$\sigma$} --++ (-90:5) node(O){} --++ (0:5) node[below]{$\varepsilon$};
+      % curve
+      \draw [very thick, Blue!80](O.center) --++ (1,2.5) node(pl){} to[out=60, in=180] ++ (2,1) node(u){} to[out=0, in=145] ++ (1.5,-0.4) node(f){};
+      \draw [dashed] (pl.center) --++ (180:1) node[left]{$\tau_{pl}$};
+      \draw [dashed] (u.center) --++ (180:3) node[left]{$\tau_{u}$};
+      \draw [dashed] (f.center) --++ (180:4.5) node[left]{$\tau_{f}$};
+    \end{tikzpicture}
+  \end{figure}
+
+* Thermal Strain
+
+- Change in temperature causes material deformation
+
+  - material normally expands when heated and contracts when cooled
+
+- Definition in 1-D
+
+  \begin{align*}
+    \alpha = \frac{1}{L} \frac{d L}{dT}
+  \end{align*}
+
+- \(\alpha\) is called the coefficient of thermal expansion (CTE)
+
+* Properties of \(\alpha\)
+
+- \(\alpha\) is typically a function of \(T\)
+
+- For many engineering materials (solids), \(\alpha\) \(\sim\) constant
+
+\[\delta = \int_0^L \alpha \Delta T dx\]
+
+- For uniform temperature change
+
+\[\delta = \alpha \Delta T L\]
+
+* Example: Heated Bar
+
+- If a beam has an original length of 2 m and initial \(T\) = 20 C
+
+- The beam is heated, after which the temperature along the beam is
+  \(T(x) = 20 x^2 + 10x + 30\) C. Beam has \(\alpha\) = 2.5
+  10\(^{\text{-6}}\)
+
+  - What is the deformation of the middle point of the beam?
+
+  - What is the final length of the beam?
+
+* Poisson's Effect
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[>=latex]
+    \scriptsize
+    \node [draw, rectangle, minimum height=2cm, minimum width=2cm, fill=LightSkyBlue!90, inner sep=0](A){};
+    \node [draw, dashed, rectangle, minimum height=1.8cm, minimum width=2.4cm, fill=LightBlue!90, fill opacity=0.5, inner sep=0](B){};
+    \foreach \x in {1,...,8} {
+      \draw [->] (1.2, 0.9-0.2*\x) --++ (0:0.5);
+      \draw [->] (-1.2, 0.9-0.2*\x) --++ (180:0.5);
+    }
+
+    \node at (A.west) [yshift=-1.5cm](C){};
+    \node at (A.east) [yshift=-1.5cm](D){};
+
+    \node at (B.west) [yshift=-2cm](E){};
+    \node at (B.east) [yshift=-2cm](F){};
+
+    \draw [|<->|] (C.center) -- (D.center) node[midway,above]{$L$};
+    \draw [|<->|] (E.center) -- (F.center) node[midway,below]{$L(1+\varepsilon_{long})$};
+
+    \node at (A.north) [xshift=-2cm](G){};
+    \node at (A.south) [xshift=-2cm](H){};
+
+    \node at (B.north) [xshift=2cm](I){};
+    \node at (B.south) [xshift=2cm](J){};
+
+    \draw [|<->|] (G.center) -- (H.center) node[midway,left]{$L$};
+    \draw [|<->|] (I.center) -- (J.center) node[text width=2.7cm,midway,right]{$L(1+\varepsilon_{lat})$ \\
+      $= L(1-\nu\varepsilon_{long})$};
+      \end{tikzpicture}
+\end{figure}
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+- Material's lateral contraction (extension) under longitudinal tensile
+  (compressive) load
+
+\[\nu = - \frac{\varepsilon_{lat}}{\varepsilon_{long}}\]
+
+- \(\nu\) is called /Poisson's ratio/
+
+* Poisson's Ratio Range
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+\footnotesize
+#+ATTR_LATEX: :booktabs t
+| Material        | Poisson's ratio |
+|-----------------+-----------------|
+| rubber          | 0.4999          |
+| gold            | 0.42--0.44      |
+| saturated clay  | 0.40--0.49      |
+| magnesium       | 0.252-0.289     |
+| titanium        | 0.265-0.34      |
+| copper          | 0.33            |
+| aluminium-alloy | 0.32            |
+| clay            | 0.30--0.45      |
+| stainless steel | 0.30--0.31      |
+| steel           | 0.27--0.30      |
+| cast iron       | 0.21--0.26      |
+| sand            | 0.20--0.45      |
+| concrete        | 0.1-0.2         |
+| glass           | 0.18--0.3       |
+| foam            | 0.10--0.50      |
+| cork            | 0               |
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+- Usual engineering materials have \(0 \leqslant \nu \leqslant 0.5\)
+
+* Auxetic Material
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+- Materials that exhibit negative Poisson's ratios
+
+- How is that possible?
+
+- Rely on material microstructure
+
+- Useful in many design situations
+
+** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+begin_center
+[[./pictures/auxetic-footwear.jpg]]
+#+end_center
+
+* Mechanical Strains vs Thermal Strains
+
+- Strains caused by load vs temperature change
+
+- Mechanical strains: normal strains + lateral strains from Poisson's
+  effect
+
+- Thermal strains: strains in all direction, /no/ Poisson's effect.
+
+- \(\varepsilon_{\text{total}} = \varepsilon_{\text{mech}} + \varepsilon_{\text{therm}}\)
+  (mind the signs)
+
+* Mech vs Therm Strains Example
+
+A circular cross-sectioned steel bar with
+radius \(r\) = 1 cm and length \(L\) = 2 m is stretched along its length
+by a stress of 100 MPa. If the steel has \(E\) = 210 GPa, \(\nu\) = 0.3,
+and \(\alpha\) = 16 \(\times\) 10\(^{-6}\)/\(^{\circ}C\), how much
+temperature change does it need to return to its original volume?
+
+* Solution: Mech vs Therm Strains
+
+Match before and after volumes
+
+before:
+
+\begin{align*}
+    V_{0} &= \pi r^{2} l
+\end{align*}
+
+after:
+
+\begin{align*}
+    l_{1} &= l \left( 1 + \frac{\sigma}{E} + \alpha \Delta T \right) \\
+          %&= 2 \left( 1 + \frac{1 \times 10^{6}}{210 \times 10^{9}}  + 16 \times 10^{-6}\Delta T \right) \\
+    r_{1} &= r \left( 1 - \nu \frac{\sigma}{E} + \alpha \Delta T \right) \\
+          %&= 0.01 \left( 1 - 0.3 \frac{1 \times 10^{6}}{210 \times 10^{9}} + 16 \times 10^{-6} \Delta T \right)
+\end{align*}
+
+* Solution: Mech vs Therm Strains
+
+Set \(V_0 = V_{1}\)
+
+\begin{align*}
+    \pi r^{2} l &= \pi r^{2}\left(1 - \nu \frac{\sigma}{E} + \alpha \Delta T \right)^{2} l\left( 1 + \frac{\sigma}{E} + \alpha \Delta T \right) \\
+\end{align*}
+
+Keep only first-order terms:
+
+\begin{align*}
+    0 &= \frac{\sigma}{E} -\nu \frac{\sigma}{E} -\nu \frac{\sigma}{E} + 2\alpha \Delta T + \alpha \Delta T \\
+    \Delta T &= \frac{-\sigma(1 - 2 \nu)}{3 \alpha E} \\
+      &= -3.97 \text{ C}
+\end{align*}
+
+* Thermal Stress
+
+- Stress in a cooled/heated material constrained from deforming freely
+
+* Example: Hot Bar / Cool Bar
+
+- A metal bar is constrained between two walls the same distance as the
+  beam's length, how would you change the temperature so that the beam
+  is ...
+
+  - in tension?
+
+  - in compression?
+
+- We can intuit the /direction/ of temperature change (up or down),
+  /but/ not yet its magnitude (how much)
+
+- We will learn that soon enough ...
