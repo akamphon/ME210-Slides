@@ -178,7 +178,7 @@
 \usetikzlibrary{shapes,patterns}
 \begin{tikzpicture}[>=latex]
   \node[draw, left color=LightSkyBlue, right color=LightSkyBlue, middle color=LightSkyBlue!40, cylinder, rotate=90, minimum width=4cm, minimum height=2cm, inner sep=20](A){};
-  \draw[->>, line width=2pt] (A.top) ++ (0,-0.7) node(B){} --++ (90:2cm) node[right]{$dT = \rho \tau dA$};
+  \draw[->>, line width=2pt] (A.top) ++ (0,-0.7) node(B){} --++ (90:2cm) node[right]{$dT = r \tau dA$};
   \draw[->] (B.center) --++ (-30:0.6) node(C){} node[midway, above right]{$r$} node[below left, yshift=0cm]{$dA$};
   \node at (C) [anchor=west, draw, trapezium, trapezium left angle=60, trapezium right angle=-60, fill=LightGrey, minimum width=2mm, minimum height=2mm, rotate=-30](D){};
   \draw[->] (D.center) ++ (-150:0.1) --++(30:0.2) node[below right]{$\tau$};
@@ -209,7 +209,7 @@
 - Solid cylindrical shaft
 
 \begin{align*}
-  I_p &= \int_A r^2 dA \\
+  J &= \int_A r^2 dA \\
       &= \int_0^{2\pi} \int_0^R r^2 r dr d\theta \\
       &= \frac{\pi}{2} R^4
 \end{align*}
@@ -459,6 +459,7 @@ rad.
 \end{tikzpicture}
 #+END_SRC
 
+#+ATTR_LATEX: :width \textwidth
 #+RESULTS:
 [[file:pictures/shaft-design-example.pdf]]
 
@@ -505,7 +506,7 @@ We can now design the new shaft using \(T_{\text{new}}\)
                &= 0.026 \text{ m} = 2.6 \text{ cm}
 \end{align*}
 
-Statically Indeterminate Torque-Loaded Members
+* Statically Indeterminate Torque-Loaded Members
 
 1. Equilibrium equation: torque
 

@@ -27,13 +27,15 @@
  pdfsubject={},
  pdfcreator={Emacs 30.0.50 (Org mode 9.6)}, 
  pdflang={English}}
+\usepackage{biblatex}
+
 \begin{document}
 
-\begin{frame}[label={sec:orga9b065d}]{\{\}}
+\begin{frame}[label={sec:org6a5a613}]{\{\}}
 \maketitle
 \end{frame}
 
-\begin{frame}[label={sec:orgf5fe522}]{What is Torsion?}
+\begin{frame}[label={sec:orgf160d7e}]{What is Torsion?}
 \begin{itemize}
 \item Twisting of a straight bar loaded by torque (torsional moment)
 
@@ -41,13 +43,13 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org72d4dd1}]{State of Stress in Torsion}
+\begin{frame}[label={sec:org6890e5a}]{State of Stress in Torsion}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/state-of-torsion-stress.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org84860ee}]{Torsional Deformation in a Circular Bar}
+\begin{frame}[label={sec:orgcd23f1f}]{Torsional Deformation in a Circular Bar}
 \begin{itemize}
 \item When twisted, all cross-section remains circular and subjected to the same torque -- \emph{pure torsion}.
 
@@ -59,7 +61,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org6e27750}]{State of Strain in a Twisted Bar}
+\begin{frame}[label={sec:org7e31a74}]{State of Strain in a Twisted Bar}
 \begin{itemize}
 \item Change in element angle is shear strain
 
@@ -71,7 +73,7 @@
 \[\gamma = \frac{Rd\phi}{dx} = R\theta = \frac{R\phi}{L}\]
 \end{frame}
 
-\begin{frame}[label={sec:orgbfee682}]{Maximum Shear Strain in a Twisted Bar}
+\begin{frame}[label={sec:orgc6bcefa}]{Maximum Shear Strain in a Twisted Bar}
 \begin{itemize}
 \item Maximum shear strain happens at the outer surface
 \[\gamma_{\max} = \frac{R \phi}{L}\]
@@ -80,7 +82,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orga2e92fc}]{State of Stress in a Circular Bar under Torsion}
+\begin{frame}[label={sec:org6ec797a}]{State of Stress in a Circular Bar under Torsion}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -100,7 +102,7 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org7c95757}]{Torsion Formula}
+\begin{frame}[label={sec:orgcfd9f8c}]{Torsion Formula}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -122,7 +124,7 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org53e7614}]{Polar Moment of Inertia: \(J\)}
+\begin{frame}[label={sec:orgd3ae352}]{Polar Moment of Inertia: \(J\)}
 \begin{itemize}
 \item Solid cylindrical shaft
 \end{itemize}
@@ -138,7 +140,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgb1b7e94}]{Example: Minimum Shaft Radius}
+\begin{frame}[label={sec:orgebbbb0f}]{Example: Minimum Shaft Radius}
 \begin{center}
 \includegraphics[width=0.7\textwidth]{./pictures/ssc-tuatara.jpg}
 \end{center}
@@ -157,7 +159,7 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org604aea2}]{Solution: Minimum Required Radius}
+\begin{frame}[label={sec:orgad6c313}]{Solution: Minimum Required Radius}
 \begin{align*}
   \tau &= \frac{Tr}{J} = \frac{2T}{\pi r_{\min}^{3}} \\
   r_{\min} &= \left( \frac{2(1735)}{\pi (200 \times 10^{6})} \right)^{1/3} \\
@@ -167,7 +169,7 @@
 Isn't that a bit small?
 \end{frame}
 
-\begin{frame}[label={sec:org4ccda51}]{Deformation under Torsion: Angle of Twist \(\phi\)}
+\begin{frame}[label={sec:org5f1a853}]{Deformation under Torsion: Angle of Twist \(\phi\)}
 \begin{itemize}
 \item Combine Hooke's law and Torsion formula
 \end{itemize}
@@ -184,11 +186,11 @@ Isn't that a bit small?
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgc89ed29}]{Example: Shaft Design}
+\begin{frame}[label={sec:org0ecc5cb}]{Example: Shaft Design}
 A gasoline engine has a maximum torque output of 300 N-m. Your boss wants you to design a 2-m long shaft that is going to limit the angle of twist to \(\phi \leqslant\) 0.1 rad. The shaft should be made of medium carbon steel \(G\) = 80 GPa, \(\tau_{\text{allow}}\) = 200 MPa.
 \end{frame}
 
-\begin{frame}[label={sec:org1d70412}]{Solution: Shaft Design}
+\begin{frame}[label={sec:orgc07e22b}]{Solution: Shaft Design}
 Two conditions: \(\tau_{\text{allow}}\) and \(\phi\)
 
 \begin{align*}
@@ -203,7 +205,7 @@ Two conditions: \(\tau_{\text{allow}}\) and \(\phi\)
 We will need to design based on the bigger requirement, 1.48 cm.
 \end{frame}
 
-\begin{frame}[label={sec:orgccc53d6}]{Nonuniform Torsion}
+\begin{frame}[label={sec:orgb5b21df}]{Nonuniform Torsion}
 \begin{itemize}
 \item \(T\), \(J\), or \(G\) is not constant
 
@@ -215,7 +217,7 @@ We will need to design based on the bigger requirement, 1.48 cm.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org815ceec}]{Segments of Constant Values}
+\begin{frame}[label={sec:org3c93b5e}]{Segments of Constant Values}
 \begin{itemize}
 \item Determine internal torques and corresponding deformations
 \end{itemize}
@@ -230,7 +232,7 @@ We will need to design based on the bigger requirement, 1.48 cm.
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:orgdd4ff51}]{Example: Shaft with Various Segments}
+\begin{frame}[label={sec:org9a8fa9e}]{Example: Shaft with Various Segments}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/segments-example.pdf}
 \end{center}
@@ -241,7 +243,7 @@ We will need to design based on the bigger requirement, 1.48 cm.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org30dac8a}]{Solution}
+\begin{frame}[label={sec:orgf88f28c}]{Solution}
 Use the method of section to determine torque within segment BC,
 
 \[T_{BC} =  T_1 =  275\text{ Nm}\]
@@ -251,7 +253,7 @@ Torque within segment CD,
 \[T_{CD} =  T_3 = -175\text{ Nm}\]
 \end{frame}
 
-\begin{frame}[label={sec:org3fec523}]{Solution}
+\begin{frame}[label={sec:org4890679}]{Solution}
 The maximum shear stress in each segment is at the outer diameter. We have
 
 \begin{gather*}
@@ -261,7 +263,7 @@ The maximum shear stress in each segment is at the outer diameter. We have
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:org108acb7}]{Solution}
+\begin{frame}[label={sec:orgedcbef6}]{Solution}
 Angle of twist between B and D is the sum of the angles of twist in BC and CD.
 
 \begin{gather*}
@@ -276,7 +278,7 @@ Therefore, the bar twisted in the same direction as \(T_2\) by 0.0106
 rad.
 \end{frame}
 
-\begin{frame}[label={sec:org7c5cee1}]{Continuously Varying Torque / Size / Properties}
+\begin{frame}[label={sec:org7cc25f9}]{Continuously Varying Torque / Size / Properties}
 \begin{itemize}
 \item Back to integration
 \end{itemize}
@@ -291,7 +293,7 @@ rad.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org8cd54b1}]{Example: Continuously Varying Shaft}
+\begin{frame}[label={sec:org76ec6ba}]{Example: Continuously Varying Shaft}
 \begin{center}
 \includegraphics[width=0.9\textwidth]{pictures/cont-vary-example.pdf}
 \end{center}
@@ -301,7 +303,7 @@ rad.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org24161d1}]{Solution}
+\begin{frame}[label={sec:org5443d0e}]{Solution}
 \begin{align*}
   \phi &= \int_{0}^{L} \frac{Tdx}{GJ(x)} = \frac{T}{G} \int_{0}^{L} \frac{dx}{J(x)} \\
        &= \frac{T}{G} \int_{0}^{L} \frac{dx}{(\pi/2) \left(\dfrac{r_{2} - r_{1}}{L}x + r_{1}\right)^{4}} \\
@@ -310,7 +312,7 @@ rad.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgfa0f9ec}]{Power Transmission through Shaft}
+\begin{frame}[label={sec:org7d89acd}]{Power Transmission through Shaft}
 \begin{itemize}
 \item The most important application of shaft is rotational power
 transmission
@@ -326,15 +328,15 @@ transmission
 \[1 \text{ rpm} = \frac{2\pi}{60} \text{ rad/s}\]
 \end{frame}
 
-\begin{frame}[label={sec:org1b99915}]{Example: Shaft Design for an Engine}
+\begin{frame}[label={sec:orgd4d21be}]{Example: Shaft Design for an Engine}
 \begin{center}
-\includegraphics[width=.9\linewidth]{pictures/shaft-design-example.pdf}
+\includegraphics[width=\textwidth]{pictures/shaft-design-example.pdf}
 \end{center}
 
 Is it safe to use the old shaft? \(\tau_{allow}\) = 200 MPa.
 \end{frame}
 
-\begin{frame}[label={sec:org82be2e3}]{Solution}
+\begin{frame}[label={sec:org4ead554}]{Solution}
 First order of business is determining maximum torque required.
 
 From \(P = T\omega\)
@@ -345,7 +347,7 @@ From \(P = T\omega\)
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgad4c51d}]{Solution Finding max torque is easy now}
+\begin{frame}[label={sec:orga955b79}]{Solution Finding max torque is easy now}
 \begin{align*}
     \frac{dT_{\text{old}}}{d\omega} = 0 &= -4000 (\frac{2\pi}{60})^{3} \omega + 15000 (\frac{2\pi}{60})^{2}\\
     \omega_{old}^{*} &= \frac{15 \times 60}{4 \times 2\pi} = 35.8 \text{ rad/s} = 342 \text{ rpm} \\
@@ -353,7 +355,7 @@ From \(P = T\omega\)
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org48aa396}]{Solution}
+\begin{frame}[label={sec:orgb2b97c9}]{Solution}
 Max torque for the new engine is
 
 \begin{align*}
@@ -366,16 +368,16 @@ Since the new model requires a larger torque, the old shaft will \emph{NOT}
 work
 \end{frame}
 
-\begin{frame}[label={sec:org4a20c56}]{Solution}
+\begin{frame}[label={sec:orgf005eff}]{Solution}
 We can now design the new shaft using \(T_{\text{new}}\)
 \begin{align*}
     \tau_{max} &= \frac{TR}{J} = \frac{2T}{\pi R^{3}} \\
     R &= \left[ \frac{2(5454)}{\pi ( 200 \times 10^{6} )} \right]^{1/3} \\
                &= 0.026 \text{ m} = 2.6 \text{ cm}
 \end{align*}
+\end{frame}
 
-Statically Indeterminate Torque-Loaded Members
-
+\begin{frame}[label={sec:org4a2ddf2}]{Statically Indeterminate Torque-Loaded Members}
 \begin{enumerate}
 \item Equilibrium equation: torque
 
@@ -385,7 +387,7 @@ Statically Indeterminate Torque-Loaded Members
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[label={sec:org84a532b}]{Example: Compound Shaft}
+\begin{frame}[label={sec:org39ab9f1}]{Example: Compound Shaft}
 \begin{center}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./pictures/compound-shaft.pdf}
@@ -401,7 +403,7 @@ Statically Indeterminate Torque-Loaded Members
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[label={sec:org0ecf0bb}]{Solution}
+\begin{frame}[label={sec:orgc7f6554}]{Solution}
 This is a statically indeterminate problem, with the rigid disk
 acting as a constraint on the angle of twist of the steel and copper
 sections.
@@ -413,7 +415,7 @@ sections.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgbdb6ce6}]{Solution}
+\begin{frame}[label={sec:orgd6a79c5}]{Solution}
 2: Compatibility -- being constrained by the rigid disk, the two materials must rotate by the same amount \(\phi\)
 
 \begin{align*}
@@ -429,7 +431,7 @@ sections.
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:org1267b4c}]{Solution}
+\begin{frame}[label={sec:org1f30022}]{Solution}
 Plug back into equilibrium equation,
 
 \begin{align*}
@@ -447,7 +449,7 @@ Once we obtained the torques, finding the angle of twist is easy:
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org86f63e5}]{Solution: Equivalent shear modulus}
+\begin{frame}[label={sec:org63b23d2}]{Solution: Equivalent shear modulus}
 Similar to equivalent modulus for compound bar:
 
 Given \(T\), find modulus of a single material with same \(J\) and \(L\)
@@ -459,7 +461,7 @@ that gives same \(\phi\)
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org8881c80}]{Torsion in Thin-walled Tubes}
+\begin{frame}[label={sec:org15b6f41}]{Torsion in Thin-walled Tubes}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -485,7 +487,7 @@ that gives same \(\phi\)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgee194d5}]{Torsion Formula for Thin-walled Tubes}
+\begin{frame}[label={sec:org9d59bc4}]{Torsion Formula for Thin-walled Tubes}
 \begin{columns}
 \begin{column}{0.6\columnwidth}
 \begin{center}
@@ -504,7 +506,7 @@ that gives same \(\phi\)
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgffff6c7}]{Angle of Twist in Thin-walled Tube}
+\begin{frame}[label={sec:org157de5b}]{Angle of Twist in Thin-walled Tube}
 \begin{itemize}
 \item Derived using energy method
 \end{itemize}
@@ -520,7 +522,7 @@ that gives same \(\phi\)
 \[\phi = \frac{TL}{4A_m^2 G} \left[ \frac{s_1}{t_1} + \frac{s_2}{t_2} + \ldots \right]\]
 \end{frame}
 
-\begin{frame}[label={sec:org6352e0f}]{Example: Shear Stress and Angle of Twist in Box Steel}
+\begin{frame}[label={sec:org3485d22}]{Example: Shear Stress and Angle of Twist in Box Steel}
 \begin{center}
 \includegraphics[height=0.5\textheight]{pictures/thin-walled-example.pdf}
 \end{center}
@@ -531,7 +533,7 @@ that gives same \(\phi\)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgce6c0e5}]{Solution}
+\begin{frame}[label={sec:org554a56b}]{Solution}
 Since the hollow section thickness is constant, \(\tau\) is constant
 
 \begin{align*}
