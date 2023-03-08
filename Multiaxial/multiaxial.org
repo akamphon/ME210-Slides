@@ -16,6 +16,8 @@
 #+LATEX_COMPILER: xelatex
 #+BEAMER_HEADER: \usepackage{booktabs}
 #+BEAMER_HEADER: \usepackage{pgfplots}
+#+BEAMER_HEADER: \usepackage{amsmath}
+#+BEAMER_HEADER: \usepackage{bm}
 #+BEAMER_HEADER: \pgfplotsset{compat=1.18}
 #+BEAMER_HEADER: \institute{Department of Mechanical Engineering, TSE}
 #+BEAMER_HEADER: \date{}
@@ -155,7 +157,7 @@
 - Square both terms and add
 
 \begin{align*}
-    \left[ \sigma_{x'} - \left( \dfrac{\sigma_x + \sigma_y}{2} \right) \right]^2 &+ \tau_{x'y'}^2 = \\
+    \Biggl[ \sigma_{x'} -& \left( \dfrac{\sigma_x + \sigma_y}{2} \right) \Biggr]^2 + \tau_{x'y'}^2 = \\
      & \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2\cos^2 2\theta  + 2\left( \dfrac{\sigma_x - \sigma_y}{2} \right)\tau_{xy}\cos 2\theta \sin 2\theta + \tau_{xy}^2\sin^2 2\theta \\
     +& \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2 \sin^2 2\theta  + 2\left( \dfrac{\sigma_y - \sigma_x}{2} \right)\tau_{xy}\cos 2\theta \sin 2\theta  + \tau_{xy}^2\cos^2 2\theta
 \end{align*}
@@ -209,8 +211,6 @@
 - No shear stress in the principal direction, /ever!/
 
 - Check on Mohr's circle
-
-- 
 
 - So where's the maximum shear stress?
 
@@ -517,7 +517,7 @@
 - Final volume is
 
   \begin{align*}
-    V_{final} &= a \left( 1 + \varepsilon_x \right) + b \left( 1 + \varepsilon_y \right) + c \left( 1 + \varepsilon_z \right) \\
+    V_{final} &= a \left( 1 + \varepsilon_x \right) b \left( 1 + \varepsilon_y \right) c \left( 1 + \varepsilon_z \right) \\
               &\approx abc \left( 1 + \varepsilon_x + \varepsilon_y + \varepsilon_z \right)
   \end{align*}
 

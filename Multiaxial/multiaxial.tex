@@ -16,6 +16,8 @@
 \subtitle{ME 210: Mechanics of Materials}
 \usepackage{booktabs}
 \usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{bm}
 \pgfplotsset{compat=1.18}
 \institute{Department of Mechanical Engineering, TSE}
 \date{}
@@ -29,14 +31,16 @@
  pdfsubject={},
  pdfcreator={Emacs 30.0.50 (Org mode 9.6)}, 
  pdflang={English}}
+\usepackage{biblatex}
+
 \begin{document}
 
 
-\begin{frame}[label={sec:orgcae5953}]{\{\}}
+\begin{frame}[label={sec:orga0dd01b}]{\{\}}
 \maketitle
 \end{frame}
 
-\begin{frame}[label={sec:org18a9a5f}]{Why Should I Care about This?}
+\begin{frame}[label={sec:orgbc1b61e}]{Why Should I Care about This?}
 \begin{itemize}
 \item Many components can be loaded by multiple forces/torques/moments
 \item How do we know if material will fail?
@@ -47,7 +51,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgb60f210}]{Determining Max Normal and Shear Stresses}
+\begin{frame}[label={sec:orgd83fa31}]{Determining Max Normal and Shear Stresses}
 \begin{itemize}
 \item Equivalent normal and shear stresses change with respect to
 orientation
@@ -55,7 +59,7 @@ orientation
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orge40164e}]{Plane Stress: What's That?}
+\begin{frame}[label={sec:org7c9ff41}]{Plane Stress: What's That?}
 \begin{itemize}
 \item Part of material with only \emph{in-plane} normal and shear stresses
 
@@ -67,7 +71,7 @@ orientation
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org35b0254}]{Stress Transformation for Plane Stress}
+\begin{frame}[label={sec:orga433dcc}]{Stress Transformation for Plane Stress}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/stress-trans.pdf}
 \end{center}
@@ -79,7 +83,7 @@ orientation
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgec395b6}]{Equations for Stress Transformation}
+\begin{frame}[label={sec:org29b0b25}]{Equations for Stress Transformation}
 \begin{gather*}
   \sum F_{x'}  = 0; \hfill \\[1em]
   \begin{split}
@@ -96,7 +100,7 @@ orientation
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgfe15675}]{Where are My Max Stresses?}
+\begin{frame}[label={sec:org4073d44}]{Where are My Max Stresses?}
 \begin{itemize}
 \item Find the max
 
@@ -110,7 +114,7 @@ orientation
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgde8b37f}]{Graphical Representation of State of Stress}
+\begin{frame}[label={sec:org3e262d1}]{Graphical Representation of State of Stress}
 \begin{itemize}
 \item Rewrite stresses using double angle
 \end{itemize}
@@ -128,19 +132,19 @@ orientation
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:orgba60a05}]{Getting There\ldots{}}
+\begin{frame}[label={sec:org94440c8}]{Getting There\ldots{}}
 \begin{itemize}
 \item Square both terms and add
 \end{itemize}
 
 \begin{align*}
-    \left[ \sigma_{x'} - \left( \dfrac{\sigma_x + \sigma_y}{2} \right) \right]^2 &+ \tau_{x'y'}^2 = \\
+    \Biggl[ \sigma_{x'} -& \left( \dfrac{\sigma_x + \sigma_y}{2} \right) \Biggr]^2 + \tau_{x'y'}^2 = \\
      & \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2\cos^2 2\theta  + 2\left( \dfrac{\sigma_x - \sigma_y}{2} \right)\tau_{xy}\cos 2\theta \sin 2\theta + \tau_{xy}^2\sin^2 2\theta \\
     +& \left( \dfrac{\sigma_x - \sigma_y}{2} \right)^2 \sin^2 2\theta  + 2\left( \dfrac{\sigma_y - \sigma_x}{2} \right)\tau_{xy}\cos 2\theta \sin 2\theta  + \tau_{xy}^2\cos^2 2\theta
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgb095d2f}]{The Representation}
+\begin{frame}[label={sec:org3c9cf76}]{The Representation}
 \begin{itemize}
 \item Use trigonometry identities
 
@@ -152,13 +156,13 @@ orientation
 \[\left( \sigma_{x'} - \sigma_{avg} \right)^2 + \tau_{x'y'}^2 = R^2\]
 \end{frame}
 
-\begin{frame}[label={sec:org0f66e91}]{Mohr's Circle}
+\begin{frame}[label={sec:org3da0ade}]{Mohr's Circle}
 \begin{center}
 \includegraphics[height=0.9\textheight]{pictures/mohrs-circle.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgfebc1d6}]{Principal Stresses}
+\begin{frame}[label={sec:org2f314de}]{Principal Stresses}
 \begin{itemize}
 \item Maximum and minimum normal stresses = normal stresses at principal
 direction
@@ -172,7 +176,7 @@ direction
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgebf06b3}]{Shear Stresses at \(\theta_p\)}
+\begin{frame}[label={sec:orga975a3f}]{Shear Stresses at \(\theta_p\)}
 \[\tau_{x'y'} (\theta = \theta_p) = 0\]
 
 \begin{itemize}
@@ -180,14 +184,11 @@ direction
 
 \item Check on Mohr's circle
 
-\item 
-
-
 \item So where's the maximum shear stress?
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orge1472b1}]{Maximum In-plane Shear Stress}
+\begin{frame}[label={sec:org19359af}]{Maximum In-plane Shear Stress}
 \[\dfrac{d\tau_{xy}}{d\theta} = 0 = 2\left( \dfrac{\sigma_y - \sigma_x}{2} \right) \cos 2\theta - 2\tau_{xy} \sin 2\theta\]
 \[\tan 2\theta_s = \dfrac{\sigma_y - \sigma_x}{2\tau_{xy}}\]
 
@@ -199,7 +200,7 @@ direction
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org769db6b}]{Example: State of Stress of a Square Element}
+\begin{frame}[label={sec:org938ef91}]{Example: State of Stress of a Square Element}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{center}
@@ -221,7 +222,7 @@ direction
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgd3bece8}]{Continue}
+\begin{frame}[label={sec:orgc737f95}]{Continue}
 \begin{itemize}
 \item Principal stresses are
 
@@ -241,19 +242,19 @@ direction
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgf6d6e04}]{}
+\begin{frame}[label={sec:org0017a3a}]{}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/example-I-mohrs.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org23914ab}]{Original vs Principal}
+\begin{frame}[label={sec:orgebaab26}]{Original vs Principal}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/orig-vs-principal-I.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgbb5f85b}]{Another Example:}
+\begin{frame}[label={sec:org6fbd44f}]{Another Example:}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{center}
@@ -275,7 +276,7 @@ direction
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgb7d65fc}]{Continue}
+\begin{frame}[label={sec:orgc502be2}]{Continue}
 \begin{itemize}
 \item Principal stresses are
 
@@ -295,20 +296,20 @@ direction
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org55281ee}]{}
+\begin{frame}[label={sec:org30d12d1}]{}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/example-II-mohrs.pdf}
 \end{center}
 \end{frame}
 
 
-\begin{frame}[label={sec:org11fb7a4}]{Original vs Principal}
+\begin{frame}[label={sec:org801a719}]{Original vs Principal}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/orig-vs-principal.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgd69c561}]{Hooke's Law for 3D Stress}
+\begin{frame}[label={sec:orgb8ce6f2}]{Hooke's Law for 3D Stress}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{center}
@@ -331,28 +332,28 @@ direction
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org5643371}]{Rethinking Strains in 3D}
+\begin{frame}[label={sec:orgff20b5b}]{Rethinking Strains in 3D}
 \begin{center}
 \begin{tabular}{llll}
 \toprule
- & \(\sigma_x\) & \(\sigma_y\) & \(\sigma_z\)\\\empty
+ & \(\sigma_x\) & \(\sigma_y\) & \(\sigma_z\)\\[0pt]
 \midrule
-\(\varepsilon_x\) & \(\dfrac{\sigma_x}{E}\) & \(-\nu \dfrac{\sigma_y}{E}\) & \(-\nu \dfrac{\sigma_z}{E}\)\\\empty
-\(\varepsilon_y\) & \(-\nu \dfrac{\sigma_x}{E}\) & \(\dfrac{\sigma_y}{E}\) & \(-\nu \dfrac{\sigma_z}{E}\)\\\empty
-\(\varepsilon_z\) & \(-\nu \dfrac{\sigma_x}{E}\) & \(-\nu\dfrac{\sigma_y}{E}\) & \(\dfrac{\sigma_z}{E}\)\\\empty
+\(\varepsilon_x\) & \(\dfrac{\sigma_x}{E}\) & \(-\nu \dfrac{\sigma_y}{E}\) & \(-\nu \dfrac{\sigma_z}{E}\)\\[0pt]
+\(\varepsilon_y\) & \(-\nu \dfrac{\sigma_x}{E}\) & \(\dfrac{\sigma_y}{E}\) & \(-\nu \dfrac{\sigma_z}{E}\)\\[0pt]
+\(\varepsilon_z\) & \(-\nu \dfrac{\sigma_x}{E}\) & \(-\nu\dfrac{\sigma_y}{E}\) & \(\dfrac{\sigma_z}{E}\)\\[0pt]
 \bottomrule
 \end{tabular}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgcdbda6d}]{Volume Change}
+\begin{frame}[label={sec:orgcd32728}]{Volume Change}
 \begin{itemize}
 \item Original volume of element \(V_0 = abc\)
 
 \item Final volume is
 
 \begin{align*}
-  V_{final} &= a \left( 1 + \varepsilon_x \right) + b \left( 1 + \varepsilon_y \right) + c \left( 1 + \varepsilon_z \right) \\
+  V_{final} &= a \left( 1 + \varepsilon_x \right) b \left( 1 + \varepsilon_y \right) c \left( 1 + \varepsilon_z \right) \\
             &\approx abc \left( 1 + \varepsilon_x + \varepsilon_y + \varepsilon_z \right)
 \end{align*}
 
@@ -361,14 +362,14 @@ direction
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgb0a799e}]{Unit Volume Change, \(e\)}
+\begin{frame}[label={sec:orgb904a0e}]{Unit Volume Change, \(e\)}
 \begin{itemize}
 \item Also called \emph{dilatation} or \emph{volumetric strain}
 \[e = \frac{\Delta V}{V_0} = \varepsilon_x + \varepsilon_y + \varepsilon_z\]
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgca80092}]{Spherical Stress and Bulk Modulus}
+\begin{frame}[label={sec:org6d5f167}]{Spherical Stress and Bulk Modulus}
 \begin{itemize}
 \item Spherical stress \(\rightarrow\) same normal stresses in 3 axes
 \[\sigma_x = \sigma_y = \sigma_z = \sigma_0\]
@@ -380,7 +381,7 @@ direction
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgd39ef5b}]{Example: Cube under hydrostatic pressure}
+\begin{frame}[label={sec:orgae04664}]{Example: Cube under hydrostatic pressure}
 A 0.25-m\(^3\) cube is being submerged under water where the water pressure is 30 MPa. If the material has \(E\) = 3 GPa and Poisson's ratio of 0.3, find the final volume of the element.
 
 \begin{center}
@@ -388,7 +389,7 @@ A 0.25-m\(^3\) cube is being submerged under water where the water pressure is 3
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgb817162}]{Solution: Cube under hydrostatic pressure}
+\begin{frame}[label={sec:orgf69a7fd}]{Solution: Cube under hydrostatic pressure}
 Hydrostatic pressure situation represents the state where the pressure is equal in all direction. This means that we can assume that the element is under spherical stress. The unit volume change is
 
 \begin{align*}
@@ -398,7 +399,7 @@ Hydrostatic pressure situation represents the state where the pressure is equal 
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org66f585e}]{Solution: Cube under hydrostatic pressure}
+\begin{frame}[label={sec:org9e2727a}]{Solution: Cube under hydrostatic pressure}
 This means that the volume reduced by 1.2\% (since hydrostatic pressure in this case is compressive), and thus the final volume is
 
 \begin{align*}
@@ -408,7 +409,7 @@ This means that the volume reduced by 1.2\% (since hydrostatic pressure in this 
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org6c53759}]{Absolute Maximum Shear Stress}
+\begin{frame}[label={sec:orgb83a54c}]{Absolute Maximum Shear Stress}
 \begin{itemize}
 \item In 3D plane stress problems, there are 3 principal stresses.
 
@@ -426,19 +427,19 @@ This means that the volume reduced by 1.2\% (since hydrostatic pressure in this 
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org7f985e0}]{Case I: Stresses are of the Same Sign}
+\begin{frame}[label={sec:org29564c2}]{Case I: Stresses are of the Same Sign}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/abs-max-shear-case-I.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org42b1a17}]{Case II: Stresses are of Opposite Signs}
+\begin{frame}[label={sec:org8983b0d}]{Case II: Stresses are of Opposite Signs}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/abs-max-shear-case-II.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org95fed53}]{Example}
+\begin{frame}[label={sec:org2021fa8}]{Example}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -457,7 +458,7 @@ This means that the volume reduced by 1.2\% (since hydrostatic pressure in this 
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgcf6b0f5}]{}
+\begin{frame}[label={sec:org2a9b95f}]{}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/max-abs-shear-stress-example.pdf}
 \end{center}

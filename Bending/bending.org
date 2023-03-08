@@ -319,8 +319,8 @@ divide through with \(y\) and substitute with \(h\) and 0
 \end{align*}
 
 \begin{align*}
-  \tau &= \frac{1}{Ib} \left( \frac{dM}{dx} \right) \int_{A'} y dA' \\
-       &= \frac{VQ}{Ib}
+  \tau &= \frac{1}{It} \left( \frac{dM}{dx} \right) \int_{A'} y dA' \\
+       &= \frac{VQ}{It}
 \end{align*}
 
 ** What is Q?
@@ -387,7 +387,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 \begin{align*}
   Q_{\max} &= Q(y = 0) \\
            &= \frac{bh^{2}}{8} \\
-  \tau_{\max} &= \frac{VQ}{Ib} \\
+  \tau_{\max} &= \frac{VQ}{It} \\
            &= \frac{V \frac{bh^{2}}{8}}{ \frac{bh^{3}}{12} b} \\
            &= \frac{3V}{2bh}  = \frac{3V}{2A}
 \end{align*}
@@ -501,6 +501,22 @@ This works for more than 2 materials as well!
 
 - Top layer \(E\) = 200 MPa. Bottom layer \(E\) = 400 MPa. Determine
   \(\sigma_{\max}\) in tension and compression.
+
+\begin{figure}[hbtp]
+  \centering
+  \begin{tikzpicture}[>=latex]
+    \draw[fill=LightGrey] (0,0) rectangle (2.5,1);
+    \draw[fill=SkyBlue] (0,1) rectangle (2.5,2.5);
+    \draw[|<->|] (3,0) to (3,0.5) node[right]{2 cm} to (3,1);
+    \draw[|<->|] (3,1) to (3,1.55) node[right]{3 cm} to (3,2.5);
+    \draw[|<->|] (0,3) to (1.25,3) node[above]{5 cm}to (2.5, 3);
+    % beam with load
+    \draw[fill=LightGrey] (5,0.7) rectangle (11,1);
+    \draw[fill=SkyBlue](5,1) rectangle (11,1.5);
+    \draw[->, thick]  (5,2) node[above]{200 N-m} arc (120:240:1cm);
+    \draw[->, thick]  (11,2) node[above]{200 N-m} arc (60:-60:1cm);
+    \end{tikzpicture}
+\end{figure}
 
 ** Solution
 
