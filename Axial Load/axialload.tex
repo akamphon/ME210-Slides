@@ -26,16 +26,18 @@
  pdfsubject={},
  pdfcreator={Emacs 30.0.50 (Org mode 9.6)}, 
  pdflang={English}}
+\usepackage{biblatex}
+
 \begin{document}
 
 
-\begin{frame}[label={sec:orgaa38fa4}]{\{\}}
+\begin{frame}[label={sec:org4ad1011}]{\{\}}
 \maketitle
 \end{frame}
 
 \section{Overview of Axially Loaded Member Problems}
 \label{overview-of-axially-loaded-member-problems}
-\begin{frame}[label={sec:orgaf5587b}]{Axially Loaded Member}
+\begin{frame}[label={sec:org9403e2e}]{Axially Loaded Member}
 \begin{itemize}
 \item Back to the basic: 1D stress-strain relationship
 
@@ -47,7 +49,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org33e8e26}]{2 Types of Problems in Statics}
+\begin{frame}[label={sec:orgfde4a5f}]{2 Types of Problems in Statics}
 \begin{itemize}
 \item Statically determinate: equilibrium equation is all you need
 
@@ -61,7 +63,7 @@
 
 \section{Statically Determinate Problems}
 \label{statically-determinate-problems}
-\begin{frame}[label={sec:org12f3eec}]{Statically Determinate Axially Loaded Members}
+\begin{frame}[label={sec:org0486a0e}]{Statically Determinate Axially Loaded Members}
 \begin{itemize}
 \item Simplest of them all
 
@@ -71,7 +73,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org4c91ba8}]{Elastic Deformation of Axially Loaded Members}
+\begin{frame}[label={sec:org66e4581}]{Elastic Deformation of Axially Loaded Members}
 \begin{figure}[h]
   \centering
   \begin{tikzpicture}
@@ -94,7 +96,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org3b32294}]{Hooke's Law}
+\begin{frame}[label={sec:orgbfb11bd}]{Hooke's Law}
 \begin{align*}
   \sigma(x) &= E \varepsilon \\
   \frac{P}{A} &= E \frac{\delta}{L} \\
@@ -102,7 +104,7 @@
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org652b917}]{Generalized Elastic Deformation}
+\begin{frame}[label={sec:orgd582fd4}]{Generalized Elastic Deformation}
 \begin{figure}[h]
   \centering
   \begin{tikzpicture}
@@ -131,7 +133,7 @@
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org05a1e3f}]{Specific Conditions}
+\begin{frame}[label={sec:orgea90647}]{Specific Conditions}
 \begin{itemize}
 \item Multiple loads over multiple cross sections
 \end{itemize}
@@ -141,7 +143,7 @@
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgc9e6071}]{Deformation Analysis Steps}
+\begin{frame}[label={sec:orga2affc9}]{Deformation Analysis Steps}
 \begin{enumerate}
 \item Determine force in each section of member
 
@@ -151,7 +153,7 @@
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[label={sec:org7327cac}]{Finding Internal Forces}
+\begin{frame}[label={sec:org9479dc5}]{Finding Internal Forces}
 \begin{enumerate}
 \item Convert ALL supports into support forces and moments
 
@@ -161,7 +163,7 @@
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[label={sec:org227b0ca}]{Example: Prismatic Bar}
+\begin{frame}[label={sec:org5849eaa}]{Example: Prismatic Bar}
 \begin{itemize}
 \item \(P\) = 500 N, \(A\) = 2.5 cm\(^2\), \(L\) = 2 m, \(\delta\) = ?
 
@@ -176,7 +178,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org158102d}]{Example: Same bars, Same forces, Different locations}
+\begin{frame}[label={sec:org933e5e4}]{Example: Same bars, Same forces, Different locations}
 \begin{figure}[h]
 \begin{tikzpicture}
   \node[minimum height=2cm, minimum width=0.5cm, pattern=north west lines](wall){};
@@ -189,7 +191,7 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org267344f}]{Example: Deformation of a continuously variable bar}
+\begin{frame}[label={sec:org9beaf11}]{Example: Deformation of a continuously variable bar}
 \begin{itemize}
 \item What is the elongation of the bar?
 
@@ -213,7 +215,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgc43ab27}]{Solution}
+\begin{frame}[label={sec:org054d555}]{Solution}
 \begin{itemize}
 \item load is constant throughout the length of the cylinder
 
@@ -229,7 +231,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org6330637}]{Solution}
+\begin{frame}[label={sec:org3a87405}]{Solution}
 \begin{itemize}
 \item Since the cylinder is actually a cone, radius \(r\) of area \(A\) is a linear function of \(x\)
 
@@ -249,7 +251,7 @@ where \(m\) is the slope and \(c\) is the y-intercept
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orga6d93ba}]{Solution}
+\begin{frame}[label={sec:orgf10161c}]{Solution}
 \begin{itemize}
 \item We can now evaluate the integral
 
@@ -264,7 +266,7 @@ where \(m\) is the slope and \(c\) is the y-intercept
 
 \section{Statically Indeterminate Problems}
 \label{statically-indeterminate-problems}
-\begin{frame}[label={sec:org3a7942c}]{Statically Indeterminate Axially Loaded Members}
+\begin{frame}[label={sec:orgcc6c9fd}]{Statically Indeterminate Axially Loaded Members}
 \begin{itemize}
 \item For statically determinate problems, equilibrium is sufficient
 
@@ -272,7 +274,7 @@ where \(m\) is the slope and \(c\) is the y-intercept
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org9bf7171}]{Compatibility or Kinematic Conditions}
+\begin{frame}[label={sec:org0ed21d0}]{Compatibility or Kinematic Conditions}
 \begin{itemize}
 \item Fortunately, constraints typically provide geometric conditions
 \(\rightarrow\) compatibility equations
@@ -281,10 +283,10 @@ where \(m\) is the slope and \(c\) is the y-intercept
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org19d0ce7}]{Example: Basic Bar between Two Walls}
+\begin{frame}[label={sec:org9b5d3e6}]{Example: Basic Bar between Two Walls}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
-\begin{tikzpicture}
+\begin{tikzpicture}[>=latex]
   \node [rectangle, pattern=north east lines, minimum height=1cm, minimum width=0.5cm](lwall){};
   \draw (lwall.south east) -- (lwall.north east);
   \node at (lwall.east) [anchor=west, draw, rectangle, top color=LightSkyBlue, bottom color=LightSkyBlue, middle color=LightSkyBlue!50, minimum height=5mm, minimum width=5cm](bar){};
@@ -316,7 +318,7 @@ $$ F_B + F_A - P = 0 $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org203ec60}]{Solving SI Problems}
+\begin{frame}[label={sec:org9946ab9}]{Solving SI Problems}
 \begin{enumerate}
 \item Draw FBD of member(s)
 
@@ -330,7 +332,7 @@ $$ F_B + F_A - P = 0 $$
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[label={sec:orgf4724e2}]{Example: Three Bars attached to Rigid Beam}
+\begin{frame}[label={sec:org86bcfc5}]{Example: Three Bars attached to Rigid Beam}
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[>=latex]
@@ -349,7 +351,7 @@ $$ F_B + F_A - P = 0 $$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orga6d2c23}]{Solution}
+\begin{frame}[label={sec:org2d5a9d1}]{Solution}
 Assuming all internal forces are tensile, they all point upward on the
 rigid beam.
 
@@ -367,7 +369,7 @@ Equilibrium:
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:orgb392a7d}]{Solution}
+\begin{frame}[label={sec:org023fa0d}]{Solution}
 Rigid beam can tilt, but not bend. Use similar triangles, compatibility equation is:
 
 \begin{align*}
@@ -386,7 +388,7 @@ Convert compatibility to force equation using Hooke's Law
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:org43e6a26}]{Solve for the forces}
+\begin{frame}[label={sec:org882323e}]{Solve for the forces}
 Now, substitute this into the first equilibrium equation.
 \begin{align*}
    F_1 + F_2 + F_3 &= P - 5F_3 + \frac{P}{2} - 2F_3 + F_3 = P \\
@@ -397,7 +399,7 @@ Now, substitute this into the first equilibrium equation.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org4d4dcd5}]{Thermal Strains: Oh It's Baaacccckkkk!!!!}
+\begin{frame}[label={sec:orgb7a8aa5}]{Thermal Strains: Oh It's Baaacccckkkk!!!!}
 \begin{itemize}
 \item Remember this?
 \end{itemize}
@@ -408,7 +410,7 @@ Now, substitute this into the first equilibrium equation.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgd041460}]{Temperature + Force = Pain}
+\begin{frame}[label={sec:org07f23dc}]{Temperature + Force = Pain}
 \begin{itemize}
 \item Thermal stress \(\rightarrow\) temperature change while constrained
 
@@ -420,7 +422,7 @@ Now, substitute this into the first equilibrium equation.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org66e8cb7}]{Example: Thermal Stress in Fastened Bars}
+\begin{frame}[label={sec:org80a3b08}]{Example: Thermal Stress in Fastened Bars}
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}[>=latex]
@@ -441,7 +443,7 @@ Now, substitute this into the first equilibrium equation.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgc01c372}]{Solution}
+\begin{frame}[label={sec:org1a0babe}]{Solution}
 Equilibrium equations
 \begin{gather*}
    \sum F_{y}  = 0 \\
@@ -462,7 +464,7 @@ Or using moment equilibrium
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:orgb2eb7e5}]{Solution}
+\begin{frame}[label={sec:org871e71c}]{Solution}
 Moment equilibrium about the right side of the rigid beam gives the same equation.
 \begin{align*}
   F_2 = -2F_1 = -2F_3
@@ -481,7 +483,7 @@ Hooke's Law:
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org164137c}]{Solution}
+\begin{frame}[label={sec:org3c229a6}]{Solution}
 Substituting \(F_1 = F_2 / 2\), we have
 \begin{gather*}
 F_2 = \frac{2}{3} \left( \alpha_1 - \alpha_2 \right) \Delta T A E \\
@@ -489,22 +491,19 @@ F_1 = F_3 = \frac{1}{3} \left( \alpha_2 - \alpha_1 \right) \Delta T A E
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:org4a13e3a}]{Analysis}
-We have previously assumed all internal forces tensile, so if the sign comes out positive, the force \emph{is} tensile. It is compressive otherwise.
+\begin{frame}[label={sec:org0fd4909}]{Analysis}
+\begin{itemize}
+\item All forces assumed tensile, so if the sign comes out positive, the force \emph{is} tensile. It is compressive otherwise.
 
-For \(\alpha_1 > \alpha_2\) and \(\Delta T > 0\)
+\item Consider \(\alpha_1 > \alpha_2\) and \(\Delta T > 0\)
 
 $$ F_2 > 0 \text{ and } F_1, F_3 < 0 $$
 
-When the members are heated the left and right members will try to
-expand more than the middle one due to their higher coefficients of
-thermal expansion \(\alpha_1\). However, because of the rigid beam
-restriction, the left and right members are squeezed down, while the
-middle part is pulled. Other situations can be analyzed with similar
-logic.
+\item When the members are heated the left and right members will try to expand more than the middle one due to their higher coefficients of thermal expansion \(\alpha_1\). However, because of the rigid beam restriction, the left and right members are squeezed down, while the middle part is pulled. Other situations can be analyzed with similar logic.
+\end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org0e8eada}]{Compatibility Equation}
+\begin{frame}[label={sec:org6260b7c}]{Compatibility Equation}
 \begin{itemize}
 \item One member: wall or support limits deformation
 
@@ -516,7 +515,7 @@ logic.
 
 \section{Compound Bars}
 \label{compound-bars}
-\begin{frame}[label={sec:org537c648}]{Analysis of a Compound Bar}
+\begin{frame}[label={sec:org3225bbf}]{Analysis of a Compound Bar}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/compound-bar.jpg}
 \end{center}
@@ -528,7 +527,7 @@ logic.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org84c802a}]{Force in Member of Compound Bar}
+\begin{frame}[label={sec:orgf7291eb}]{Force in Member of Compound Bar}
 \begin{itemize}
 \item For any member
 \end{itemize}
@@ -547,7 +546,7 @@ logic.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org03cf2a4}]{Governing Equation of Compound Bars}
+\begin{frame}[label={sec:org0f9f398}]{Governing Equation of Compound Bars}
 \begin{itemize}
 \item Fraction of force in member \emph{i}
 \end{itemize}
@@ -569,7 +568,7 @@ logic.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org93ecb34}]{Example: Helping out a Friend}
+\begin{frame}[label={sec:org61f0e78}]{Example: Helping out a Friend}
 \begin{columns}
 \begin{column}{0.3\columnwidth}
 \begin{center}
@@ -592,7 +591,7 @@ copper (\(E\) = 80 GPa)
 
 \section{Impact Loading}
 \label{impact-loading}
-\begin{frame}[label={sec:org73b6ffe}]{Object under Impact Loading}
+\begin{frame}[label={sec:org73d552f}]{Object under Impact Loading}
 \begin{figure}[h]
   \centering
   \begin{tikzpicture}
@@ -608,7 +607,7 @@ copper (\(E\) = 80 GPa)
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org131423f}]{Maximum Deformation under Impact Loading}
+\begin{frame}[label={sec:orge623bbe}]{Maximum Deformation under Impact Loading}
 \begin{itemize}
 \item Weight dropped from \(h\)
 \end{itemize}
@@ -623,7 +622,7 @@ copper (\(E\) = 80 GPa)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orge36818a}]{Max Deformation Compared to Static Load Deformation}
+\begin{frame}[label={sec:org2215add}]{Max Deformation Compared to Static Load Deformation}
 \begin{itemize}
 \item Max deformation in terms of static deformation
 
@@ -638,7 +637,7 @@ copper (\(E\) = 80 GPa)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgdc59b76}]{Maximum Stress from Impact Loading}
+\begin{frame}[label={sec:org7a0340a}]{Maximum Stress from Impact Loading}
 \begin{itemize}
 \item Since \(\delta = \dfrac{\sigma L}{E}\)
 \end{itemize}
@@ -658,7 +657,7 @@ copper (\(E\) = 80 GPa)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orga7e1365}]{Example: Drop Test}
+\begin{frame}[label={sec:orge1bd175}]{Example: Drop Test}
 Determine the maximum allowable mass \(m\) that you
 can drop from the height \(h\) of 3 m a concrete block with \(A\) = 1
 cm\(^{2}\), \(E\) = 80 GPa, and \(L\) = 0.5 m so that the the resultant
@@ -666,7 +665,7 @@ stress is below \(\sigma_{\text{allow}}\) = 10 MPa and
 \(\delta_{\max} <\) 3 mm.
 \end{frame}
 
-\begin{frame}[label={sec:org3cb4a69}]{Solution}
+\begin{frame}[label={sec:orgd48c47d}]{Solution}
 2 conditions: \(\sigma_{\text{allow}}\) vs \(\delta_{\max}\)
 
 \(\sigma_{\text{allow}}\):
@@ -679,7 +678,7 @@ stress is below \(\sigma_{\text{allow}}\) = 10 MPa and
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org6be933f}]{Solution}
+\begin{frame}[label={sec:org821faf4}]{Solution}
 We can also use the approximation (as a 3-m drop is pretty high, probably much higher than \(\delta_{st}\)). Instead,
 
 \begin{align*}
@@ -693,7 +692,7 @@ We can also use the approximation (as a 3-m drop is pretty high, probably much h
 So we have essentially obtained the same answer.
 \end{frame}
 
-\begin{frame}[label={sec:org1fa0e16}]{Solution \(\delta_{\max}\):}
+\begin{frame}[label={sec:orgdb0eebe}]{Solution \(\delta_{\max}\):}
 \begin{align*}
     \delta_{\max} &= 0.003 = \frac{WL}{EA} + \left[ \left( \frac{WL}{EA} \right)^{2} + 2h \left( \frac{WL}{EA} \right) \right]^{1/2} \\
     0.003 &= \frac{W(0.5)}{80 \times 10^{9}(10^{-4})} + \left[ \left( \frac{W(0.5)}{80 \times 10^{9}(10^{-4})} \right)^{2} + 2h \left(  \frac{W(0.5)}{80 \times 10^{9}(10^{-4})} \right) \right]^{1/2} \\
@@ -702,7 +701,9 @@ So we have essentially obtained the same answer.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgdbbefa9}]{Solution Let's again try the short method and compare.}
+\begin{frame}[label={sec:org6338f4d}]{Solution}
+Let's again try the short method and compare.
+
 \begin{align*}
     \delta_{\max} &= \sqrt{2h\delta_{st}} \\
     0.003 &= \sqrt{2(3)\delta_{st}} \\

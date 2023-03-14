@@ -28,16 +28,18 @@
  pdfsubject={},
  pdfcreator={Emacs 30.0.50 (Org mode 9.6)}, 
  pdflang={English}}
+\usepackage{biblatex}
+
 \begin{document}
 
 
-\begin{frame}[label={sec:org1af32d2}]{\{\}}
+\begin{frame}[label={sec:org39d9269}]{\{\}}
 \maketitle
 \end{frame}
 
 \section{Overview of Bending}
 \label{overview-of-bending}
-\begin{frame}[label={sec:org9ebdfbe}]{What is Bending?}
+\begin{frame}[label={sec:org8eee984}]{What is Bending?}
 \begin{itemize}
 \item Curving of a long, slender member under moment or force
 
@@ -45,7 +47,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org3a83932}]{Sign Convention}
+\begin{frame}[label={sec:org61fcb47}]{Sign Convention}
 \begin{itemize}
 \item Shear force and bending moment follow these sign conventions
 \end{itemize}
@@ -55,7 +57,7 @@
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org57cddf7}]{Beam Curvature}
+\begin{frame}[label={sec:org65b9c93}]{Beam Curvature}
 \begin{itemize}
 \item In bending, beam curves in response to bending moment
 \end{itemize}
@@ -79,7 +81,7 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org2545b8c}]{Longitudinal Strain in Beam}
+\begin{frame}[label={sec:org92212b7}]{Longitudinal Strain in Beam}
 \begin{columns}
 \begin{column}{0.6\columnwidth}
 \begin{center}
@@ -101,7 +103,7 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org403aa43}]{Stress in Beam Bending}
+\begin{frame}[label={sec:org1dcac39}]{Stress in Beam Bending}
 \begin{itemize}
 \item Again, assuming linear elastic deformation
 \end{itemize}
@@ -113,7 +115,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgcc58e0f}]{In Search of \(R\)}
+\begin{frame}[label={sec:org07b7d44}]{In Search of \(R\)}
 \begin{itemize}
 \item Any arbitrary cross section must be at rest
 \end{itemize}
@@ -131,7 +133,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org8990716}]{Example: Neutral Axis of a Triangular Cross Section}
+\begin{frame}[label={sec:orge38fdc3}]{Example: Neutral Axis of a Triangular Cross Section}
 \begin{columns}
 \begin{column}{0.3\columnwidth}
 \begin{center}
@@ -152,7 +154,7 @@ width \(w\) is a function of \(y\), so
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org5becb07}]{Solution}
+\begin{frame}[label={sec:orga4ed3cb}]{Solution}
 \begin{columns}
 \begin{column}{0.3\columnwidth}
 \begin{center}
@@ -180,7 +182,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 
 \section{Moment-Curvature-Stress Relationship}
 \label{moment-curvature-stress-relationship}
-\begin{frame}[label={sec:org1511588}]{Moment - Curvature Relationship}
+\begin{frame}[label={sec:org4f8e70f}]{Moment - Curvature Relationship}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \[dM = - \sigma_x y dA\]
@@ -203,7 +205,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org177a349}]{Moment of Inertia, \(I\)}
+\begin{frame}[label={sec:orgac5c1f6}]{Moment of Inertia, \(I\)}
 \begin{align*}
     I = \int_{A} y^{2}dA
 \end{align*}
@@ -220,7 +222,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org04cf2c0}]{Section Modulus \(S\)}
+\begin{frame}[label={sec:org077aed5}]{Section Modulus \(S\)}
 \begin{itemize}
 \item Max stress occurs furthest away from \emph{NA}
 \end{itemize}
@@ -242,7 +244,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 
 \section{Nonuniform Bending}
 \label{nonuniform-bending}
-\begin{frame}[label={sec:org4b67ff5}]{Nonuniform Bending}
+\begin{frame}[label={sec:org467eaf4}]{Nonuniform Bending}
 \begin{itemize}
 \item In \emph{uniform} or \emph{pure} bending, \(M\) is constant along beam length
 
@@ -260,7 +262,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 \[V = \frac{dM}{dx}\]
 \end{frame}
 
-\begin{frame}[label={sec:org55880ee}]{Transverse Shear Stress in Beam}
+\begin{frame}[label={sec:org3c3cb08}]{Transverse Shear Stress in Beam}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -276,14 +278,14 @@ divide through with \(y\) and substitute with \(h\) and 0
 \end{align*}
 
 \begin{align*}
-  \tau &= \frac{1}{Ib} \left( \frac{dM}{dx} \right) \int_{A'} y dA' \\
-       &= \frac{VQ}{Ib}
+  \tau &= \frac{1}{It} \left( \frac{dM}{dx} \right) \int_{A'} y dA' \\
+       &= \frac{VQ}{It}
 \end{align*}
 \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org06a6077}]{What is Q?}
+\begin{frame}[label={sec:org7841ac5}]{What is Q?}
 \begin{center}
 \includegraphics[width=0.3\textwidth]{pictures/first-moment.pdf}
 \end{center}
@@ -295,7 +297,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgfe2e92e}]{What is Q? (2)}
+\begin{frame}[label={sec:orgfde455d}]{What is Q? (2)}
 \begin{center}
 \includegraphics[width=0.3\textwidth]{pictures/first-moment-2.pdf}
 \end{center}
@@ -307,7 +309,7 @@ divide through with \(y\) and substitute with \(h\) and 0
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org8ad4cdc}]{Example: Shear Stress Distribution in Rectangular Beam}
+\begin{frame}[label={sec:orgc9b515d}]{Example: Shear Stress Distribution in Rectangular Beam}
 \begin{center}
 \includegraphics[width=0.2\textwidth]{pictures/shear-stress-example.pdf}
 \end{center}
@@ -319,17 +321,17 @@ divide through with \(y\) and substitute with \(h\) and 0
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org10d755c}]{Solution}
+\begin{frame}[label={sec:orgc63280f}]{Solution}
 \begin{align*}
   Q_{\max} &= Q(y = 0) \\
            &= \frac{bh^{2}}{8} \\
-  \tau_{\max} &= \frac{VQ}{Ib} \\
+  \tau_{\max} &= \frac{VQ}{It} \\
            &= \frac{V \frac{bh^{2}}{8}}{ \frac{bh^{3}}{12} b} \\
            &= \frac{3V}{2bh}  = \frac{3V}{2A}
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org9c3421e}]{Example: Maximum shear stress in a circular cross-sectioned beam}
+\begin{frame}[label={sec:orga4fe826}]{Example: Maximum shear stress in a circular cross-sectioned beam}
 A cantilever beam with length \(L\) and radius \(r\) has a force \(P\)
 applied at the middle. Determine the location and magnitude of maximum
 shear stress.
@@ -345,7 +347,7 @@ stress
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org01c7e02}]{Solution}
+\begin{frame}[label={sec:org82f021e}]{Solution}
 \begin{itemize}
 \item Now, for the magnitude
 \end{itemize}
@@ -358,7 +360,7 @@ stress
 
 \section{Composite Beam Bending}
 \label{composite-beam-bending}
-\begin{frame}[label={sec:org819f415}]{Composite Beam Bending}
+\begin{frame}[label={sec:org7fac777}]{Composite Beam Bending}
 \begin{itemize}
 \item Two or more materials (\(E_{1} \neq E_{2} \neq \ldots\))
 
@@ -375,7 +377,7 @@ axis will move
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org483592b}]{Neutral Axis of a Composite Beam}
+\begin{frame}[label={sec:org0e9b76e}]{Neutral Axis of a Composite Beam}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -394,7 +396,7 @@ This works for more than 2 materials as well!
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org55c175b}]{Moment-Curvature for Composite Beams}
+\begin{frame}[label={sec:org6972fc6}]{Moment-Curvature for Composite Beams}
 \begin{itemize}
 \item Same equation applies, only different results
 \end{itemize}
@@ -407,7 +409,7 @@ This works for more than 2 materials as well!
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org4ccc3d4}]{What about \emph{I}?}
+\begin{frame}[label={sec:orgee20990}]{What about \emph{I}?}
 \begin{itemize}
 \item Well, usually neutral axis goes through centroid
 \end{itemize}
@@ -432,7 +434,7 @@ axis theorem}
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orge43488f}]{Normal Stress in Composite Beams}
+\begin{frame}[label={sec:orged30964}]{Normal Stress in Composite Beams}
 \begin{itemize}
 \item From moment-curvature relationship
 \end{itemize}
@@ -448,14 +450,30 @@ axis theorem}
 \[\sigma_{x2} = - \frac{MyE_2}{E_1 I_1 + E_2 I_2}\]
 \end{frame}
 
-\begin{frame}[label={sec:org57d31b5}]{Example: Stresses in a Composite Beam}
+\begin{frame}[label={sec:orgbc48d3a}]{Example: Stresses in a Composite Beam}
 \begin{itemize}
 \item Top layer \(E\) = 200 MPa. Bottom layer \(E\) = 400 MPa. Determine
 \(\sigma_{\max}\) in tension and compression.
 \end{itemize}
+
+\begin{figure}[hbtp]
+  \centering
+  \begin{tikzpicture}[>=latex]
+    \draw[fill=LightGrey] (0,0) rectangle (2.5,1);
+    \draw[fill=SkyBlue] (0,1) rectangle (2.5,2.5);
+    \draw[|<->|] (3,0) to (3,0.5) node[right]{2 cm} to (3,1);
+    \draw[|<->|] (3,1) to (3,1.55) node[right]{3 cm} to (3,2.5);
+    \draw[|<->|] (0,3) to (1.25,3) node[above]{5 cm}to (2.5, 3);
+    % beam with load
+    \draw[fill=LightGrey] (5,0.7) rectangle (11,1);
+    \draw[fill=SkyBlue](5,1) rectangle (11,1.5);
+    \draw[->, thick]  (5,2) node[above]{200 N-m} arc (120:240:1cm);
+    \draw[->, thick]  (11,2) node[above]{200 N-m} arc (60:-60:1cm);
+    \end{tikzpicture}
+\end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org636d219}]{Solution}
+\begin{frame}[label={sec:orgf441077}]{Solution}
 To determine stress, first we need to find neutral axis
 
 \begin{align*}
@@ -465,7 +483,7 @@ To determine stress, first we need to find neutral axis
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org383f46b}]{Solution}
+\begin{frame}[label={sec:org444c8b0}]{Solution}
 Calculating the area moment of inertia of each cross section, we have
 
 \begin{align*}
@@ -476,7 +494,7 @@ Calculating the area moment of inertia of each cross section, we have
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orga43620a}]{Solution}
+\begin{frame}[label={sec:org95129f4}]{Solution}
 The maximum tensile stress, occurring on the top surface of the
 beam, is
 
@@ -487,7 +505,7 @@ beam, is
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgff822ef}]{Solution}
+\begin{frame}[label={sec:org87a8ef7}]{Solution}
 Similarly for the maximum compressive stress at the bottom surface is
 
 \begin{align*}
@@ -499,7 +517,7 @@ Similarly for the maximum compressive stress at the bottom surface is
 
 \section{Bending under Inclined Loads}
 \label{bending-under-inclined-loads}
-\begin{frame}[label={sec:orgf6d4e39}]{Bending of Beams under Inclined Loads}
+\begin{frame}[label={sec:orgbd6f973}]{Bending of Beams under Inclined Loads}
 \begin{itemize}
 \item Normally load is applied along a symmetrical axis (\(y\) or \(z\))
 
@@ -511,14 +529,14 @@ Similarly for the maximum compressive stress at the bottom surface is
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org6e2f022}]{Superposition to the Rescue}
+\begin{frame}[label={sec:org2c3ac82}]{Superposition to the Rescue}
 \begin{itemize}
 \item When faced with a tough problem, break it down into smaller, easier
 problems
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org59c9eee}]{Stresses from Inclined Loads}
+\begin{frame}[label={sec:org5a6aeab}]{Stresses from Inclined Loads}
 \begin{itemize}
 \item Using superposition
 \end{itemize}
@@ -534,7 +552,7 @@ problems
 
 \section{Beam Deflection}
 \label{beam-deflection}
-\begin{frame}[label={sec:org515b48e}]{Why Do We Care about Deflection?}
+\begin{frame}[label={sec:org3bfab5f}]{Why Do We Care about Deflection?}
 \begin{itemize}
 \item Stress is not always the limiting factor
 
@@ -542,7 +560,7 @@ problems
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgdd4f6ed}]{Methods of Evaluation}
+\begin{frame}[label={sec:orgc54f303}]{Methods of Evaluation}
 \begin{itemize}
 \item Direct Integration: beam curvature
 
@@ -550,13 +568,13 @@ problems
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org1f54b42}]{Direct Integration}
+\begin{frame}[label={sec:org306070d}]{Direct Integration}
 \[\frac{M}{EI} = \kappa = \frac{d^2 v}{dx^2}\]
 
 where \(v\) is the deflection function at point \(x\) along the beam
 \end{frame}
 
-\begin{frame}[label={sec:org922ca41}]{Boundary Conditions}
+\begin{frame}[label={sec:org2825d1e}]{Boundary Conditions}
 \begin{itemize}
 \item Indefinite integrals give constants of integration
 
@@ -568,7 +586,7 @@ where \(v\) is the deflection function at point \(x\) along the beam
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org93cf080}]{Typical End Conditions}
+\begin{frame}[label={sec:org110effd}]{Typical End Conditions}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -602,7 +620,7 @@ where \(v\) is the deflection function at point \(x\) along the beam
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org7e0fc83}]{Example: Deflection Curve of a Cantilever Beam}
+\begin{frame}[label={sec:org03921f5}]{Example: Deflection Curve of a Cantilever Beam}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/deflection-curve-example.pdf}
 \end{center}
@@ -612,7 +630,7 @@ where \(v\) is the deflection function at point \(x\) along the beam
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org0dc992b}]{Solution}
+\begin{frame}[label={sec:org0e2d6de}]{Solution}
 \[M(x) =  - P(L - x)\]
 
 Determine the deflection curve by integrating twice.
@@ -626,7 +644,7 @@ The fixed end does not allow rotation, and so \(\frac{dv}{dx} = 0\) at
 \(x = 0\).
 \end{frame}
 
-\begin{frame}[label={sec:org26f1da0}]{Solution}
+\begin{frame}[label={sec:org9c44299}]{Solution}
 \begin{align*}
   C_1 &=  - \frac{PL^2}{2} \\
   EI\frac{dv}{dx} &= \frac{P}{2}(L - x)^2 - \frac{PL^2}{2} \\
@@ -642,7 +660,7 @@ At the fixed end, there is no vertical deflection, i.e. \(v = 0\) at
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgb5bc54a}]{Solution}
+\begin{frame}[label={sec:org43ff707}]{Solution}
 The maximum deflection is at the free end. Its value is
 
 \[v(L) =  - \frac{PL^3}{2EI} + \frac{PL^3}{6EI} =  - \frac{PL^3}{3EI}\]
@@ -650,7 +668,7 @@ The maximum deflection is at the free end. Its value is
 Note that the negative sign means the deflection is downward.
 \end{frame}
 
-\begin{frame}[label={sec:orgf76da54}]{Energy Method}
+\begin{frame}[label={sec:org31eef7c}]{Energy Method}
 \begin{itemize}
 \item Elastic deformation: way to store energy \(\rightarrow\) strain energy
 
@@ -660,7 +678,7 @@ Note that the negative sign means the deflection is downward.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org5d670e7}]{Strain Energy in Beam}
+\begin{frame}[label={sec:orgdb34d25}]{Strain Energy in Beam}
 \begin{itemize}
 \item For a small part of bent beam with length \(dx\) and bending angle
 \(d\theta\)
@@ -683,7 +701,7 @@ Note that the negative sign means the deflection is downward.
 \[U = \int_0^L \frac{M^2 dx}{2EI}\]
 \end{frame}
 
-\begin{frame}[label={sec:org56224ce}]{Castigliano's Theorem}
+\begin{frame}[label={sec:org5dde75c}]{Castigliano's Theorem}
 \begin{itemize}
 \item Deflection \(v_i\) where load \(P_i\) is applied is equal to
 \end{itemize}
@@ -694,14 +712,14 @@ Note that the negative sign means the deflection is downward.
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:orgf3a7e35}]{Example: Deflection of a Cantilever Beam}
+\begin{frame}[label={sec:orgd25dea1}]{Example: Deflection of a Cantilever Beam}
 \begin{align*}
   M(x) &=  - P(L - x) \\
   \delta_i &= \int \left( \frac{M}{EI} \right)\left( \frac{\partial M}{\partial P_i} \right)dx
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org5ccafd6}]{Solution}
+\begin{frame}[label={sec:org35c8588}]{Solution}
 \begin{align*}
   \delta_{i} &= \frac{1}{EI}\int_0^L - P(L - x)[ - (L - x)]dx  \\
              &= \frac{P}{EI}\left[ L^2x - x^2L + \frac{x^3}{3} \right]_0^L \\
