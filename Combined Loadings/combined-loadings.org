@@ -177,6 +177,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{tikzpicture}
 #+END_SRC
 
+#+ATTR_LATEX: :height 0.9\textheight
 #+RESULTS:
 [[file:pictures/state-of-stress-cyl.pdf]]
 
