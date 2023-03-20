@@ -129,7 +129,7 @@ $$ \sigma_2 = \frac{S_{uc}}{N_s} $$
 + Surface slip from material shearing -- predicted by shear stress
 + Two prevalent methods of determining yield
 + Maximum Shear Stress Theory (MSST or Tresca criteria)
-+ Maximum Distortional Energy Theory (MDET or Von Mises criteria)
++ Maximum Distortion Energy Theory (MDET or Von Mises criteria)
 
 ** Maximum Shear Stress Theory: Yield under Uniaxial Stress
 + The maximum shear stress in material cannot exceed max shear under uniaxial stress at yield -- what?
@@ -169,10 +169,19 @@ $$\sigma_{1,2} \leqslant S_y $$
 
 ** Design Equation for MSST
 
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
 \begin{gather*}
-\tau_{max} = \frac{S_y}{2N_s}
+\tau_{max} = \frac{S_y}{2N_s} \\
 \sigma_{1,2} = \frac{S_y}{N_s}
 \end{gather*}
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
 
 \begin{tikzpicture}[>=latex, scale=0.8]
 \draw [dashed] (0,-3) node[right]{$-S_y$} -- (3,0) node[below right]{$S_y$} -- (3,3) -- (0,3) node[midway, below]{{$N_{s} = 1$}} node[left]{$S_y$} -- (-3,0) node[above left]{$-S_y$} -- (-3,-3) -- cycle;
@@ -197,7 +206,7 @@ $$\sigma_{1,2} \leqslant S_y $$
 + Compare to brittle shaft problem
 
 
-** Distortional Energy Theory: Criteria
+** Distortion Energy Theory: Criteria
 
 + A deformed material has two types of strain energy
 + Dilatation strain energy $\rightarrow$ change in volume
@@ -205,7 +214,7 @@ $$\sigma_{1,2} \leqslant S_y $$
 + Criteria for failure: distortion strain energy equal to that during uniaxial stress yield
 
 
-** Maximum Distortional Energy Theory: In Summary}
+** Maximum Distortion Energy Theory: In Summary
 
 *** :BMCOL:
 :PROPERTIES:
@@ -217,7 +226,8 @@ $$\sigma_{1,2} \leqslant S_y $$
 \end{equation*}
 + where $\sigma_e$ is the equivalent stress
 \begin{align*}
-\sigma_e &= \sqrt{\sigma_x^2 - \sigma_x\sigma_y + \sigma_y^2 + 3\tau_{xy}^2}
+
+\sigma_e &= \sqrt{\sigma_x^2 - \sigma_x\sigma_y + \sigma_y^2 + 3\tau_{xy}^2} \\
 &= \sqrt{\sigma_1^2 - \sigma_1\sigma_2 + \sigma_2^2}
 \end{align*}
 
@@ -237,7 +247,7 @@ $$\sigma_{1,2} \leqslant S_y $$
 \end{tikzpicture}
 
 
-** Design Equation for MDET}
+** Design Equation for MDET
 
 *** :BMCOL:
 :PROPERTIES:
@@ -264,7 +274,8 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 
 ** Comparison Between Different Criteria
 
-\scriptsize
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}[>=latex]
 \draw [dashed, thick, Blue] (0,-2.5) node[below right, Black]{-1} -- (2.5,0) node[below right, Black]{1} -- (2.5,2.5) -- (0,2.5) node[above left, Black]{1} -- (-2.5,0) node[above left, Black]{-1} -- (-2.5,-2.5) -- cycle;
 \node [draw, dash dot, thick, Red, ellipse, minimum height=4.1cm, minimum width=7.1cm, rotate=45]{};
@@ -272,6 +283,7 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 \draw [<->] (-3.5,0) --++ (0:7) node[right]{$\dfrac{\sigma_1}{S}$};
 \draw [<->] (0,-3.5) --++ (90:7) node[left]{$\dfrac{\sigma_2}{S}$};
 \end{tikzpicture}
+\end{figure}
 
 * Fatigue
 
@@ -332,9 +344,9 @@ Endurance limit is the maximum stress amplitude for which the part will last $10
 
 For steel
 \begin{align*}
-	Bending: S_e &\approx 0.5S_{ut} \\
-	Axial: S_e &\approx 0.45S_{ut} \\
-	Torsion: S_e &\approx 0.29S_{ut}
+  \text{Bending: } S_e &\approx 0.5S_{ut} \\
+  \text{Axial: } S_e &\approx 0.45S_{ut} \\
+  \text{Torsion: } S_e &\approx 0.29S_{ut}
 \end{align*}
 
 Aluminum does /not/ have endurance limit (is that a good thing?)
@@ -348,9 +360,9 @@ Aluminum does /not/ have endurance limit (is that a good thing?)
 :BEAMER_col: 0.5
 :END:
 \begin{align*}
-Bending: S_l &\approx 0.9S_{ut}
-Axial: S_l &\approx 0.75S_{ut}
-Torsion: S_l &\approx 0.72S_{ut}
+  \text{Bending: } S_l &\approx 0.9S_{ut} \\
+  \text{Axial: } S_l &\approx 0.75S_{ut} \\
+  \text{Torsion: } S_l &\approx 0.72S_{ut}
 \end{align*}
 
 *** :BMCOL:
@@ -358,7 +370,9 @@ Torsion: S_l &\approx 0.72S_{ut}
 :BEAMER_col: 0.5
 :END:
 
+#+ATTR_LATEX: :width 0.8\textwidth
 [[file:pictures/glove-comp.pdf]]
+#+ATTR_LATEX: :width 0.8\textwidth
 [[file:pictures/car-hood.pdf]]
 
 ** High cycle fatigue $(10^3 < N < 10^6)$
@@ -366,9 +380,9 @@ Torsion: S_l &\approx 0.72S_{ut}
 + Steel parts will last for about $N$ cycles if fatigue stress $\sigma_a$
 
 \begin{align*}
-	\sigma_a &= 10^c N^b \\
-	b &= -\dfrac{1}{3}   \log\dfrac{S_l}{S_e} \\
-	c &= \log \dfrac{S_l^2}{S_e}
+  \sigma_a &= 10^c N^b \\
+  b &= -\dfrac{1}{3}   \log\dfrac{S_l}{S_e} \\
+  c &= \log \dfrac{S_l^2}{S_e}
 \end{align*}
 
 
@@ -381,15 +395,16 @@ A bar is made of steel with $S_{ut}$ = 300 MPa and is cyclically loaded axially 
 + Experiments find that endurance limits of materials vary due to their conditions
 
 \begin{align*}
-S'_e &= K_f K_s K_t S_e  [10pt]
-K_f &= \text{finishing factor}
-K_s &= \text{size factor}
-K_t &= \text{thermal factor}
+  S'_e &= K_f K_s K_t S_e  \\[10pt]
+  K_f &= \text{finishing factor} \\
+  K_s &= \text{size factor} \\
+  K_t &= \text{thermal factor}
 \end{align*}
 
 
 ** Fatigue Failure with Nonzero Average Stress
 
+\centering
 \begin{tikzpicture}[>=latex]
 \draw [domain=0:5, scale=1, smooth, samples=100] plot ({\x}, {0.5*sin (5*\x r)});
 \draw [->, very thin] (0,0) --++ (0:6) node(A){};
@@ -431,11 +446,14 @@ These are called /constant life lines/.
 
 A cylindrical rod under a periodic tensile load between 0 and 8000 N. Material of the rod has $S_y$ = 427 MPa  $S_{ut}$ = 748 MPa. Determine the suitable diameter of the rod. Use Soderberg relation.
 
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}[>=latex]
 \node[draw, cylinder, minimum height=6cm, minimum width=5mm, inner sep=4](beam){};
 \draw [->, very thick] (beam.east) ++ (180:0.15) --++ (0:1) node[below]{$F$};
 \draw [->, very thick] (beam.west) --++ (180:1) node[below]{$F$};
 \end{tikzpicture}
+\end{figure}
 
 * Buckling
 
@@ -444,6 +462,7 @@ A cylindrical rod under a periodic tensile load between 0 and 8000 N. Material o
 + Failure due to instability of column under compressive load
 + Restoring moment $<$ moment from compressive load
 
+#+ATTR_LATEX: :width 0.8\textwidth
 [[file:pictures/buckled-column.pdf]]
 
 ** Governing Equation of Buckling
@@ -508,6 +527,7 @@ $$ v(x) = B \sin \sqrt{\frac{P}{EI}}   x = B \sin \dfrac{n \pi x}{L} $$
 
 ** Mode Shapes for Buckled Columns
 
+#+ATTR_LATEX: :width 0.7\textwidth
 [[file:pictures/buckling-mode.pdf]]
 
 ** Buckling in Fixed - Free Supports
@@ -522,6 +542,7 @@ $$ v(x) = B \sin \sqrt{\frac{P}{EI}}   x = B \sin \dfrac{n \pi x}{L} $$
 \draw [<->] (B.center)  ++ (-7.5,0) --++ (90:1) node[midway, right]{$v$};
 \end{tikzpicture}
 
+\normalcolor
 \begin{gather*}
 M = P(\delta - v)  \\[5pt]
 EI\frac{d^2v}{dx^2} = P(\delta  - v)  \\[5pt]
