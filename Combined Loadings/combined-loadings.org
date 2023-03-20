@@ -30,6 +30,10 @@
 
 ** Spherical Pressure Vessels
 
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
 #+BEGIN_SRC latex :results raw file :file sphere-pressure-vessel.pdf :output-dir pictures/ :packages '(("svgnames" "xcolor" t)("" "graphicx" t) ("" "pgfplots" t)) :fit t :eval no
 \usetikzlibrary{arrows,calc,decorations,decorations.markings,shapes,decorations.pathmorphing,patterns}
 \pgfkeys{/tikz/.cd, view angle/.initial=0, view angle/.store in=\picangle}
@@ -55,8 +59,14 @@
 \end{tikzpicture}
 #+END_SRC
 
+#+ATTR_LATEX: :height 0.4\textheight
 #+RESULTS:
 [[file:pictures/sphere-pressure-vessel.pdf]]
+
+*** :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
 
 $$ F_{\sigma} = F_p $$
 $$ \sigma_2 \left( 2\pi r t \right) = p \pi r^2 $$
@@ -81,7 +91,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{tikzpicture}
 #+END_SRC
 
-#+ATTR_LATEX: :height 0.9\textheight
+#+ATTR_LATEX: :height 0.8\textheight
 #+RESULTS:
 [[file:pictures/state-of-stress-spherical.pdf]]
 
@@ -97,6 +107,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{tikzpicture}
 #+END_SRC
 
+#+ATTR_LATEX: :height 0.8\textheight
 #+RESULTS:
 [[file:pictures/mohrs-sphere-vessel.pdf]]
 
@@ -114,6 +125,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{tikzpicture}
 #+END_SRC
 
+#+ATTR_LATEX: :height 0.8\textheight
 #+RESULTS:
 [[file:pictures/abs-max-shear-sphere-vessel.pdf]]
 
@@ -177,7 +189,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{tikzpicture}
 #+END_SRC
 
-#+ATTR_LATEX: :height 0.9\textheight
+#+ATTR_LATEX: :height 0.8\textheight
 #+RESULTS:
 [[file:pictures/state-of-stress-cyl.pdf]]
 
@@ -194,6 +206,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{tikzpicture}
 #+END_SRC
 
+#+ATTR_LATEX: :height 0.8\textheight
 #+RESULTS:
 [[file:pictures/mohrs-cyl-vessel.pdf]]
 
@@ -212,6 +225,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{tikzpicture}
 #+END_SRC
 
+#+ATTR_LATEX: :height 0.8\textheight
 #+RESULTS:
 [[file:pictures/abs-max-shear-cyl-vessel.pdf]]
 
