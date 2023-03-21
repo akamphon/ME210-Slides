@@ -1,4 +1,4 @@
-#+TITLE: Analysis of Torque Loaded Members
+#+TITLE: Analysis of Members under Combined Loadings
 #+SUBTITLE: ME 210: Mechanics of Materials
 #+AUTHOR: Sappinandana Akamphon
 

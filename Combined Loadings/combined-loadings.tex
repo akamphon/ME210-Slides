@@ -12,7 +12,7 @@
 \usetheme{focus}
 \author{Sappinandana Akamphon}
 \date{\today}
-\title{Analysis of Torque Loaded Members}
+\title{Analysis of Members under Combined Loadings}
 \subtitle{ME 210: Mechanics of Materials}
 \usepackage{booktabs}
 \institute{Department of Mechanical Engineering, TSE}
@@ -24,7 +24,7 @@
 \tikzset{horizontal/.style={y={(0,sin(\picangle))}},vertical at/.style={x={([horizontal] #1:1)}, y={(0,cos(\picangle)cm)}},every label/.style={font=, inner sep=1pt},shorten/.style={shorten <=#1, shorten >=#1},shorten/.default=3pt,->-/.style={decoration={markings, mark=at position #1 with {\arrow{>}}}, postaction={decorate}},->-/.default=0.5}
 \hypersetup{
  pdfauthor={Sappinandana Akamphon},
- pdftitle={Analysis of Torque Loaded Members},
+ pdftitle={Analysis of Members under Combined Loadings},
  pdfkeywords={},
  pdfsubject={},
  pdfcreator={Emacs 30.0.50 (Org mode 9.6.1)}, 
@@ -34,14 +34,14 @@
 \begin{document}
 
 
-\begin{frame}[label={sec:org4d5ad47}]{\{\}}
+\begin{frame}[label={sec:orgfb04458}]{\{\}}
 \maketitle
 \end{frame}
 
 \section{Pressure Vessels}
-\label{sec:org27901e0}
+\label{sec:org0122df3}
 
-\begin{frame}[label={sec:org7c3bbd5}]{Spherical Pressure Vessels}
+\begin{frame}[label={sec:orgfaea732}]{Spherical Pressure Vessels}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -61,25 +61,25 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org396161b}]{State of Stress of of Vessel Wall}
+\begin{frame}[label={sec:orgfd133c1}]{State of Stress of of Vessel Wall}
 \begin{center}
 \includegraphics[height=0.8\textheight]{pictures/state-of-stress-spherical.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org67dc21d}]{Mohr's Circle of State of Stress}
+\begin{frame}[label={sec:org28118e7}]{Mohr's Circle of State of Stress}
 \begin{center}
 \includegraphics[height=0.8\textheight]{pictures/mohrs-sphere-vessel.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgd071fe1}]{Absolute Maximum Shear Stress of Spherical Pressure Vessel}
+\begin{frame}[label={sec:orgb332571}]{Absolute Maximum Shear Stress of Spherical Pressure Vessel}
 \begin{center}
 \includegraphics[height=0.8\textheight]{pictures/abs-max-shear-sphere-vessel.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgbe9753b}]{Spherical Pressure Vessel: Summary}
+\begin{frame}[label={sec:orgbe0e966}]{Spherical Pressure Vessel: Summary}
 \begin{itemize}
 \item \(\sigma_1 = \sigma_2 = \dfrac{pr}{2t}\)
 \item \(\tau_{xy} = \tau_{max} = 0\)
@@ -87,7 +87,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org849b07f}]{Cylindrical Pressure Vessels}
+\begin{frame}[label={sec:orgdf7c407}]{Cylindrical Pressure Vessels}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -106,25 +106,25 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org6de1fc8}]{State of Stress of of Vessel Wall}
+\begin{frame}[label={sec:org17ccddf}]{State of Stress of of Vessel Wall}
 \begin{center}
 \includegraphics[height=0.8\textheight]{pictures/state-of-stress-cyl.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org53a1d40}]{Mohr's Circle of Cylindrical Vessel}
+\begin{frame}[label={sec:org3959c47}]{Mohr's Circle of Cylindrical Vessel}
 \begin{center}
 \includegraphics[height=0.8\textheight]{pictures/mohrs-cyl-vessel.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org0fff3af}]{Absolute Maximum Shear Stress of Cylindrical Vessel}
+\begin{frame}[label={sec:org9eaf518}]{Absolute Maximum Shear Stress of Cylindrical Vessel}
 \begin{center}
 \includegraphics[height=0.8\textheight]{pictures/abs-max-shear-cyl-vessel.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgfecb9f8}]{Cylindrical Pressure Vessel: Summary}
+\begin{frame}[label={sec:org1b727a1}]{Cylindrical Pressure Vessel: Summary}
 \begin{itemize}
 \item \(\sigma_1 = \sigma_c = \dfrac{pr}{t}\)
 \item \(\sigma_2 = \sigma_l = \dfrac{pr}{2t}\)
@@ -133,7 +133,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgd03a07b}]{Cylindrical Pressure Vessels}
+\begin{frame}[label={sec:org10441a0}]{Cylindrical Pressure Vessels}
 \begin{itemize}
 \item Failure of a shotgun barrel
 \end{itemize}
@@ -144,9 +144,9 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{frame}
 
 \section{Combined Loadings}
-\label{sec:org7aba644}
+\label{sec:org50413d4}
 
-\begin{frame}[label={sec:org4e2c261}]{Combined Loadings}
+\begin{frame}[label={sec:org70072e4}]{Combined Loadings}
 \begin{itemize}
 \item Multiaxial stress conditions come from
 \begin{itemize}
@@ -161,7 +161,7 @@ $$ \sigma_2 = \frac{pr}{2t} $$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgd74f7f0}]{Design of Member under Combined Loadings}
+\begin{frame}[label={sec:org3b03178}]{Design of Member under Combined Loadings}
 \begin{itemize}
 \item We need to know where failure starts
 \item For a single-material component, failure starts where \emph{combined}
@@ -172,7 +172,7 @@ stress is the highest
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org7be7db3}]{How to Identify the Critical Point}
+\begin{frame}[label={sec:org307f207}]{How to Identify the Critical Point}
 \begin{itemize}
 \item Identify each type of load (axial, bending, or torsion)
 \item Mark locations of maximum stress for each load
@@ -181,7 +181,7 @@ stress is the highest
 \end{frame}
 
 
-\begin{frame}[label={sec:org17d2d4f}]{Example: Helicoptor Rotor Shaft}
+\begin{frame}[label={sec:org5b6a30d}]{Example: Helicoptor Rotor Shaft}
 We want to determine the proper diameter of a rotor shaft for a 4-ton helicopter. The shaft is connected to the engine that provides the maximum torque of 8000 N-m. The shaft is made of AISI1023 steel with \(\sigma_{allow}\) = 400 MPa.
 
 \begin{center}
@@ -189,7 +189,7 @@ We want to determine the proper diameter of a rotor shaft for a 4-ton helicopter
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgebd4929}]{Helicopter Rotor Shaft: Solution}
+\begin{frame}[label={sec:org893c7a0}]{Helicopter Rotor Shaft: Solution}
 \begin{itemize}
 \item Determine the critical point
 \item Determine state of stress
@@ -197,7 +197,7 @@ We want to determine the proper diameter of a rotor shaft for a 4-ton helicopter
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org9645683}]{Helicopter Rotor Shaft: Solution}
+\begin{frame}[label={sec:org638be27}]{Helicopter Rotor Shaft: Solution}
 \begin{align*}
   \sigma &= \frac{F}{A} = \frac{4(1000 \text{ kg/ton})(10 \text{ N/kg})}{\pi r^2} \\
          &= \frac{12732}{r^2} \\
@@ -206,7 +206,7 @@ We want to determine the proper diameter of a rotor shaft for a 4-ton helicopter
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org9891dfe}]{Helicopter Rotor Shaft: Solution}
+\begin{frame}[label={sec:orge241a84}]{Helicopter Rotor Shaft: Solution}
 So the state of stress at the critical surface is a combination of normal stress and shear stress. Since the given material is limited by its normal stress, we need to determine the maximum principal stress.
 
 \begin{align*}
@@ -216,13 +216,13 @@ So the state of stress at the critical surface is a combination of normal stress
 This equation can be solved numerically to obtain \(r = 2.38\) cm.
 \end{frame}
 
-\begin{frame}[label={sec:org9f27425}]{L-pipe}
+\begin{frame}[label={sec:org089a716}]{L-pipe}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/l-pipe.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org039321e}]{Questions}
+\begin{frame}[label={sec:orgf62b71a}]{Questions}
 \begin{itemize}
 \item Find the critical point. Elaborate your reasoning.
 \item Determine the state of stress of the critical point.
