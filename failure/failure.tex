@@ -35,9 +35,9 @@
 \maketitle
 
 \section{Material Failure}
-\label{sec:org5c397e8}
+\label{sec:org7608cce}
 
-\begin{frame}[label={sec:org20c122b}]{Material Failure}
+\begin{frame}[label={sec:org8f40be3}]{Material Failure}
 \begin{itemize}
 \item Conditions in which materials lose its load-carrying capacity
 \item 3 most prevalent failure modes
@@ -50,9 +50,9 @@
 \end{frame}
 
 \section{Fracture \& Yield}
-\label{sec:org336df6b}
+\label{sec:orgd5000f5}
 
-\begin{frame}[label={sec:org21fb7ad}]{Fracture \& Yield}
+\begin{frame}[label={sec:orga713044}]{Fracture \& Yield}
 \begin{itemize}
 \item Sufficiently high stress to overcome intermolecular bonds
 \item Under uniaxial stress, a material fails when
@@ -64,18 +64,18 @@
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org1c5aaf5}]{Fracture}
+\begin{frame}[label={sec:orgd48366b}]{Fracture}
 \begin{itemize}
 \item Material separation usually \emph{perpendicular} to the direction of stress -- predicted by normal stress
 \item Where or what is the maximum normal stress in a given material? -- \(\sigma_1\) and \(\sigma_2\)
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=.9\linewidth]{pictures/brittle-failure.pdf}
+\includegraphics[width=0.7\textwidth]{pictures/brittle-failure.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orga01fd15}]{Maximum Normal Stress Theory}
+\begin{frame}[label={sec:org341dfa1}]{Maximum Normal Stress Theory}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{itemize}
@@ -103,7 +103,7 @@ $$\sigma_2 \leqslant S_{uc} $$
 \end{frame}
 
 
-\begin{frame}[label={sec:org8dd86da}]{Design Equation for MNST}
+\begin{frame}[label={sec:orgabcad04}]{Design Equation for MNST}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 if \(\sigma_1 > \sigma_2\)
@@ -127,18 +127,17 @@ $$ \sigma_2 = \frac{S_{uc}}{N_s} $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org0012f6f}]{Example: The Many Modes of Chalk Fracture}
+\begin{frame}[label={sec:orgcb4a614}]{Example: The Many Modes of Chalk Fracture}
 \begin{itemize}
 \item How do you think a blackboard chalk would break under axial load? bending? torsion?
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=.9\linewidth]{pictures/broken-chalk.pdf}
+\includegraphics[width=0.7\textwidth]{pictures/broken-chalk.pdf}
 \end{center}
 \end{frame}
 
-
-\begin{frame}[label={sec:orgeb5f7d4}]{Example: Brittle shaft under torsion}
+\begin{frame}[label={sec:orgb0050bc}]{Example: Brittle shaft under torsion}
 \begin{tikzpicture}[>=latex]
 \node[draw, pattern=north east lines, trapezium, trapezium left angle=120, trapezium right angle=60, minimum height=1.5cm, rotate=90](wall){};
 \draw [line cap=round, double=Grey, rounded corners=5mm, double distance=0.5cm] (wall.center) --++ (-25:6) node(end){};
@@ -154,7 +153,7 @@ $$ \sigma_2 = \frac{S_{uc}}{N_s} $$
 \end{frame}
 
 
-\begin{frame}[label={sec:orgdd1cc53}]{Yield}
+\begin{frame}[label={sec:org960f22a}]{Yield}
 \begin{itemize}
 \item Surface slip from material shearing -- predicted by shear stress
 \item Two prevalent methods of determining yield
@@ -163,7 +162,7 @@ $$ \sigma_2 = \frac{S_{uc}}{N_s} $$
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgde63e6a}]{Maximum Shear Stress Theory: Yield under Uniaxial Stress}
+\begin{frame}[label={sec:orgf09c6cd}]{Maximum Shear Stress Theory: Yield under Uniaxial Stress}
 \begin{itemize}
 \item The maximum shear stress in material cannot exceed max shear under uniaxial stress at yield -- what?
 \item Under uniaxial stress, ductile material still fails due to shear stress, which can be derived as
@@ -174,7 +173,7 @@ $$\tau_{max} = \frac{S_y}{2}$$
 \end{frame}
 
 
-\begin{frame}[label={sec:org2b81ba1}]{Maximum Shear Stress Theory: Small Shear?}
+\begin{frame}[label={sec:org4cf93e3}]{Maximum Shear Stress Theory: Small Shear?}
 \begin{itemize}
 \item What if material is in a state such that shear stress is small? Oh? Like how?
 \item When \(|\sigma_x - \sigma_y|\) and \(\tau_{xy}\) are small
@@ -183,7 +182,7 @@ $$\tau_{max} = \frac{S_y}{2}$$
 $$\sigma_{1,2} < S_y $$
 \end{frame}
 
-\begin{frame}[label={sec:orgcf091c9}]{Maximum Shear Stress Theory: In Summary}
+\begin{frame}[label={sec:org005db2a}]{Maximum Shear Stress Theory: In Summary}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{itemize}
@@ -203,7 +202,7 @@ $$\sigma_{1,2} \leqslant S_y $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org1f3d951}]{Design Equation for MSST}
+\begin{frame}[label={sec:org31da941}]{Design Equation for MSST}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{gather*}
@@ -224,7 +223,7 @@ $$\sigma_{1,2} \leqslant S_y $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org7f7b3a5}]{Example: Ductile shaft under torsion}
+\begin{frame}[label={sec:org08a4743}]{Example: Ductile shaft under torsion}
 \begin{tikzpicture}[>=latex]
 \node[draw, pattern=north east lines, trapezium, trapezium left angle=120, trapezium right angle=60, minimum height=1.5cm, rotate=90](wall){};
 \draw [line cap=round, double=Grey, rounded corners=5mm, double distance=0.5cm] (wall.center) --++ (-25:6) node(end){};
@@ -241,7 +240,7 @@ $$\sigma_{1,2} \leqslant S_y $$
 \end{frame}
 
 
-\begin{frame}[label={sec:org77fbb56}]{Distortion Energy Theory: Criteria}
+\begin{frame}[label={sec:org78f3a9b}]{Distortion Energy Theory: Criteria}
 \begin{itemize}
 \item A deformed material has two types of strain energy
 \item Dilatation strain energy \(\rightarrow\) change in volume
@@ -251,20 +250,19 @@ $$\sigma_{1,2} \leqslant S_y $$
 \end{frame}
 
 
-\begin{frame}[label={sec:org54b6376}]{Maximum Distortion Energy Theory: In Summary}
+\begin{frame}[label={sec:orge08db55}]{Maximum Distortion Energy Theory: In Summary}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 \begin{itemize}
 \item Material will fail when
 \end{itemize}
 \begin{equation*}
-\scalebox{1}{$\sigma_e = S_y$}
+\sigma_e = S_y
 \end{equation*}
 \begin{itemize}
 \item where \(\sigma_e\) is the equivalent stress
 \end{itemize}
 \begin{align*}
-
 \sigma_e &= \sqrt{\sigma_x^2 - \sigma_x\sigma_y + \sigma_y^2 + 3\tau_{xy}^2} \\
 &= \sqrt{\sigma_1^2 - \sigma_1\sigma_2 + \sigma_2^2}
 \end{align*}
@@ -285,7 +283,7 @@ $$\sigma_{1,2} \leqslant S_y $$
 \end{frame}
 
 
-\begin{frame}[label={sec:org444dc35}]{Design Equation for MDET}
+\begin{frame}[label={sec:orga9c266d}]{Design Equation for MDET}
 \begin{columns}
 \begin{column}{0.4\columnwidth}
 $$ \sigma_e = \frac{S_y}{N_s} $$
@@ -308,7 +306,7 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 \end{frame}
 
 
-\begin{frame}[label={sec:org1b511bd}]{Comparison Between Different Criteria}
+\begin{frame}[label={sec:org92b6800}]{Comparison Between Different Criteria}
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}[>=latex]
@@ -322,9 +320,9 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 \end{frame}
 
 \section{Fatigue}
-\label{sec:org7dc3943}
+\label{sec:org5eedd1d}
 
-\begin{frame}[label={sec:orgf1d0f88}]{Fatigue}
+\begin{frame}[label={sec:orgbfba95e}]{Fatigue}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -342,7 +340,7 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgecd17b8}]{Repeated Loading}
+\begin{frame}[label={sec:org612f882}]{Repeated Loading}
 \begin{itemize}
 \item Much like a periodic function, there are mainly two important features of a repeated loading concerning fatigue
 
@@ -355,7 +353,7 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org786d39a}]{Testing for Fatigue\}}
+\begin{frame}[label={sec:orgf991645}]{Testing for Fatigue\}}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -371,7 +369,7 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org2cf1139}]{S-N or Endurance Diagram}
+\begin{frame}[label={sec:org4fd0a6f}]{S-N or Endurance Diagram}
 \begin{tikzpicture}[>=latex]
 \draw[ultra thin,color=Black!40] (0,0) grid (10,6);
 \draw[<->]  (0,6) node [left] {$\sigma_a$} -- (0,5) node[left]{$S_l$} -- (0,2) node[left]{$S_e$} -- (0,0) node[below] {$10^3$} -- (2,0)  node[below]{$10^4$} -- (4,0) node[below]{$10^5$} -- (6,0) node[below]{$10^6$} -- (8,0) node[below]{$10^7$} -- (10,0) node[right] {$N$};
@@ -381,7 +379,7 @@ $$ \sigma_e = \frac{S_y}{N_s} $$
 \end{frame}
 
 
-\begin{frame}[label={sec:org44ca9b3}]{Endurance Limit or Fatigue Limit}
+\begin{frame}[label={sec:org5d07eaf}]{Endurance Limit or Fatigue Limit}
 Endurance limit is the maximum stress amplitude for which the part will last \(10^7\) cycles
 
 For steel
@@ -395,7 +393,7 @@ Aluminum does \emph{not} have endurance limit (is that a good thing?)
 \end{frame}
 
 
-\begin{frame}[label={sec:orgf604e5f}]{Low cycle fatigue \((N < 1000)\)\}}
+\begin{frame}[label={sec:org2e357b1}]{Low cycle fatigue \((N < 1000)\)\}}
 \begin{itemize}
 \item Steel parts will last for \(\approx\) 1000 cycles if the applied stress amplitude is
 \end{itemize}
@@ -411,16 +409,16 @@ Aluminum does \emph{not} have endurance limit (is that a good thing?)
 
 \begin{column}{0.5\columnwidth}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{pictures/glove-comp.pdf}
+\includegraphics[width=0.6\textwidth]{pictures/glove-comp.pdf}
 \end{center}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{pictures/car-hood.pdf}
+\includegraphics[width=0.6\textwidth]{pictures/car-hood.pdf}
 \end{center}
 \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgdaa778e}]{High cycle fatigue \((10^3 < N < 10^6)\)}
+\begin{frame}[label={sec:org443a1c1}]{High cycle fatigue \((10^3 < N < 10^6)\)}
 \begin{itemize}
 \item Steel parts will last for about \(N\) cycles if fatigue stress \(\sigma_a\)
 \end{itemize}
@@ -433,13 +431,13 @@ Aluminum does \emph{not} have endurance limit (is that a good thing?)
 \end{frame}
 
 
-\begin{frame}[label={sec:org46843f7}]{Example: bar under cyclic axial load}
+\begin{frame}[label={sec:orgc86405a}]{Example: bar under cyclic axial load}
 A bar is made of steel with \(S_{ut}\) = 300 MPa and is cyclically loaded axially between -200 and 200 MPa. Determine the useful life of this bar.
 \end{frame}
 
 
 
-\begin{frame}[label={sec:org9c4f726}]{Modified Endurance Limit}
+\begin{frame}[label={sec:org14ff795}]{Modified Endurance Limit}
 \begin{itemize}
 \item Experiments find that endurance limits of materials vary due to their conditions
 \end{itemize}
@@ -453,7 +451,7 @@ A bar is made of steel with \(S_{ut}\) = 300 MPa and is cyclically loaded axiall
 \end{frame}
 
 
-\begin{frame}[label={sec:org0ce9560}]{Fatigue Failure with Nonzero Average Stress}
+\begin{frame}[label={sec:orgec529e5}]{Fatigue Failure with Nonzero Average Stress}
 \centering
 \begin{tikzpicture}[>=latex]
 \draw [domain=0:5, scale=1, smooth, samples=100] plot ({\x}, {0.5*sin (5*\x r)});
@@ -478,7 +476,7 @@ A bar is made of steel with \(S_{ut}\) = 300 MPa and is cyclically loaded axiall
 \end{frame}
 
 
-\begin{frame}[label={sec:org21eb731}]{Average Stress Correction Equations}
+\begin{frame}[label={sec:orgf13eb42}]{Average Stress Correction Equations}
 \begin{itemize}
 \item Soderberg relation
 \end{itemize}
@@ -496,14 +494,14 @@ These are called \emph{constant life lines}.
 \end{frame}
 
 
-\begin{frame}[label={sec:org1d96c98}]{Average Stress Correction Comparison}
+\begin{frame}[label={sec:orgbb6253f}]{Average Stress Correction Comparison}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/stresscorrection.pdf}
 \end{center}
 \end{frame}
 
 
-\begin{frame}[label={sec:org1f85521}]{Example: Bar under nonzero average stress}
+\begin{frame}[label={sec:org741fbd3}]{Example: Bar under nonzero average stress}
 A cylindrical rod under a periodic tensile load between 0 and 8000 N. Material of the rod has \(S_y\) = 427 MPa  \(S_{ut}\) = 748 MPa. Determine the suitable diameter of the rod. Use Soderberg relation.
 
 \begin{figure}[h]
@@ -517,20 +515,20 @@ A cylindrical rod under a periodic tensile load between 0 and 8000 N. Material o
 \end{frame}
 
 \section{Buckling}
-\label{sec:orgc613d88}
+\label{sec:org478fae7}
 
-\begin{frame}[label={sec:orga2aceec}]{What is Buckling?}
+\begin{frame}[label={sec:orgce6d9a7}]{What is Buckling?}
 \begin{itemize}
 \item Failure due to instability of column under compressive load
 \item Restoring moment \(<\) moment from compressive load
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.8\textwidth]{pictures/buckled-column.pdf}
+\includegraphics[width=0.7\textwidth]{pictures/buckled-column.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org3309c5c}]{Governing Equation of Buckling}
+\begin{frame}[label={sec:org26c7009}]{Governing Equation of Buckling}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -548,7 +546,7 @@ EI\dfrac{d^2 v}{d x^2} = -Pv \\
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org632fd07}]{Solving for Buckling}
+\begin{frame}[label={sec:org944176a}]{Solving for Buckling}
 The generalized solution takes the form
 
 $$ \scalebox{1}{$ v(x) = A \cos \sqrt{\dfrac{P}{EI}}   x + B \sin \sqrt{\dfrac{P}{EI}}    x $} $$
@@ -559,18 +557,18 @@ $$ v(0) = 0 = A \cos 0 + B \sin 0 $$
 $$ A = 0 $$
 \end{frame}
 
-\begin{frame}[label={sec:org1715605}]{Boring Solution}
+\begin{frame}[label={sec:orgc2f95ef}]{Boring Solution}
 $$ v(L) = 0 $$
-$$ B \sin  \sqrt{\frac{P}{EI}}   L = 0 $$
+$$ B \sin \sqrt{\frac{P}{EI}} L = 0 $$
 
 $$ B = 0 $$
-$$ v(x) = 0 \rightarrow trivial   solution $$
+$$ v(x) = 0 \rightarrow \text{trivial solution} $$
 The solution is correct, but not helpful in determining the load \(P\)
 
 So what's the interesting solution then?
 \end{frame}
 
-\begin{frame}[label={sec:org5ab9c42}]{Interesting Solution}
+\begin{frame}[label={sec:org22ca330}]{Interesting Solution}
 Ok, so \(B\) can't be 0, which means
 
 $$  \sin  \sqrt{\frac{P}{EI}}   L = 0  $$
@@ -580,7 +578,7 @@ $$ P = \dfrac{n^2 \pi^2 E I}{L^2}, n = 1, 2, \dots $$
 Now this is so much more helpful and interesting.
 \end{frame}
 
-\begin{frame}[label={sec:org0a00266}]{Critical Load and Corresponding Mode Shape}
+\begin{frame}[label={sec:org912ee52}]{Critical Load and Corresponding Mode Shape}
 For \(n = 1\)
 $$ P_{crit} = \dfrac{\pi^2 E I}{L^2} $$
 This is called \emph{Euler load} or \emph{Critical load}.
@@ -589,13 +587,13 @@ What does the corresponding buckled column look like?
 $$ v(x) = B \sin \sqrt{\frac{P}{EI}}   x = B \sin \dfrac{n \pi x}{L} $$
 \end{frame}
 
-\begin{frame}[label={sec:org5d8742a}]{Mode Shapes for Buckled Columns}
+\begin{frame}[label={sec:org42a7199}]{Mode Shapes for Buckled Columns}
 \begin{center}
 \includegraphics[width=0.7\textwidth]{pictures/buckling-mode.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:org714f15e}]{Buckling in Fixed - Free Supports}
+\begin{frame}[label={sec:orgc8c71f4}]{Buckling in Fixed - Free Supports}
 \begin{tikzpicture}[>=latex]
 \draw [DarkRed!80, line width=10pt] (-4,0) node(A){} arc (-110:-90:28) node[inner sep=0pt](B){};
 \draw [dash dot] (-4,0) arc (-110:-90:28);
@@ -614,7 +612,7 @@ EI\frac{d^2v}{dx^2} = P(\delta  - v)  \\[5pt]
 \end{gather*}
 \end{frame}
 
-\begin{frame}[label={sec:org8f8a6e0}]{Governing Differential Equation Solution}
+\begin{frame}[label={sec:orgb952392}]{Governing Differential Equation Solution}
 This equation is nonhomogeneous \(\rightarrow\) the solution consists of both a complementary and particular solutions.
 
 \[v = C_1\sin \left( \sqrt \frac{P}{EI} x \right) + C_2\cos \left( \sqrt \frac{P}{EI} x \right) + \delta \]
@@ -625,7 +623,7 @@ Solving for constants of integration using \(v(x = 0) = 0\) and \(v(x = L) = \de
 \end{frame}
 
 
-\begin{frame}[label={sec:org21b4a6c}]{}
+\begin{frame}[label={sec:orgda2390d}]{}
 The nontrivial solution indicates that
 
 \begin{gather*}
@@ -638,7 +636,7 @@ The smallest critical load (\(n = 0\)) is
 $$ P_{cr} = \frac{\pi ^2EI}{4L^2} $$
 \end{frame}
 
-\begin{frame}[label={sec:org573eab7}]{Generalized Critical Load}
+\begin{frame}[label={sec:orgc9df800}]{Generalized Critical Load}
 \begin{align*}
 P_{cr} &= \frac{\pi^2 EI}{L_e^2} \\
 L_e &= KL \\
@@ -649,14 +647,14 @@ K &= \text{constant depending on supports} \\
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org47188d9}]{Buckling in Other Types of Supports}
+\begin{frame}[label={sec:orgf81ca72}]{Buckling in Other Types of Supports}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pictures/buckling-other-supports.pdf}
 \end{center}
 \end{frame}
 
 
-\begin{frame}[label={sec:orgec584f6}]{Slenderness Ratio \(\lambda\)}
+\begin{frame}[label={sec:org3df04c1}]{Slenderness Ratio \(\lambda\)}
 \begin{itemize}
 \item How \emph{slender} is a column?
 \end{itemize}
@@ -672,14 +670,14 @@ where \(r_g\) = radius of gyration = \(\sqrt{\dfrac{I}{A}}\)
 \end{frame}
 
 
-\begin{frame}[label={sec:org47c91db}]{Buckling Design Equation}
+\begin{frame}[label={sec:orgc9b3ddb}]{Buckling Design Equation}
 \begin{align*}
 P_{allow} = \frac{P_{cr}}{N_{s}} &= \frac{\pi^2 EI}{N_{s}L_e^2} \\
 \sigma_{allow} = \frac{\sigma_{cr}}{N_{s}} &= \frac{\pi^2 E}{ N_{s}\lambda^2}
 \end{align*}
 \end{frame}
 
-\begin{frame}[label={sec:org8a13574}]{Example: Buckling of a Railroad Track in the Sun}
+\begin{frame}[label={sec:org860a66b}]{Example: Buckling of a Railroad Track in the Sun}
 \begin{columns}
 \begin{column}{0.6\columnwidth}
 \begin{center}

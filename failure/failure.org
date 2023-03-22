@@ -46,6 +46,7 @@
 + Material separation usually /perpendicular/ to the direction of stress -- predicted by normal stress
 + Where or what is the maximum normal stress in a given material? -- $\sigma_1$ and $\sigma_2$
 
+#+ATTR_LATEX: :width 0.7\textwidth
 [[file:pictures/brittle-failure.pdf]]
 
 ** Maximum Normal Stress Theory
@@ -108,8 +109,8 @@ $$ \sigma_2 = \frac{S_{uc}}{N_s} $$
 
 + How do you think a blackboard chalk would break under axial load? bending? torsion?
 
+#+ATTR_LATEX: :width 0.7\textwidth
 [[file:pictures/broken-chalk.pdf]]
-
 
 ** Example: Brittle shaft under torsion
 
@@ -222,11 +223,10 @@ $$\sigma_{1,2} \leqslant S_y $$
 :END:
 + Material will fail when
 \begin{equation*}
-\scalebox{1}{$\sigma_e = S_y$}
+\sigma_e = S_y
 \end{equation*}
 + where $\sigma_e$ is the equivalent stress
 \begin{align*}
-
 \sigma_e &= \sqrt{\sigma_x^2 - \sigma_x\sigma_y + \sigma_y^2 + 3\tau_{xy}^2} \\
 &= \sqrt{\sigma_1^2 - \sigma_1\sigma_2 + \sigma_2^2}
 \end{align*}
@@ -370,9 +370,9 @@ Aluminum does /not/ have endurance limit (is that a good thing?)
 :BEAMER_col: 0.5
 :END:
 
-#+ATTR_LATEX: :width 0.8\textwidth
+#+ATTR_LATEX: :width 0.6\textwidth
 [[file:pictures/glove-comp.pdf]]
-#+ATTR_LATEX: :width 0.8\textwidth
+#+ATTR_LATEX: :width 0.6\textwidth
 [[file:pictures/car-hood.pdf]]
 
 ** High cycle fatigue $(10^3 < N < 10^6)$
@@ -462,7 +462,7 @@ A cylindrical rod under a periodic tensile load between 0 and 8000 N. Material o
 + Failure due to instability of column under compressive load
 + Restoring moment $<$ moment from compressive load
 
-#+ATTR_LATEX: :width 0.8\textwidth
+#+ATTR_LATEX: :width 0.7\textwidth
 [[file:pictures/buckled-column.pdf]]
 
 ** Governing Equation of Buckling
@@ -498,10 +498,10 @@ $$ A = 0 $$
 
 ** Boring Solution
 $$ v(L) = 0 $$
-$$ B \sin  \sqrt{\frac{P}{EI}}   L = 0 $$
+$$ B \sin \sqrt{\frac{P}{EI}} L = 0 $$
 
 $$ B = 0 $$
-$$ v(x) = 0 \rightarrow trivial   solution $$
+$$ v(x) = 0 \rightarrow \text{trivial solution} $$
 The solution is correct, but not helpful in determining the load $P$
 
 So what's the interesting solution then?
